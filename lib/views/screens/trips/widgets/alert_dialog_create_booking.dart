@@ -38,16 +38,19 @@ class _AlertDialogWidgetState extends State<AlertDialogCreateBooking> {
 
 
 
-  Future<void> _createBooking() async {
+  Future<bool> _createBooking() async {
     print('--------------------------------');
     setState(() {
       createBookingLoading = true;
     });
     var response = await createBooking( await dio.MultipartFile.fromFile(_imageFile.path),widget.tripId );
     if (response.error == null) {
-      showSuccessSnackBar(context: context, message: response.message.toString(), );    }
+      showSuccessSnackBar(context: context, message: response.message.toString(), );
+    return true;
+    }
     else if(response.error == 'unauthorized'){
       unauthorizedLogout(context);
+      return false;
     }
     else {
       showErrorSnackBar(context: context, message: response.error.toString(), );
@@ -55,6 +58,7 @@ class _AlertDialogWidgetState extends State<AlertDialogCreateBooking> {
     setState(() {
       createBookingLoading = false;
     });
+    return false;
   }
   @override
   Widget build(BuildContext context) {
@@ -101,7 +105,7 @@ class _AlertDialogWidgetState extends State<AlertDialogCreateBooking> {
         actions: <Widget>[
           TextButton(
               child: const Text('إلغاء'),
-              onPressed: () => Navigator.of(context).pop()),
+              onPressed: () => Navigator.of(context).pop(false)),
 
           createBookingLoading ? SizedBox(height: 22,width: 22, child: CircularProgressIndicator()) :
           TextButton(
@@ -112,7 +116,13 @@ class _AlertDialogWidgetState extends State<AlertDialogCreateBooking> {
                       createBookingLoading = true;
                     });
                     if (_imageFile != null)
-                     await _createBooking().then((value) => {Navigator.of(context).pop(),});
+                     await _createBooking().then((value) => {
+                       if(value == true){
+                         Navigator.of(context).pop(true),
+                       }else(
+                       Navigator.of(context).pop(false)
+                       )
+                     });
                     setState(() {
                       createBookingLoading = false;
                     });

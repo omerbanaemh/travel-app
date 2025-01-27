@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:yemen_travel_guid/colors/app_colors.dart';
 
 
-class LoginButton extends StatefulWidget {
+class TextFieldTrip extends StatefulWidget {
   final Icon icon;
   final String label;
   final String validator;
   final TextEditingController controller;
-  const LoginButton({super.key, required this.icon, required this.label, required this.controller, required this.validator, });
+  final int maxLines;
+  const TextFieldTrip({super.key, required this.icon, required this.label, required this.controller, required this.validator, required this.maxLines, });
 
   @override
-  State<LoginButton> createState() => _LoginButtonState();
+  State<TextFieldTrip> createState() => _TextFieldTripState();
 }
 
-class _LoginButtonState extends State<LoginButton> {
+class _TextFieldTripState extends State<TextFieldTrip> {
 
 
   @override
@@ -22,7 +23,7 @@ class _LoginButtonState extends State<LoginButton> {
       width: 300,
       decoration: BoxDecoration(
         color: Color(0xFFFDFDFE),
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
@@ -32,6 +33,7 @@ class _LoginButtonState extends State<LoginButton> {
         ],
       ),
       child: TextFormField(
+        maxLines: widget.maxLines,
         controller: widget.controller,
         keyboardType: TextInputType.visiblePassword,
         textDirection: TextDirection.rtl,

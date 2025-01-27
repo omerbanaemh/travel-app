@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:yemen_travel_guid/models/api_response.dart';
 import 'package:yemen_travel_guid/models/comment_model.dart';
-import 'package:yemen_travel_guid/models/trip/trip_model.dart';
+import 'package:yemen_travel_guid/models/trip_model.dart';
 
 import '../constant.dart';
 

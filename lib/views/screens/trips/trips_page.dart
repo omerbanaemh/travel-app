@@ -3,7 +3,7 @@ import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:yemen_travel_guid/constant.dart';
 import 'package:yemen_travel_guid/controllers/trips_controller.dart';
 import 'package:yemen_travel_guid/cor/util/snackbar_message.dart';
-import 'package:yemen_travel_guid/models/trip/trip_model.dart';
+import 'package:yemen_travel_guid/models/trip_model.dart';
 import 'package:yemen_travel_guid/views/screens/trips/trip_page.dart';
 
 class TripsPage extends StatefulWidget {

@@ -1,23 +1,25 @@
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:yemen_travel_guid/colors/app_colors.dart';
+import 'package:yemen_travel_guid/controllers/office_controller.dart';
 import 'package:yemen_travel_guid/controllers/trips_controller.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
 import 'package:yemen_travel_guid/cor/util/snackbar_message.dart';
 import 'package:dio/dio.dart' as dio;
 
-class AlertDialogCreateBooking extends StatefulWidget {
-  final tripId;
-  const AlertDialogCreateBooking({super.key,required this.tripId});
+class AlertDialogCreateTrip extends StatefulWidget {
+  const AlertDialogCreateTrip({super.key});
 
   @override
-  State<AlertDialogCreateBooking> createState() => _AlertDialogWidgetState();
+  State<AlertDialogCreateTrip> createState() => _AlertDialogWidgetState();
 }
 
-class _AlertDialogWidgetState extends State<AlertDialogCreateBooking> {
+class _AlertDialogWidgetState extends State<AlertDialogCreateTrip> {
+
   TextEditingController boardNameController = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  bool createBookingLoading = false;
+  bool loading = false;
 
 
 
@@ -25,8 +27,12 @@ class _AlertDialogWidgetState extends State<AlertDialogCreateBooking> {
 
   dynamic _imageFile;
   final _picker = ImagePicker();
-  TextEditingController txtNameController = TextEditingController();
-  TextEditingController txtEmailController = TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController description = TextEditingController();
+  TextEditingController subTitle = TextEditingController();
+  TextEditingController tripContent = TextEditingController();
+  TextEditingController itinerary = TextEditingController();
+  TextEditingController price = TextEditingController();
 
   Future getImage() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
@@ -38,12 +44,11 @@ class _AlertDialogWidgetState extends State<AlertDialogCreateBooking> {
 
 
 
-  Future<bool> _createBooking() async {
-    print('--------------------------------');
+  Future<bool> _createTrip() async {
     setState(() {
-      createBookingLoading = true;
+      loading = true;
     });
-    var response = await createBooking( await dio.MultipartFile.fromFile(_imageFile.path),widget.tripId );
+    var response = await createTrip(await dio.MultipartFile.fromFile(_imageFile.path),name.text,description.text,subTitle.text,tripContent.text,itinerary.text,price.text,);
     if (response.error == null) {
       showSuccessSnackBar(context: context, message: response.message.toString(), );
     return true;
@@ -54,12 +59,14 @@ class _AlertDialogWidgetState extends State<AlertDialogCreateBooking> {
     }
     else {
       showErrorSnackBar(context: context, message: response.error.toString(), );
-      return false;
     }
     setState(() {
-      createBookingLoading = false;
+      loading = false;
     });
+    return false;
+
   }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -70,62 +77,127 @@ class _AlertDialogWidgetState extends State<AlertDialogCreateBooking> {
               20),
         ),
         title: const Text(
-          'أرفاق صورة الدفع ',
+          'إضافة رحلة',
           textAlign: TextAlign.center,
         ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            InkWell(
-              onTap: ()=> getImage(),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: 110,
-                  height: 110,
-                  clipBehavior: Clip.antiAlias,
-                  decoration:  BoxDecoration(
-                    borderRadius: BorderRadius.circular(5.0),
-                    // shape: BoxShape.circle,
-                    // color: Colors.grey[300]
-                  ),
-                  child: _imageFile != null ?  Image.file(
-                    _imageFile!,
-                    fit: BoxFit.cover,
-                  )
-                      : Image.asset(
-                      'assets/images/noImage.jpg'),
-
-              ),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              InkWell(
+                onTap: ()=> getImage(),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    width: 80,
+                    height: 80,
+                    clipBehavior: Clip.antiAlias,
+                    decoration:  BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                      // shape: BoxShape.circle,
+                      // color: Colors.grey[300]
                     ),
-            ),
+                    child: _imageFile != null ?  Image.file(
+                      _imageFile!,
+                      fit: BoxFit.cover,
+                    )
+                        : Image.asset(
+                        'assets/images/noImage.jpg'),
 
-          ],
+                ),
+                      ),
+              ),
+              TextFormField(
+                controller: name,
+                decoration: const InputDecoration(labelText: 'الإسم',),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return "الرجاء إدخال اسم الرحلة";
+                  }
+                  return null;
+                },
+              ),
+
+              TextFormField(
+                controller: description,
+                maxLines: 2,
+                decoration: const InputDecoration(labelText: 'الوصف',),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return "الرجاء إدخال وصف الرحلة";
+                  }
+                  return null;
+                },
+              ),
+
+              TextFormField(
+                controller: subTitle,
+                decoration: const InputDecoration(labelText: 'العنوان الفرعي',),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return "الرجاء إدخال العنوان الفرعي";
+                  }
+                  return null;
+                },
+              ),
+
+              TextFormField(
+                controller: tripContent,
+                maxLines: 3,
+                decoration: const InputDecoration(labelText: 'محتوى الرحلة',),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return "الرجاء إدخال محتوى الرحلة";
+                  }
+                  return null;
+                },
+              ),
+
+              TextFormField(
+                controller: itinerary,
+                maxLines: 3,
+                decoration: const InputDecoration(labelText: 'مسار الرحلة',),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return "الرجاء إدخال مسار الرحلة";
+                  }
+                  return null;
+                },
+              ),
+
+              TextFormField(
+                controller: price,
+                decoration: const InputDecoration(labelText: 'السعر',),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return "الرجاء إدخال سعر الرحلة";
+                  }
+                  return null;
+                },
+              ),
+
+            ],
+          ),
         ),
         actions: <Widget>[
           TextButton(
               child: const Text('إلغاء'),
               onPressed: () => Navigator.of(context).pop(false)),
 
-          createBookingLoading ? SizedBox(height: 22,width: 22, child: CircularProgressIndicator()) :
+          loading ? SizedBox(height: 22,width: 22, child: CircularProgressIndicator()) :
           TextButton(
-                child: const Text('حجز'),
+                child: const Text('إنشاء رحلة'),
                 onPressed: ()  async {
                   if (formkey.currentState!.validate()){
                     setState(() {
-                      createBookingLoading = true;
+                      loading = true;
                     });
                     if (_imageFile != null)
-                     await _createBooking().then((value) => {
-                       if(value == true){
-                         Navigator.of(context).pop(true),
-                       }else(
-                       Navigator.of(context).pop(false)
-                       )
-                     });
+                     await _createTrip();
                     setState(() {
-                      createBookingLoading = false;
+                      loading = false;
                     });
+                    Navigator.of(context).pop(false);
                   }
                 },
               )
@@ -133,19 +205,4 @@ class _AlertDialogWidgetState extends State<AlertDialogCreateBooking> {
       ),
     );
   }
-
-  // Future<void> _createBooking(String body) async {
-  //   ApiResponse response = await createBooking(body, );
-  //   if (response.error == null) {
-  //     showSuccessSnackBar(
-  //       context: context,
-  //       message: 'تم طلب الحجز بنجاح',
-  //     );
-  //     // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> Home()));
-  //   } else if (response.error == 'unauthorized') {
-  //     unauthorizedLogout(context);
-  //   } else {
-  //     showErrorSnackBar(context: context,message: response.error.toString());
-  //   }
-  // }
 }

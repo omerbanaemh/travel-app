@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:yemen_travel_guid/cor/util/snackbar_message.dart';
 import 'package:yemen_travel_guid/models/auth/profile_model.dart';
+import 'package:yemen_travel_guid/views/screens/office/office_page.dart';
 import 'package:yemen_travel_guid/views/screens/setting_page.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
 
@@ -109,6 +110,36 @@ class _ProfilePageState extends State<ProfilePage> {
                           color: Colors.grey[900])),
                   leading: Icon(Icons.help, color: Colors.grey[700]),
                   onTap: () {
+                  },
+                ),
+                const Divider(),
+                if(user.role == 'Agent')
+                ListTile(
+                  title: Text('ادارة المكتب',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.grey[900])),
+                  leading: Icon(Icons.home_work, color: Colors.grey[700]),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => const OfficePage()));
+
+                  },
+                ),
+                const Divider(),
+
+                ListTile(
+                  title: Text('تسجيل خروج',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.grey[900])),
+                  leading: Icon(Icons.logout, color: Colors.grey[700]),
+                  onTap: () {
+                    unauthorizedLogout(context);
                   },
                 ),
                 const Divider(),

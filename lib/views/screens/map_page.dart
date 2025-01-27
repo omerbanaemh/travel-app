@@ -3,7 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:yemen_travel_guid/controllers/map_controller.dart';
 import 'package:yemen_travel_guid/cor/util/snackbar_message.dart';
-import 'package:yemen_travel_guid/models/place/place_model.dart';
+import 'package:yemen_travel_guid/models/place_model.dart';
 import 'package:yemen_travel_guid/views/screens/places/place_page.dart';
 
 class MapPage extends StatefulWidget {

@@ -9,7 +9,7 @@ import 'package:yemen_travel_guid/cor/util/snackbar_message.dart';
 import 'package:yemen_travel_guid/models/api_response.dart';
 import 'package:yemen_travel_guid/models/auth/profile_model.dart';
 import 'package:yemen_travel_guid/models/comment_model.dart';
-import 'package:yemen_travel_guid/models/trip/trip_model.dart';
+import 'package:yemen_travel_guid/models/trip_model.dart';
 import 'package:yemen_travel_guid/views/screens/trips/widgets/alert_dialog_create_booking.dart';
 import 'package:yemen_travel_guid/views/screens/trips/widgets/alert_dialog_rating.dart';
 
@@ -393,11 +393,13 @@ class _TripPageState extends State<TripPage> {
                  builder: (BuildContext context) {
                    return AlertDialogCreateBooking(tripId: trip.id,);
                  }).then((value) => {
-                   showDialog(
-                     context: context,
-                     builder: (BuildContext context) {
-                       return AlertDialogRating(tripId: trip.id,);
-                     })
+                   if (value == true) {
+                     showDialog(
+                         context: context,
+                         builder: (BuildContext context) {
+                           return AlertDialogRating(tripId: trip.id,);
+                         })
+                   }
                  });
               },
               child: Container(

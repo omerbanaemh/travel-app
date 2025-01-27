@@ -52,10 +52,10 @@ class _RegisterState extends State<Register> {
     print('1111111333331111111');
 
     if (response.error == null) {
-      // _saveAndRedirectToHome(response.data as UserModel);
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const Home()),
-              (route) => false);
+      _saveAndRedirectToHome(response.data as UserModel);
+      // Navigator.of(context).pushAndRemoveUntil(
+      //     MaterialPageRoute(builder: (context) => const Home()),
+      //         (route) => false);
     } else {
       showErrorSnackBar(context:context,message:response.error.toString());
     }
@@ -80,13 +80,12 @@ class _RegisterState extends State<Register> {
         phone.text,
         recordNumber.text,
     );
-    print('1111111333331111111');
 
     if (response.error == null) {
-      // _saveAndRedirectToHome(response.data as UserModel);
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => const Home()),
-                (route) => false);
+      _saveAndRedirectToHome(response.data as UserModel);
+        // Navigator.of(context).pushAndRemoveUntil(
+        //     MaterialPageRoute(builder: (context) => const Home()),
+        //         (route) => false);
     } else {
       showErrorSnackBar(context:context,message:response.error.toString());
     }
@@ -95,16 +94,16 @@ class _RegisterState extends State<Register> {
     });
   }
 
-  // Save and redirect to home
-  // void _saveAndRedirectToHome(UserModel user) async {
-  //   SharedPreferences pref = await SharedPreferences.getInstance();
-  //   await pref.setString('token', user.token ?? '');
-  //   await pref.setInt('userId', user.id);
-  //   await pref.setString('user', jsonEncode(user.toJson()));
-  //   Navigator.of(context).pushAndRemoveUntil(
-  //       MaterialPageRoute(builder: (context) => const Home()),
-  //           (route) => false);
-  // }
+ // Save and redirect to home
+  void _saveAndRedirectToHome(UserModel user) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    await pref.setString('token', user.token ?? '');
+    await pref.setInt('userId', user.id);
+    await pref.setString('user', jsonEncode(user.toJson()));
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => const Home()),
+            (route) => false);
+  }
 
 
 

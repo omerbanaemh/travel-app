@@ -85,71 +85,71 @@ class _LoginState extends State<Login> {
 
           Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Image(
-                  image: AssetImage('assets/images/logo.png'),
-                  width: 187,
-                  height: 192,
-                ),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Image(
+                    image: AssetImage('assets/images/logo.png'),
+                    width: 187,
+                    height: 192,
+                  ),
 
-                 Form(
-                        key: formkey,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 65),
-                          child: Column(
+                  Form(
+                    key: formkey,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 65),
+                      child: Column(
+                        children: [
+                          LoginButton(
+                            icon:const Icon(Icons.person,color: AppColors.primary2,),
+                            label: "البريد الإلكتروني",
+                            validator: 'email',
+                            controller: email,),
+                          const SizedBox(height: 30),
+                          LoginButton(
+                            icon:const Icon(Icons.password,color: AppColors.primary2,),
+                            label: "كلمة المرور",
+                            validator: 'password',
+                            controller: password,
+                          ),
+                          const SizedBox(height: 30),
+                          Row(
                             children: [
-                              LoginButton(
-                                icon:const Icon(Icons.person,color: AppColors.primary2,),
-                                label: "البريد الإلكتروني",
-                                validator: 'email',
-                                controller: email,),
-                              const SizedBox(height: 30),
-                              LoginButton(
-                                icon:const Icon(Icons.password,color: AppColors.primary2,),
-                                label: "كلمة المرور",
-                                validator: 'password',
-                                controller: password,
-                              ),
-                              const SizedBox(height: 30),
-                              Row(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) => const Register()));
-                                    },
-                                    child: const Text(
-                                      "نسيت كلمه المرور؟",
-                                      style: TextStyle(fontSize: 16, color: Colors.grey),
-                                    ),
-                                  ),
-                                ],
-                              ),
-
-
-                              const SizedBox(height: 80),
                               InkWell(
                                 onTap: () {
-                                  if (formkey.currentState!.validate()){
-                                    handelLogin();
-                                  }
-
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => const Register()));
                                 },
-                                child: loading ?  const BrownButton( text: 'تسجيل الدخول',loading: true) :  const BrownButton( text: 'تسجيل الدخول'),
+                                child: const Text(
+                                  "نسيت كلمه المرور؟",
+                                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                                ),
                               ),
-
-
                             ],
                           ),
-                        ),
-                      )
 
 
-              ]
-          ),
+                          const SizedBox(height: 80),
+                          InkWell(
+                            onTap: () {
+                              if (formkey.currentState!.validate()){
+                                handelLogin();
+                              }
+
+                            },
+                            child: loading ?  const BrownButton( text: 'تسجيل الدخول',loading: true) :  const BrownButton( text: 'تسجيل الدخول'),
+                          ),
+
+
+                        ],
+                      ),
+                    ),
+                  )
+
+
+                ]
+            ),
           ),
         ],
       ),

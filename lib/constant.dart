@@ -23,6 +23,10 @@ const postsURL = '$baseURL/api/posts';
 
 //TRIPS
 const getTripsURL = '$baseURL/api/trip_packages';
+const createTripsURL = '$baseURL/api/trip_packages/store';
+
+//OFFICE
+const getMyOfficeURL = '$baseURL/api/offices/my_office';
 
 //BOOKINGS
 const createBookingURL = '$baseURL/api/bookings/store';
