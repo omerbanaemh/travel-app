@@ -27,7 +27,9 @@ class _ProfilePageState extends State<ProfilePage> {
 
 
   void _getProfile() async {
-    print('--------------------------------');
+    setState(() {
+      loading = true;
+    });
     var response = await getProfile();
     if (response.error == null) {
       user = response.data as ProfileModel;
@@ -39,113 +41,104 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
   Widget build(BuildContext context) {
-    return ListView(
-      physics: const AlwaysScrollableScrollPhysics(),
-      padding: EdgeInsets.zero,
-      children: <Widget>[
-        Container(
-            color: Colors.white,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                // SizedBox(height: 22,),
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 36.0, right: 44, bottom: 22),
-                  child: Text('الحساب', style: TextStyle(fontSize: 22,
-                      color: AppColors.primary2,
-                      fontWeight: FontWeight.bold),),
-                ),
-
-                loading ? Center(child: CircularProgressIndicator()) :
-                ListTile(
-                  title: Text(
-                    user.userName,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 17,
-                        color: Colors.grey[900]),
-                  ),
-                  subtitle: Text(user.email),
-                  leading: CircleAvatar(
-                    radius: 30.0,
-                    // backgroundImage: NetworkImage("${snapshot.data.hitsList[index].previewUrl}"),
-                  ),
-                ),
+    return  loading ? Center(child: CircularProgressIndicator()) : SingleChildScrollView(
+      child:  Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(
+                top: 50.0, right: 44, bottom: 10),
+            child: Text('الحساب', style: TextStyle(fontSize: 22,
+                color: AppColors.primary2,
+                fontWeight: FontWeight.bold),),
+          ),
+          ListTile(
+            title: Text(
+              user.userName,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17,
+                  color: Colors.grey[900]),
+            ),
+            subtitle: Text(user.email),
+            leading: CircleAvatar(
+              radius: 30.0,
+              // backgroundImage: NetworkImage("${snapshot.data.hitsList[index].previewUrl}"),
+            ),
+          ),
 
 
-                const Divider(),
-                ListTile(
-                  title: Text('الإعدادات',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.grey[900])),
-                  leading: Icon(Icons.settings, color: Colors.grey[700]),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => const SettingPage()));
-                  },
-                ),
-                const Divider(),
-                ListTile(
-                  title: Text('تواصل معنا',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.grey[900])),
-                  leading: Icon(Icons.phone, color: Colors.grey[700]),
-                  onTap: () {
-                  },
-                ),
-                const Divider(),
-                ListTile(
-                  title: Text('الدعم',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.grey[900])),
-                  leading: Icon(Icons.help, color: Colors.grey[700]),
-                  onTap: () {
-                  },
-                ),
-                const Divider(),
-                if(user.role == 'Agent')
-                ListTile(
-                  title: Text('ادارة المكتب',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.grey[900])),
-                  leading: Icon(Icons.home_work, color: Colors.grey[700]),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => const OfficePage()));
+          const Divider(),
+          ListTile(
+            title: Text('الإعدادات',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.grey[900])),
+            leading: Icon(Icons.settings, color: Colors.grey[700]),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => const SettingPage()));
+            },
+          ),
+          const Divider(),
+          ListTile(
+            title: Text('تواصل معنا',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.grey[900])),
+            leading: Icon(Icons.phone, color: Colors.grey[700]),
+            onTap: () {
+            },
+          ),
+          const Divider(),
+          ListTile(
+            title: Text('الدعم',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.grey[900])),
+            leading: Icon(Icons.help, color: Colors.grey[700]),
+            onTap: () {
+            },
+          ),
+          const Divider(),
+          if(user.role == 'Agent')
+          ListTile(
+            title: Text('ادارة المكتب',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.grey[900])),
+            leading: Icon(Icons.home_work, color: Colors.grey[700]),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => const OfficePage()));
 
-                  },
-                ),
-                const Divider(),
+            },
+          ),
+          if(user.role == 'Agent')
+          const Divider(),
 
-                ListTile(
-                  title: Text('تسجيل خروج',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.grey[900])),
-                  leading: Icon(Icons.logout, color: Colors.grey[700]),
-                  onTap: () {
-                    unauthorizedLogout(context);
-                  },
-                ),
-                const Divider(),
-              ],
-            )),
-      ],
+          ListTile(
+            title: Text('تسجيل خروج',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.grey[900])),
+            leading: Icon(Icons.logout, color: Colors.grey[700]),
+            onTap: () {
+              unauthorizedLogout(context);
+            },
+          ),
+          const Divider(),
+        ],
+      ),
     );
   }
 }

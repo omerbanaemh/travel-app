@@ -5,7 +5,7 @@ class AboutYemenPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( backgroundColor: Colors.white,
+    return Scaffold(
       body:SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,7 +31,6 @@ class AboutYemenPage extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.black,
-                    fontFamily: 'Tajawal'
                   ),
                   children: [
                     TextSpan(text: 'الجمهورية اليمنية، ',),
@@ -79,7 +78,7 @@ class AboutYemenPage extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: Text('الغالبية العظمى من السكان يعتنقون الإسلام، وهناك أيضًا أقلية صغيرة من الديانات الأخرى مثل اليهودية و المسيحية.',style: TextStyle(fontSize: 20,fontFamily: 'Tajawal',height: 1.2),),
+                  child: Text('الغالبية العظمى من السكان يعتنقون الإسلام، وهناك أيضًا أقلية صغيرة من الديانات الأخرى مثل اليهودية و المسيحية.',style: TextStyle(fontSize: 20,height: 1.2),),
                 ),
               ],
             ),
@@ -108,7 +107,7 @@ class AboutYemenPage extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: Text('اللغة العربية هي اللغة الرسمية . ولكن تتميز اليمن بكثرة اللهجات المختلفة فيها حسب كل منطقة و أخرى مثل : اللهجة الصنعانية , اللهجة الحضرمية , اللهجة التعزية و العدنية .',style: TextStyle(fontSize: 20,fontFamily: 'Tajawal',height: 1.2),),
+                  child: Text('اللغة العربية هي اللغة الرسمية . ولكن تتميز اليمن بكثرة اللهجات المختلفة فيها حسب كل منطقة و أخرى مثل : اللهجة الصنعانية , اللهجة الحضرمية , اللهجة التعزية و العدنية .',style: TextStyle(fontSize: 20,height: 1.2),),
                 ),
               ],
             ),

@@ -1,19 +1,20 @@
-import 'dart:convert';
-
 import 'package:yemen_travel_guid/constant.dart';
 import 'package:yemen_travel_guid/models/api_response.dart';
+import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:yemen_travel_guid/models/place_model.dart';
+import 'package:yemen_travel_guid/models/booking_model.dart';
+import 'package:yemen_travel_guid/models/trip_model.dart';
 
 
 
 //trips
-Future<ApiResponse> getPlaces() async {
+Future<ApiResponse> getMyBookings() async {
   ApiResponse apiResponse = ApiResponse();
   // try {
   String? token = await getToken();
+  print(token);
   final response = await http.get(
-      Uri.parse(getPlacesURL),
+      Uri.parse(getMyBookingsURL),
       headers: {
         'Accept': 'application/json',
         'Authorization': 'Bearer $token'
@@ -23,8 +24,8 @@ Future<ApiResponse> getPlaces() async {
 
   switch(response.statusCode){
     case 200:
-      List<PlaceModel> places = (jsonDecode(response.body)['data']as List).map((place) => PlaceModel.fromJson(place)).toList();
-      apiResponse.data = places;
+      List<BookingModel> bookings = (jsonDecode(response.body)['data']as List).map((booking) => BookingModel.fromJson(booking)).toList();
+      apiResponse.data = bookings;
       break;
     case 401:
       apiResponse.error = 'unauthorized';
@@ -39,4 +40,3 @@ Future<ApiResponse> getPlaces() async {
   // }
   return apiResponse;
 }
-

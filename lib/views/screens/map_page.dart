@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:yemen_travel_guid/controllers/map_controller.dart';
+import 'package:yemen_travel_guid/controllers/city_controller.dart';
 import 'package:yemen_travel_guid/cor/util/snackbar_message.dart';
+import 'package:yemen_travel_guid/models/city_model.dart';
 import 'package:yemen_travel_guid/models/place_model.dart';
+import 'package:yemen_travel_guid/views/screens/cities/city_page.dart';
 import 'package:yemen_travel_guid/views/screens/places/place_page.dart';
 
 class MapPage extends StatefulWidget {
@@ -14,23 +16,23 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  List<PlaceModel> places = [];
+  List<CityModel> cities = [];
   bool loading = false;
 
   @override
   void initState() {
-    _getPlaces();
+    _getCities();
     super.initState();
   }
 
-  void _getPlaces() async {
+  void _getCities() async {
     print('--------------------------------');
     setState(() {
       loading = true;
     });
-    var response = await getPlaces();
+    var response = await getCities();
     if (response.error == null) {
-      places = response.data as List<PlaceModel>;
+      cities = response.data as List<CityModel>;
     } else {
       showErrorSnackBar(
         context: context,
@@ -59,13 +61,13 @@ class _MapPageState extends State<MapPage> {
                   userAgentPackageName: 'dev.fleaflet.flutter_map.example',
                 ),
                 MarkerLayer(
-                  markers: places.map((place) {
+                  markers: cities.map((city) {
                     return Marker(
-                      point: LatLng(place.latitude, place.longitude),
+                      point: LatLng(city.latitude, city.longitude),
                       child: InkWell(
                         onTap: () {
-                          _showBottomSheet(context, place.id, place.placeName,
-                              place.description);
+                          _showBottomSheet(context, city.id, city.cityName,
+                              city.description);
                         },
                         child: const Padding(
                           padding: EdgeInsets.only(bottom: 22.0),
@@ -82,7 +84,7 @@ class _MapPageState extends State<MapPage> {
   }
 
   void _showBottomSheet(
-      BuildContext context, int placeId, String name, String description) {
+      BuildContext context, int cityId, String name, String description) {
     showModalBottomSheet(
       isScrollControlled: true,
       backgroundColor: const Color(0xfff5efec),
@@ -158,8 +160,8 @@ class _MapPageState extends State<MapPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => PlacePage(
-                                      placeId: placeId,
+                                builder: (context) => CityPage(
+                                      cityId: cityId,
                                     )));
                       },
                       child: const Text(

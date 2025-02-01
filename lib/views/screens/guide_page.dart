@@ -12,7 +12,7 @@ class GuidePage extends StatelessWidget {
           Container(
             height: 230,
               width: double.infinity,
-              child: Image.asset('assets/images/guide/guide.png',fit: BoxFit.cover,)
+              child: Image.asset('assets/images/guide/banner_guide.png',fit: BoxFit.cover,)
           ),
           Container(
               width: double.infinity,
@@ -29,18 +29,18 @@ class GuidePage extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      // border: Border.all(color: Colors.grey),
+                      border: Border.all(color: Colors.grey),
                     ),
-                    width: 157,
-                      height: 129,
+                    width: 128,
+                      height: 100,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(30),
                         child: Image.asset('assets/images/guide/yemen.png',fit: BoxFit.cover,)
                       ),
                   ),
                 ),
-                Expanded(child: Center(child: Text('حول اليمن',style: TextStyle(fontSize: 36,color: Color(
-                    0xffa76f47)),)))
+                Expanded(child: Text('حول اليمن',style: TextStyle(fontSize: 24,color: Color(
+                    0xffa76f47)),))
               ],
             ),
           ),
@@ -54,18 +54,18 @@ class GuidePage extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      // border: Border.all(color: Colors.grey),
+                      border: Border.all(color: Colors.grey),
                     ),
-                    width: 157,
-                    height: 129,
+                    width: 128,
+                    height: 100,
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(30),
-                        child: Image.asset('assets/images/home/underbanner.png',fit: BoxFit.cover,)
+                        child: Image.asset('assets/images/guide/guide.png',fit: BoxFit.cover,)
                     ),
                   ),
                 ),
-                Expanded(child: Center(child: Text('الثقافة',style: TextStyle(fontSize: 36,color: Color(
-                    0xffa76f47)),)))
+                Expanded(child: Text('دليل السفر',style: TextStyle(fontSize: 24,color: Color(
+                    0xffa76f47)),))
               ],
             ),
           ),
@@ -79,18 +79,43 @@ class GuidePage extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      // border: Border.all(color: Colors.grey),
+                      border: Border.all(color: Colors.grey),
                     ),
-                    width: 157,
-                    height: 129,
+                    width: 128,
+                    height: 100,
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(30),
                         child: Image.asset('assets/images/guide/travel.png',fit: BoxFit.cover,)
                     ),
                   ),
                 ),
-                Expanded(child: Center(child: Text('دليل التنقل',style: TextStyle(fontSize: 36,color: Color(
-                    0xffa76f47)),)))
+                Expanded(child: Text('دليل التنقل',style: TextStyle(fontSize: 24,color: Color(
+                    0xffa76f47)),))
+              ],
+            ),
+          ),
+          Divider(),
+          InkWell(
+            onTap: (){},
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(color: Colors.grey),
+                    ),
+                    width: 128,
+                    height: 100,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(30),
+                        child: Image.asset('assets/images/guide/travel.png',fit: BoxFit.cover,)
+                    ),
+                  ),
+                ),
+                Expanded(child: Text('المحافظات',style: TextStyle(fontSize: 24,color: Color(
+                    0xffa76f47)),))
               ],
             ),
           ),

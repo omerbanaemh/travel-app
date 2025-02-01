@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
 import 'package:yemen_travel_guid/models/auth/profile_model.dart';
 
@@ -28,12 +29,19 @@ const createTripsURL = '$baseURL/api/trip_packages/store';
 //OFFICE
 const getMyOfficeURL = '$baseURL/api/offices/my_office';
 
+//FAVORITES
+const createFavoriteURL = '$baseURL/api/favorites/store';
+
 //BOOKINGS
 const createBookingURL = '$baseURL/api/bookings/store';
+const getMyBookingsURL = '$baseURL/api/bookings/myBookings';
 
 
 //PLACES
 const getPlacesURL = '$baseURL/api/places';
+
+//CITIES
+const getCitiesURL = '$baseURL/api/cities';
 
 //RATING
 const ratingURL = '$baseURL/api/ratings/store';
@@ -86,8 +94,17 @@ Future<ProfileModel?> getSharedPreferencesUser() async {
 InputDecoration kInputDecoration(String label) {
   return InputDecoration(
       labelText: label,
+      labelStyle: TextStyle(color:AppColors.primary5),
       contentPadding: const EdgeInsets.all(10),
-      border: const OutlineInputBorder(borderSide: BorderSide(width: 1, color: Colors.black))
-  );
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: AppColors.primary5, ),
+      ),
+
+
+  focusedBorder: OutlineInputBorder(
+  borderRadius: BorderRadius.circular(10),
+  borderSide: BorderSide(color: AppColors.primary5, width:  1.3),
+  ),  );
 }
 

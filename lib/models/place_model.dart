@@ -1,4 +1,5 @@
 import 'package:yemen_travel_guid/models/comment_model.dart';
+import 'package:yemen_travel_guid/models/image_model.dart';
 
 class PlaceModel {
   final int id;
@@ -8,6 +9,7 @@ class PlaceModel {
   final double longitude;
   final String? ratings;
   List<CommentModel> comments;
+  List<ImageModel> images;
 
   PlaceModel({
     required this.id,
@@ -17,6 +19,7 @@ class PlaceModel {
     required this.longitude,
     this.ratings,
     required this.comments,
+    required this.images,
   });
 
   factory PlaceModel.fromJson(Map<String, dynamic> json) {
@@ -28,6 +31,7 @@ class PlaceModel {
       longitude: double.parse(json['longitude']),
       ratings: json['ratings'],
       comments: List<CommentModel>.from((json['comments']??[]).map((comment) => CommentModel.fromJson(comment))),
+      images: List<ImageModel>.from((json['images']??[]).map((image) => ImageModel.fromJson(image))),
     );
   }
 

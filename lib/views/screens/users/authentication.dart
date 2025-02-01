@@ -11,7 +11,7 @@ class Authentication extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(backgroundColor: Colors.white,
+    return  Scaffold(
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(55.0),

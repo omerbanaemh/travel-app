@@ -18,6 +18,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'yemen travel guid',
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.white
+        ),
         fontFamily: 'Tajawal',
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF3F3F40)),
         useMaterial3: true,

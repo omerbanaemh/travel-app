@@ -56,7 +56,6 @@ class _OfficePageState extends State<OfficePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Column(
         children: [
           Container(
@@ -66,7 +65,7 @@ class _OfficePageState extends State<OfficePage> {
               padding:
               EdgeInsets.only(top: 50.0, right: 22, bottom: 10),
               child: Text(
-                'البكاجات المتوفرة',
+                'البكجات المتوفرة',
                 style: TextStyle(
                   fontSize: 22,
                   color: AppColors.titleColor,

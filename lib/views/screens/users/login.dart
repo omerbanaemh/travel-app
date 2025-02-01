@@ -36,6 +36,9 @@ class _LoginState extends State<Login> {
 
 
   void handelLogin() async {
+    setState(() {
+      loading = true;
+    });
     var response = await login(email.text, password.text);
     if (response.error == null) {
       _saveAndRedirectToHome(response.data);
@@ -63,7 +66,6 @@ class _LoginState extends State<Login> {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Stack(
         children: [
           Positioned(

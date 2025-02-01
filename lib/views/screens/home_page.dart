@@ -47,7 +47,6 @@ class _HomepageState extends State<Homepage> {
             itemBuilder: (BuildContext context, int index, int realIndex) {
               return Container(
                 width: double.infinity,
-                color: Colors.red,
                 child: Image.asset(images[index], fit: BoxFit.cover),
               );
             },

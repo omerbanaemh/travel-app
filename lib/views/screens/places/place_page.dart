@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:yemen_travel_guid/constant.dart';
-import 'dart:math' as math;
 import 'package:yemen_travel_guid/controllers/comment_controller.dart';
 import 'package:yemen_travel_guid/controllers/places_controller.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
@@ -9,7 +8,8 @@ import 'package:yemen_travel_guid/models/api_response.dart';
 import 'package:yemen_travel_guid/models/auth/profile_model.dart';
 import 'package:yemen_travel_guid/models/comment_model.dart';
 import 'package:yemen_travel_guid/models/place_model.dart';
-
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 
 class PlacePage extends StatefulWidget {
@@ -67,7 +67,7 @@ class _PlacePageState extends State<PlacePage> {
 
   // Create comment
   void _createComment() async {
-    ApiResponse response = await createComment(_txtCommentController.text, place.id.toString(), null,);
+    ApiResponse response = await createComment(_txtCommentController.text, null, place.id.toString(),);
 
     if(response.error == null){
       setState(() {
@@ -128,8 +128,6 @@ class _PlacePageState extends State<PlacePage> {
   Widget build(BuildContext context) {
     return loading ? Scaffold(body: Center(child: CircularProgressIndicator())) :
     Scaffold(
-      backgroundColor: Colors.white,
-
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -140,23 +138,53 @@ class _PlacePageState extends State<PlacePage> {
                 children: [
                   Stack(
                     children: [
-                      Container(
+                      CarouselSlider.builder(
+                        itemCount: place.images.length,
+                        itemBuilder: (BuildContext context, int index, int realIndex) {
+                          return Container(
+                            width: double.infinity,
+                            child: Image.network(place.images[index].image, fit: BoxFit.cover),
+                          );
+                        },
+                        options: CarouselOptions(
                           height: 230,
-                          width: double.infinity,
-                          child: Text('')
+                          viewportFraction: 1.0,
+                          autoPlay: true,
+                          autoPlayInterval: Duration(seconds: 3),
+                          enlargeCenterPage: false,
+                        ),
                       ),
                       Positioned(
-                          top: 60,
-                          right: 30,
-                          child: Text(place.placeName,style: TextStyle(fontSize: 32,color: Color(0xffa76f47 )),))
+                          top: 25,
+
+                          child: Row(
+                            children: [
+                              InkWell(
+                                onTap: () => Navigator.pop(context),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: SvgPicture.asset(
+                                    'assets/images/back.svg',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text(place.placeName,style: TextStyle(fontSize: 32,color: Color(0xffa76f47 )),),
+                            ],
+                          ))
                     ],
                   ),
+                  Container(
+                      width: double.infinity,
+                      child: Image.asset('assets/images/home/underbanner.png',fit: BoxFit.cover,)
+                  ),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(right: 16.0),
-                        child: Text('نظرة عامة',style: TextStyle(fontSize: 32,color: Color(
+                        child: Text('معلومات',style: TextStyle(fontSize: 32,color: Color(
                             0xffa76f47)),),
                       ),
 
@@ -185,9 +213,8 @@ class _PlacePageState extends State<PlacePage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Text(place.description,style: TextStyle(fontSize: 16,fontFamily: 'Tajawal'),),
+                    child: Text(place.description,style: TextStyle(fontSize: 16,),),
                   ),
-
 
 
 
@@ -314,13 +341,19 @@ class _PlacePageState extends State<PlacePage> {
               children: [
                 Expanded(
                   child: TextFormField(
-                    decoration: kInputDecoration('تعليق'),
+                    decoration: kInputDecoration('تعليق',),
                     controller: _txtCommentController,
                   ),
                 ),
-                IconButton(
-                  icon: const Icon(Icons.send),
-                  onPressed: (){
+                SizedBox(width: 8,),
+                InkWell(
+                  child:SvgPicture.asset(
+                    height: 40,
+                    width: 40,
+                    'assets/images/Message.svg',
+                    fit: BoxFit.cover,
+                    ),
+                  onTap: (){
                     if(_txtCommentController.text.isNotEmpty){
                       FocusScope.of(context).requestFocus(FocusNode());
                       if (_editCommentId > 0){
