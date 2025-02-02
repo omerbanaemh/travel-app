@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:yemen_travel_guid/views/screens/places/favorite_places_page.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -42,21 +43,39 @@ class _HomepageState extends State<Homepage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CarouselSlider.builder(
-            itemCount: images.length,
-            itemBuilder: (BuildContext context, int index, int realIndex) {
-              return Container(
-                width: double.infinity,
-                child: Image.asset(images[index], fit: BoxFit.cover),
-              );
-            },
-            options: CarouselOptions(
-              height: 230,
-              viewportFraction: 1.0,
-              autoPlay: true,
-              autoPlayInterval: Duration(seconds: 3),
-              enlargeCenterPage: false,
+          Stack(
+            children: [CarouselSlider.builder(
+              itemCount: images.length,
+              itemBuilder: (BuildContext context, int index, int realIndex) {
+                return Container(
+                  width: double.infinity,
+                  child: Image.asset(images[index], fit: BoxFit.cover),
+                );
+              },
+              options: CarouselOptions(
+                height: 230,
+                viewportFraction: 1.0,
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 3),
+                enlargeCenterPage: false,
+              ),
             ),
+              Positioned(
+                top: 40,
+                left: 10,
+                child: InkWell(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const FavoritePlacesPage()));
+                  },
+                  child: SvgPicture.asset(
+                    height: 30,
+                    width: 30,
+                    'assets/images/home/heart_select.svg',
+                    fit: BoxFit.cover,
+                  )
+                ),)
+
+            ]
           ),
           Container(
               width: double.infinity,

@@ -90,7 +90,6 @@ class _CityPageState extends State<CityPage> {
                         itemBuilder: (BuildContext context, int index, int realIndex) {
                           return Container(
                             width: double.infinity,
-                            color: Colors.red,
                             child: Image.network(city.images[index].image, fit: BoxFit.cover),
                           );
                         },
@@ -103,8 +102,7 @@ class _CityPageState extends State<CityPage> {
                         ),
                       ),
                       Positioned(
-                          top: 25,
-
+                          top: 35,
                           child: Row(
                             children: [
                               InkWell(
@@ -147,7 +145,7 @@ class _CityPageState extends State<CityPage> {
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
+                      crossAxisCount: 2,
                     ),
                     itemCount: city.places.length,
                     itemBuilder: (context, index) {
@@ -158,7 +156,7 @@ class _CityPageState extends State<CityPage> {
                           children: [
                             Text(place.placeName,),
                             Container(
-                              height: 100,
+                              height: 150,
                               margin: EdgeInsets.only(right: 5, left:5, ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),

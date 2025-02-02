@@ -153,18 +153,6 @@ class _TripPageState extends State<TripPage> {
                             right: 30,
                             child: Text(trip.name,style: TextStyle(fontSize: 28,color: Color(0xffa76f47 )),)
                         ),
-                        // Positioned(
-                        //     top: 60,
-                        //     left: 30,
-                        //     child: InkWell(
-                        //       onTap: (){},
-                        //       child: SvgPicture.asset(
-                        //         height: 30,
-                        //         width: 30,
-                        //         'assets/images/home/heart.svg',
-                        //         fit: BoxFit.cover,
-                        //       ),
-                        //     ),)
                       ],
                     ),
                     Row(

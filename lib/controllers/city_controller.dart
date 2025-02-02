@@ -4,11 +4,10 @@ import 'package:yemen_travel_guid/constant.dart';
 import 'package:yemen_travel_guid/models/api_response.dart';
 import 'package:http/http.dart' as http;
 import 'package:yemen_travel_guid/models/city_model.dart';
-import 'package:yemen_travel_guid/models/place_model.dart';
 
 
 
-//place
+//city
 Future<ApiResponse> getCity(int id) async {
   ApiResponse apiResponse = ApiResponse();
   // try {
@@ -42,7 +41,7 @@ Future<ApiResponse> getCity(int id) async {
 
 
 
-//trips
+//Cities
 Future<ApiResponse> getCities() async {
   ApiResponse apiResponse = ApiResponse();
   // try {
@@ -74,4 +73,7 @@ Future<ApiResponse> getCities() async {
   // }
   return apiResponse;
 }
+
+
+
 

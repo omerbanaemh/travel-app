@@ -7,7 +7,8 @@ class PlaceModel {
   final String description;
   final double latitude;
   final double longitude;
-  final String? ratings;
+  String? ratings;
+  bool favorite;
   List<CommentModel> comments;
   List<ImageModel> images;
 
@@ -18,6 +19,7 @@ class PlaceModel {
     required this.latitude,
     required this.longitude,
     this.ratings,
+    required this.favorite,
     required this.comments,
     required this.images,
   });
@@ -30,6 +32,7 @@ class PlaceModel {
       latitude: double.parse(json['latitude']),
       longitude: double.parse(json['longitude']),
       ratings: json['ratings'],
+      favorite: json['favorite'],
       comments: List<CommentModel>.from((json['comments']??[]).map((comment) => CommentModel.fromJson(comment))),
       images: List<ImageModel>.from((json['images']??[]).map((image) => ImageModel.fromJson(image))),
     );

@@ -31,6 +31,7 @@ const getMyOfficeURL = '$baseURL/api/offices/my_office';
 
 //FAVORITES
 const createFavoriteURL = '$baseURL/api/favorites/store';
+const getMyFavoritesURL = '$baseURL/api/favorites/myFivorites';
 
 //BOOKINGS
 const createBookingURL = '$baseURL/api/bookings/store';

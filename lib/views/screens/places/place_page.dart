@@ -83,6 +83,7 @@ class _PlacePageState extends State<PlacePage> {
     }
   }
 
+
   // edit comment
   void _editComment() async {
     ApiResponse response = await editComment(_editCommentId, _txtCommentController.text);
@@ -124,6 +125,26 @@ class _PlacePageState extends State<PlacePage> {
 
 
 
+  // Create comment
+  void _createFavorite() async {
+    ApiResponse response = await createFavorite(placeId: place.id.toString() );
+
+    if(response.error == null){
+      PlaceModel _place = response.data as PlaceModel;
+      setState(() {
+          place.favorite= _place.favorite;
+             });
+    }
+    else if(response.error == 'unauthorized'){
+      unauthorizedLogout(context);
+    }
+    else {
+      showErrorSnackBar(context: context, message:response.error.toString());
+    }
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return loading ? Scaffold(body: Center(child: CircularProgressIndicator())) :
@@ -155,7 +176,7 @@ class _PlacePageState extends State<PlacePage> {
                         ),
                       ),
                       Positioned(
-                          top: 25,
+                          top: 35,
 
                           child: Row(
                             children: [
@@ -171,7 +192,29 @@ class _PlacePageState extends State<PlacePage> {
                               ),
                               Text(place.placeName,style: TextStyle(fontSize: 32,color: Color(0xffa76f47 )),),
                             ],
-                          ))
+
+                          )),
+
+                      Positioned(
+                        top: 40,
+                        left: 10,
+                        child: InkWell(
+                          onTap: (){
+                            print('object');
+                            _createFavorite();
+                          },
+                          child: place.favorite  ? SvgPicture.asset(
+                            height: 30,
+                            width: 30,
+                            'assets/images/home/heart_select.svg',
+                            fit: BoxFit.cover,
+                          ) : SvgPicture.asset(
+                            height: 30,
+                            width: 30,
+                            'assets/images/home/heart.svg',
+                            fit: BoxFit.cover,
+                          ),
+                        ),)
                     ],
                   ),
                   Container(
