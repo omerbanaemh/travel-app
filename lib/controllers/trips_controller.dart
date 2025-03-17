@@ -81,6 +81,122 @@ Future<ApiResponse> getTrip(int id) async {
 }
 
 
+//CreateTrip
+Future<ApiResponse> createTrip(MultipartFile? image,String name,String description,String subTitle,String tripContent,String itinerary,String price,String cityId) async {
+  ApiResponse apiResponse = ApiResponse();
+  // try {
+  String? token = await getToken();
+  Dio dio = Dio();
+  dio.options=BaseOptions(
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token'
+    },
+    validateStatus: (status) {
+      return status! < 500;
+    },
+  );
+  final response = await dio.post(createTripsURL,
+    data: FormData.fromMap({
+      'name': name,
+      'description': description,
+      'sub_title': subTitle,
+      'image' : image,
+      'trip_content': tripContent,
+      'itinerary': itinerary,
+      'price': price,
+      'city_id': cityId,
+    }),
+  );
+
+
+
+
+  print(response.statusCode);
+  print('----------------------------------------------------------');
+  print(response.data);
+
+  switch(response.statusCode){
+    case 200:
+      apiResponse.message = response.data['message'];
+      break;
+    case 409:
+      apiResponse.error = response.data['message'];
+      break;
+    case 401:
+      apiResponse.error = 'unauthorized';
+      break;
+    default:
+      apiResponse.error = 'somethingWentWrong';
+      break;
+  }
+  // }
+  // catch(e) {
+  //   apiResponse.error = 'serverError';
+  // }
+  return apiResponse;
+}
+
+
+//CreateTrip
+Future<ApiResponse> updateTrip(MultipartFile? image,String name,String description,String subTitle,String tripContent,String itinerary,String price,String cityId,String id) async {
+  ApiResponse apiResponse = ApiResponse();
+  // try {
+  String? token = await getToken();
+  Dio dio = Dio();
+  dio.options=BaseOptions(
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token'
+    },
+    validateStatus: (status) {
+      return status! < 500;
+    },
+  );
+  final response = await dio.post('$updateTripsURL/$id',
+    data: FormData.fromMap({
+      'name': name,
+      'description': description,
+      'sub_title': subTitle,
+       if (image != null)  'image' : image,
+      'trip_content': tripContent,
+      'itinerary': itinerary,
+      'price': price,
+      'city_id': cityId,
+      '_method': 'put'
+    }),
+  );
+
+
+
+
+  print(response.statusCode);
+  print('----------------------------------------------------------');
+  print(response.data);
+
+  switch(response.statusCode){
+    case 200:
+      apiResponse.message = response.data['message'];
+      break;
+    case 409:
+      apiResponse.error = response.data['message'];
+      break;
+    case 401:
+      apiResponse.error = 'unauthorized';
+      break;
+    default:
+      apiResponse.error = 'somethingWentWrong';
+      break;
+  }
+  // }
+  // catch(e) {
+  //   apiResponse.error = 'serverError';
+  // }
+  return apiResponse;
+}
+
+
+
 //CreateBooking
 Future<ApiResponse> createBooking(MultipartFile? image,  int id) async {
   ApiResponse apiResponse = ApiResponse();

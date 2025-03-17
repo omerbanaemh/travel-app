@@ -58,6 +58,8 @@ dev_dependencies:
   internet_connection_checker: ^1.0.0
   flutter_rating_stars: ^1.1.0
   image_picker:
+  introduction_screen: ^3.1.16
+  onboarding: ^4.0.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -80,6 +82,7 @@ flutter:
    - assets/images/home/
    - assets/images/guide/
    - assets/images/about_yemen/
+   - assets/images/introduction_screen/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

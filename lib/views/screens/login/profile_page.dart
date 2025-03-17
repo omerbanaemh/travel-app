@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yemen_travel_guid/colors/app_colors.dart';
-import 'package:yemen_travel_guid/cor/util/snackbar_message.dart';
+
 import 'package:yemen_travel_guid/models/auth/profile_model.dart';
 import 'package:yemen_travel_guid/views/screens/office/office_page.dart';
 import 'package:yemen_travel_guid/views/screens/setting_page.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
-
+import 'package:yemen_travel_guid/constant.dart';
 
 
 class ProfilePage extends StatefulWidget {
@@ -19,12 +19,6 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   late ProfileModel user;
   bool loading = true;
-  @override
-  void initState() {
-    _getProfile();
-    super.initState();
-  }
-
 
   void _getProfile() async {
     setState(() {
@@ -40,7 +34,17 @@ class _ProfilePageState extends State<ProfilePage> {
       loading = false;
     });
   }
+
+
+
+  @override
+  void initState() {
+    _getProfile();
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
+
     return  loading ? Center(child: CircularProgressIndicator()) : SingleChildScrollView(
       child:  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,11 +65,13 @@ class _ProfilePageState extends State<ProfilePage> {
                   color: Colors.grey[900]),
             ),
             subtitle: Text(user.email),
+            trailing: Text(user.role!),
             leading: CircleAvatar(
               radius: 30.0,
               // backgroundImage: NetworkImage("${snapshot.data.hitsList[index].previewUrl}"),
             ),
           ),
+
 
 
           const Divider(),

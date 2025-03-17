@@ -7,6 +7,7 @@ import 'package:yemen_travel_guid/controllers/user_controller.dart';
 import 'package:yemen_travel_guid/models/auth/profile_model.dart';
 
 // const baseURL = 'http://10.0.2.2:8000/api';
+// const baseURL = 'http://127.0.0.1:8000';
 // const baseURL = 'http://192.168.137.1:8000/api';
 // const baseURL = 'http://bindowal-001-site24.jtempurl.com/api';
 const baseURL = 'http://192.168.65.121:2025';
@@ -19,12 +20,17 @@ const profileURL = '$baseURL/api/profile';
 
 const logoutURL = '$baseURL/api/logout';
 const userURL = '$baseURL/api/user';
-const usersURL = '$baseURL/api/users';
+const usersURL = '$baseURL/api/login';
 const postsURL = '$baseURL/api/posts';
 
 //TRIPS
 const getTripsURL = '$baseURL/api/trip_packages';
 const createTripsURL = '$baseURL/api/trip_packages/store';
+const updateTripsURL = '$baseURL/api/trip_packages';
+
+//governorates
+const governoratesURL = '$baseURL/api/governorates';
+
 
 //OFFICE
 const getMyOfficeURL = '$baseURL/api/offices/my_office';
@@ -36,6 +42,7 @@ const getMyFavoritesURL = '$baseURL/api/favorites/myFivorites';
 //BOOKINGS
 const createBookingURL = '$baseURL/api/bookings/store';
 const getMyBookingsURL = '$baseURL/api/bookings/myBookings';
+const getBookingURL = '$baseURL/api/bookings';
 
 
 //PLACES
@@ -43,9 +50,13 @@ const getPlacesURL = '$baseURL/api/places';
 
 //CITIES
 const getCitiesURL = '$baseURL/api/cities';
+const getCityShowURL = '$baseURL/api/cities/city_show';
 
 //RATING
 const ratingURL = '$baseURL/api/ratings/store';
+
+//SEARCH
+const searchURL = '$baseURL/api/search';
 
 //COMMENTS
 const createCommentURL = '$baseURL/api/comments/store';
@@ -107,5 +118,30 @@ InputDecoration kInputDecoration(String label) {
   borderRadius: BorderRadius.circular(10),
   borderSide: BorderSide(color: AppColors.primary5, width:  1.3),
   ),  );
+}
+
+
+
+void showSuccessSnackBar({required String message,required BuildContext context}){
+  ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message,style: const TextStyle(color: Colors.white),),
+        backgroundColor: Colors.green,)
+  );
+}
+
+void showErrorSnackBar({required String message,required BuildContext context}){
+  ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message,style: const TextStyle(color: Colors.white),),
+        backgroundColor: Colors.red,)
+  );
+}
+
+
+
+void showCreateBooking({required String message,required BuildContext context}){
+  ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message,style: const TextStyle(color: Colors.white),),
+        backgroundColor: Colors.red,)
+  );
 }
 

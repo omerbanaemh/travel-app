@@ -1,11 +1,12 @@
+import 'package:yemen_travel_guid/models/auth/user_model.dart';
 import 'package:yemen_travel_guid/models/trip_model.dart';
 
 class BookingModel {
   final int id;
   final DateTime date;
-  final bool status;
+  final String status;
   final String image;
-  final int userId;
+  final UserModel user;
   final TripModel trip;
 
   BookingModel({
@@ -13,7 +14,7 @@ class BookingModel {
     required this.date,
     required this.status,
     required this.image,
-    required this.userId,
+    required this.user,
     required this.trip,
   });
 
@@ -21,9 +22,9 @@ class BookingModel {
     return BookingModel(
       id: json['id'],
       date: DateTime.parse(json['date']),
-      status: json['status'] == 1,
+      status: json['status'],
       image: json['image'],
-      userId: json['user_id'],
+      user: UserModel.fromJson(json['user']),
       trip: TripModel.fromJson(json['package_id']),
     );
   }
@@ -32,9 +33,9 @@ class BookingModel {
     return {
       'id': id,
       'date': date.toIso8601String(),
-      'status': status ? 1 : 0,
+      'status': status,
       'image': image,
-      'user_id': userId,
+      'user_id': user,
       'trip': trip.toJson(),
     };
   }

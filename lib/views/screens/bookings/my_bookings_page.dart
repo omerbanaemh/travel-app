@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:yemen_travel_guid/constant.dart';
 import 'package:yemen_travel_guid/controllers/bookings_controller.dart';
-import 'package:yemen_travel_guid/cor/util/snackbar_message.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yemen_travel_guid/models/booking_model.dart';
 import 'package:yemen_travel_guid/views/screens/trips/trip_page.dart';
 
@@ -46,15 +46,29 @@ class _MyBookingsPageState extends State<MyBookingsPage> {
           Container(
             width: double.infinity,
             color: AppColors.primary0,
-            child: const Padding(
+            child:  Padding(
               padding:
-              EdgeInsets.only(top: 50.0, right: 22, bottom: 10),
-              child: Text(
-                'حجوزاتي',
-                style: TextStyle(
-                  fontSize: 22,
-                  color: AppColors.titleColor,
-                ),
+              EdgeInsets.only(top: 50.0, right: 12, bottom: 10),
+              child: Row(
+                children: [
+                  InkWell(
+                    onTap: () => Navigator.pop(context),
+                    child: Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: SvgPicture.asset(
+                        'assets/images/back.svg',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    'حجوزاتي',
+                    style: TextStyle(
+                      fontSize: 22,
+                      color: AppColors.titleColor,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

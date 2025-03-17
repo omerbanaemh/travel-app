@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:yemen_travel_guid/constant.dart';
 import 'package:yemen_travel_guid/controllers/comment_controller.dart';
 import 'package:yemen_travel_guid/controllers/places_controller.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
-import 'package:yemen_travel_guid/cor/util/snackbar_message.dart';
+
 import 'package:yemen_travel_guid/models/api_response.dart';
 import 'package:yemen_travel_guid/models/auth/profile_model.dart';
 import 'package:yemen_travel_guid/models/comment_model.dart';
 import 'package:yemen_travel_guid/models/place_model.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../controllers/trips_controller.dart';
 
 
 class PlacePage extends StatefulWidget {
@@ -25,7 +28,7 @@ class _PlacePageState extends State<PlacePage> {
   late final PlaceModel place;
   late final CommentModel comment;
   bool loading = false;
-
+  int rating = 0;
   int _editCommentId = 0;
   int editIndex = 0;
   final TextEditingController _txtCommentController = TextEditingController();
@@ -45,6 +48,23 @@ class _PlacePageState extends State<PlacePage> {
 
 
 
+  Future<void> _placeRating() async {
+    setState(() {
+      loading = true;
+    });
+    var response = await createRating(rating.toString(), null, place.id.toString());
+    if (response.error == null) {
+      showSuccessSnackBar(context: context, message: response.message.toString(), );    }
+    else if(response.error == 'unauthorized'){
+      unauthorizedLogout(context);
+    }
+    else {
+      showErrorSnackBar(context: context, message: response.error.toString(), );
+    }
+    setState(() {
+      loading = false;
+    });
+  }
 
   void _getPlace() async {
     setState(() {
@@ -67,7 +87,7 @@ class _PlacePageState extends State<PlacePage> {
 
   // Create comment
   void _createComment() async {
-    ApiResponse response = await createComment(_txtCommentController.text, null, place.id.toString(),);
+    ApiResponse response = await createComment(_txtCommentController.text, place.id.toString(), null,);
 
     if(response.error == null){
       setState(() {
@@ -176,24 +196,25 @@ class _PlacePageState extends State<PlacePage> {
                         ),
                       ),
                       Positioned(
-                          top: 35,
-
-                          child: Row(
-                            children: [
-                              InkWell(
-                                onTap: () => Navigator.pop(context),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/back.svg',
-                                    fit: BoxFit.cover,
-                                  ),
+                        top: 40,
+                        right: 10,
+                        child:
+                        Row(
+                          children: [
+                            InkWell(
+                              onTap: () => Navigator.pop(context),
+                              child: Padding(
+                                padding: const EdgeInsets.all(6.0),
+                                child: SvgPicture.asset(
+                                  'assets/images/back.svg',
+                                  fit: BoxFit.cover,
                                 ),
                               ),
-                              Text(place.placeName,style: TextStyle(fontSize: 32,color: Color(0xffa76f47 )),),
-                            ],
-
-                          )),
+                            ),
+                            Text(place.placeName,style: TextStyle(fontSize: 28,color: Color(0xffa76f47 )),)
+                          ],
+                        ),
+                      ),
 
                       Positioned(
                         top: 40,
@@ -260,8 +281,63 @@ class _PlacePageState extends State<PlacePage> {
                   ),
 
 
+                  if (place.isRating == false)
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 62,),
 
 
+                    decoration: BoxDecoration(
+                      color: AppColors.primary0,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 1,
+                          blurRadius: 5,
+                          offset: Offset(2, 2),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+
+                        SizedBox(height: 10,),
+                        Text('تقييم المكان'),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(5, (index) {
+                            return IconButton(
+                              icon: Icon(
+                                index < rating ? Icons.star : Icons.star_border,
+                                color: Colors.amber,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  rating = index + 1;
+                                });
+                              },
+                            );
+                          }),
+                        ),
+                        Row(
+                          children: [
+                            TextButton(
+                              onPressed: () => Navigator.of(context).pop(),
+                              child: Text('إلغاء'),
+                            ),
+                            TextButton(
+                              onPressed: ()  {
+                                _placeRating();
+                              },
+                              child: Text('تقييم'),
+                            ),
+
+                          ],
+                        ),
+
+                      ],
+                    ),
+                  ),
 
 
                   Padding(

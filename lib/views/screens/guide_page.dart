@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:yemen_travel_guid/views/screens/about_yemen_page.dart';
+import 'package:yemen_travel_guid/views/screens/aboutYemen/about_yemen_page.dart';
+import 'package:yemen_travel_guid/views/screens/aboutYemen/navigation_guide_page.dart';
+import 'package:yemen_travel_guid/views/screens/aboutYemen/travel_guide_page.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:yemen_travel_guid/views/screens/governorates/governorates_page.dart';
 
 class GuidePage extends StatelessWidget {
   const GuidePage({super.key});
@@ -46,7 +50,9 @@ class GuidePage extends StatelessWidget {
           ),
           Divider(),
           InkWell(
-            onTap: (){},
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => TravelGuidePage()));
+            },
             child: Row(
               children: [
                 Padding(
@@ -71,7 +77,9 @@ class GuidePage extends StatelessWidget {
           ),
           Divider(),
           InkWell(
-            onTap: (){},
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => NavigationGuidePage()));
+            },
             child: Row(
               children: [
                 Padding(
@@ -96,7 +104,9 @@ class GuidePage extends StatelessWidget {
           ),
           Divider(),
           InkWell(
-            onTap: (){},
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const GovernoratesPage()));
+            },
             child: Row(
               children: [
                 Padding(
@@ -110,7 +120,7 @@ class GuidePage extends StatelessWidget {
                     height: 100,
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(30),
-                        child: Image.asset('assets/images/guide/travel.png',fit: BoxFit.cover,)
+                        child: SvgPicture.asset('assets/images/guide/governorates.svg',fit: BoxFit.cover,)
                     ),
                   ),
                 ),
