@@ -29,18 +29,17 @@ class _FormAgentState extends State<FormAgent> {
         child: Column(
           children: [
             LoginButton(
+              icon: Icon(Icons.person,color: AppColors.primary2,),
+              label: 'اسم الوكيل',
+              validator: '',
+              controller: widget.userName,
+            ),
+            SizedBox(height: 10),
+            LoginButton(
                 icon: Icon(Icons.email,color: AppColors.primary2,),
                 label: 'البريد الإلكتروني',
                 validator: 'email',
                 controller: widget.email,
-
-            ),
-            SizedBox(height: 10),
-            LoginButton(
-                icon: Icon(Icons.person,color: AppColors.primary2,),
-                label: 'اسم الوكيل',
-                validator: '',
-                controller: widget.userName,
             ),
             SizedBox(height: 10),
             LoginButton(

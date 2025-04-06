@@ -7,8 +7,11 @@ import 'package:yemen_travel_guid/models/api_response.dart';
 import 'package:yemen_travel_guid/models/auth/profile_model.dart';
 import 'package:yemen_travel_guid/models/auth/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:yemen_travel_guid/views/screens/users/authentication.dart';
-import 'package:yemen_travel_guid/views/screens/users/login.dart';
+import 'package:yemen_travel_guid/models/city_model.dart';
+import 'package:yemen_travel_guid/models/place_model.dart';
+import 'package:yemen_travel_guid/models/trip_model.dart';
+import 'package:yemen_travel_guid/views/screens/login/authentication.dart';
+import 'package:yemen_travel_guid/views/screens/login/login.dart';
 
 
 // Future<ApiResponse> getAllStats() async {
@@ -77,12 +80,14 @@ import 'package:yemen_travel_guid/views/screens/users/login.dart';
 Future login (String email, String password) async {
   print('=======================login =================');
   ApiResponse apiResponse = ApiResponse();
-  try{
+  // try{
     http.Response response = await http.post(
       Uri.parse(loginURL),
       headers: {'Accept': 'application/json'},
       body: {'email': email, 'password': password}
     );
+    print(email);
+    print(password);
     print(response.statusCode);
     print(response.body);
     switch(response.statusCode){
@@ -103,10 +108,10 @@ Future login (String email, String password) async {
         apiResponse.error = 'somethingWentWrong';
         break;
     }
-  }
-  catch(e){
-    apiResponse.error = 'serverError';
-  }
+  // }
+  // catch(e){
+  //   apiResponse.error = 'serverError';
+  // }
 
   return apiResponse;
 }
@@ -127,13 +132,19 @@ Future<ApiResponse> registerUser(String name, String email, String password ,Str
         'password_confirmation': passwordConfirmation,
       });
   print(response.body);
+  print(response.statusCode);
+  final Map<String, dynamic> responseBody = jsonDecode(response.body);
+
   switch(response.statusCode) {
     case 200:
-      // apiResponse.data = UserModel.fromJson(jsonDecode(response.body));
+      apiResponse.data = UserModel.fromJson(jsonDecode(response.body)['data']);
       break;
-    case 422:
-      final errors = jsonDecode(response.body)['errors'];
-      apiResponse.error = errors[errors.keys.elementAt(0)][0];
+    case 400:
+      if (responseBody.containsKey('email')) {
+        apiResponse.error = responseBody['email'][0]; // استخرج أول رسالة خطأ للبريد الإلكتروني
+      } else {
+        apiResponse.error = 'Invalid input'; // رسالة بديلة في حال عدم وجود أخطاء للبريد الإلكتروني
+      }
       break;
     default:
       apiResponse.error = 'somethingWentWrong';
@@ -167,12 +178,13 @@ Future<ApiResponse> registerAgent(String name, String email, String password ,St
         'commercial_register':   commercialRegister,
       });
   print(response.body);
+  print(response.statusCode);
   switch(response.statusCode) {
     case 200:
-      // apiResponse.data = UserModel.fromJson(jsonDecode(response.body));
+      apiResponse.data = UserModel.fromJson(jsonDecode(response.body)['data']);
       break;
-    case 422:
-      final errors = jsonDecode(response.body)['errors'];
+    case 400:
+      final errors = jsonDecode(response.body);
       apiResponse.error = errors[errors.keys.elementAt(0)][0];
       break;
     default:
@@ -200,7 +212,6 @@ Future<ApiResponse> getProfile() async {
         });
     SharedPreferences pref = await SharedPreferences.getInstance();
 
-    print(response.body);
     switch(response.statusCode){
       case 200:
         apiResponse.data = ProfileModel.fromJson(jsonDecode(response.body));
@@ -234,9 +245,50 @@ Future<bool> logout() async {
 unauthorizedLogout(BuildContext context){
   logout().then((value) => {
     Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => const Authentication()),
+        MaterialPageRoute(builder: (context) => const Login()),
             (route) => false)
   });
+}
+
+
+
+
+//city
+Future<ApiResponse> search(String? searchText) async {
+  ApiResponse apiResponse = ApiResponse();
+  // try {
+  String? token = await getToken();
+  final response = await http.post(
+      Uri.parse(searchURL),
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token'
+      },body: {
+        if(searchText != null) 'search' : searchText,
+      }
+      );
+
+  print(response.body);
+
+  switch(response.statusCode){
+    case 200:
+      List<CityModel> cities = (jsonDecode(response.body)['data']['cities']as List).map((city) => CityModel.fromJson(city)).toList();
+      List<PlaceModel> places = (jsonDecode(response.body)['data']['places']as List).map((place) => PlaceModel.fromJson(place)).toList();
+      List<TripModel> trips = (jsonDecode(response.body)['data']['packages']as List).map((trip) => TripModel.fromJson(trip)).toList();
+      apiResponse.mapData = {'cities': cities,'places': places, 'trips': trips,};
+      break;
+    case 401:
+      apiResponse.error = 'unauthorized';
+      break;
+    default:
+      apiResponse.error = 'somethingWentWrong';
+      break;
+  }
+  // }
+  // catch(e) {
+  //   apiResponse.error = 'serverError';
+  // }
+  return apiResponse;
 }
 
 

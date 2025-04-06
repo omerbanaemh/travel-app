@@ -9,6 +9,7 @@ class PlaceModel {
   final double longitude;
   String? ratings;
   bool favorite;
+  bool? isRating;
   List<CommentModel> comments;
   List<ImageModel> images;
 
@@ -20,6 +21,7 @@ class PlaceModel {
     required this.longitude,
     this.ratings,
     required this.favorite,
+    this.isRating,
     required this.comments,
     required this.images,
   });
@@ -33,18 +35,9 @@ class PlaceModel {
       longitude: double.parse(json['longitude']),
       ratings: json['ratings'],
       favorite: json['favorite'],
+      isRating: json['is_rating'],
       comments: List<CommentModel>.from((json['comments']??[]).map((comment) => CommentModel.fromJson(comment))),
       images: List<ImageModel>.from((json['images']??[]).map((image) => ImageModel.fromJson(image))),
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'place_name': placeName,
-      'description': description,
-      'latitude': latitude.toString(),
-      'longitude': longitude.toString(),
-    };
   }
 }

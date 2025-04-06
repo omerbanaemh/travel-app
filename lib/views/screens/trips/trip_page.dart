@@ -5,13 +5,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yemen_travel_guid/controllers/comment_controller.dart';
 import 'package:yemen_travel_guid/controllers/trips_controller.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
-import 'package:yemen_travel_guid/cor/util/snackbar_message.dart';
 import 'package:yemen_travel_guid/models/api_response.dart';
 import 'package:yemen_travel_guid/models/auth/profile_model.dart';
 import 'package:yemen_travel_guid/models/comment_model.dart';
 import 'package:yemen_travel_guid/models/trip_model.dart';
 import 'package:yemen_travel_guid/views/screens/trips/widgets/alert_dialog_create_booking.dart';
 import 'package:yemen_travel_guid/views/screens/trips/widgets/alert_dialog_rating.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class TripPage extends StatefulWidget {
@@ -32,14 +32,27 @@ class _TripPageState extends State<TripPage> {
   final TextEditingController _txtCommentController = TextEditingController();
 
 
-  void getProfile () async {
-  profile = await getProfilee();
+  void _getSharedPreferencesUser () async {
+  profile = await getSharedPreferencesUser();
 }
+
+  void _launchWhatsApp() async {
+    // final link = WhatsAppUnilink(
+    //   phoneNumber: '+001-(555)1234567',
+    //   text: "Hey! I'm inquiring about the apartment listing",
+    // );
+    // await launch('$link');
+    // await launch('https://wa.me/00967770051363?text=hello');
+
+    final Uri url = Uri.parse('https://wa.me/00967770051363?text=hello');
+    await launchUrl(url);
+
+  }
   @override
   void initState() {
     _getTrip();
 
-    getProfile();
+    _getSharedPreferencesUser();
 
 
     super.initState();
@@ -148,10 +161,26 @@ class _TripPageState extends State<TripPage> {
                             width: double.infinity,
                             child: Image.network(trip.image,fit: BoxFit.cover,)
                         ),
+
                         Positioned(
-                            top: 60,
-                            right: 30,
-                            child: Text(trip.name,style: TextStyle(fontSize: 28,color: Color(0xffa76f47 )),)
+                          top: 40,
+                          right: 10,
+                          child:
+                          Row(
+                            children: [
+                              InkWell(
+                                onTap: () => Navigator.pop(context),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(6.0),
+                                  child: SvgPicture.asset(
+                                    'assets/images/back.svg',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text(trip.name,style: TextStyle(fontSize: 28,color: Color(0xffa76f47 )),)
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -196,10 +225,21 @@ class _TripPageState extends State<TripPage> {
                       padding: const EdgeInsets.all(16.0),
                       child: Text(trip.description,style: TextStyle(fontSize: 16,),),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 16.0),
-                      child: Text('معلومات الرحلة ',style: TextStyle(fontSize: 32,color: Color(
-                          0xffa76f47)),),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 16.0),
+                          child: Text('معلومات الرحلة ',style: TextStyle(fontSize: 32,color: Color(
+                              0xffa76f47)),),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 16.0),
+                          child: IconButton(
+                              icon:Icon(Icons.ac_unit),
+                          onPressed: (){_launchWhatsApp();},)
+                        ),
+                      ],
                     ),
                     Divider(),
                     InkWell(
@@ -396,6 +436,15 @@ class _TripPageState extends State<TripPage> {
           children: [
             Expanded(child: Text('السعر ${trip.price} ر.س', style: TextStyle(fontSize: 24,),)),
             SizedBox(width: 8,),
+            trip.reserved! ?
+            Container(
+              width: 127,
+              height: 47,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.lightGreen,
+              ),
+                child: Center(child: Text('تم الحجز', style: TextStyle(fontSize: 24,color: Colors.white),))):
             InkWell(
               onTap: () {
                  showDialog(
@@ -408,7 +457,8 @@ class _TripPageState extends State<TripPage> {
                          context: context,
                          builder: (BuildContext context) {
                            return AlertDialogRating(tripId: trip.id,);
-                         })
+                         }),
+                     _getTrip(),
                    }
                  });
               },
@@ -421,8 +471,6 @@ class _TripPageState extends State<TripPage> {
                 ),
                   child: Center(child: Text('أحجز الآن', style: TextStyle(fontSize: 24,color: Colors.white),))),
             )
-
-
           ],
         ),
       ),

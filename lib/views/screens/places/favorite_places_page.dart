@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:yemen_travel_guid/constant.dart';
 import 'package:yemen_travel_guid/controllers/places_controller.dart';
-import 'package:yemen_travel_guid/controllers/trips_controller.dart';
-import 'package:yemen_travel_guid/cor/util/snackbar_message.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yemen_travel_guid/models/place_model.dart';
-import 'package:yemen_travel_guid/models/trip_model.dart';
-import 'package:yemen_travel_guid/views/screens/bookings/my_bookings_page.dart';
-import 'package:yemen_travel_guid/views/screens/trips/trip_page.dart';
+import 'package:yemen_travel_guid/views/screens/places/place_page.dart';
 
 class FavoritePlacesPage extends StatefulWidget {
   const FavoritePlacesPage({super.key});
@@ -50,28 +47,26 @@ class _FavoritePlacesPageState extends State<FavoritePlacesPage> {
                 color: AppColors.primary0,
                 child:  Padding(
                   padding:
-                      EdgeInsets.only(top: 50.0, right: 22, bottom: 10,left: 22),
+                      EdgeInsets.only(top: 50.0, right: 12, bottom: 10,left: 22),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                            InkWell(
+                              onTap: () => Navigator.pop(context),
+                              child: Padding(
+                                padding: const EdgeInsets.all(6.0),
+                                child: SvgPicture.asset(
+                                  'assets/images/back.svg',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
                       Text(
-                        'البكجات المتوفرة',
+                        'مفضلتي',
                         style: TextStyle(
                           fontSize: 22,
                           color: AppColors.titleColor,
                         ),
                       ),
-                  InkWell(
-                    child: Image.asset(
-                      height:50,
-                      width: 50,
-                      'assets/images/img.png',
-                      fit: BoxFit.cover,
-                    ),
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (_) =>  MyBookingsPage()));
-                    },
-                  ),
                     ],
                   ),
                 ),
@@ -92,19 +87,20 @@ class _FavoritePlacesPageState extends State<FavoritePlacesPage> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (_) =>  TripPage(tripId:place.id)));
+                                  Navigator.push(context, MaterialPageRoute(builder: (_) =>  PlacePage(placeId:place.id)));
                                 },
                                 child: Padding(
                                   padding:
                                       const EdgeInsets.symmetric(horizontal: 22),
                                   child: Row(
                                     children: [
+                                      if (place.images.isNotEmpty)
                                       Container(
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(18),
                                           image: DecorationImage(
                                             image:
-                                            NetworkImage('$baseURL${place.images[0].image}'),
+                                            NetworkImage('${place.images[0].image}'),
                                             fit: BoxFit.cover,
                                           ),
                                         ),

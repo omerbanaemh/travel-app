@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yemen_travel_guid/constant.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yemen_travel_guid/controllers/city_controller.dart';
-import 'package:yemen_travel_guid/controllers/comment_controller.dart';
-import 'package:yemen_travel_guid/controllers/places_controller.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
-import 'package:yemen_travel_guid/cor/util/snackbar_message.dart';
-import 'package:yemen_travel_guid/models/api_response.dart';
 import 'package:yemen_travel_guid/models/auth/profile_model.dart';
 import 'package:yemen_travel_guid/models/city_model.dart';
 import 'package:yemen_travel_guid/models/comment_model.dart';
@@ -30,19 +26,17 @@ class _CityPageState extends State<CityPage> {
   late final CommentModel comment;
   bool loading = false;
 
-  int _editCommentId = 0;
   int editIndex = 0;
-  final TextEditingController _txtCommentController = TextEditingController();
 
 
-  void getProfile () async {
-  profile = await getProfilee();
+  void _getSharedPreferencesUser () async {
+  profile = await getSharedPreferencesUser();
 }
   @override
   void initState() {
     _getCity();
 
-    getProfile();
+    _getSharedPreferencesUser();
 
     super.initState();
   }
@@ -101,23 +95,27 @@ class _CityPageState extends State<CityPage> {
                           enlargeCenterPage: false,
                         ),
                       ),
+
                       Positioned(
-                          top: 35,
-                          child: Row(
-                            children: [
-                              InkWell(
-                                onTap: () => Navigator.pop(context),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/back.svg',
-                                    fit: BoxFit.cover,
-                                  ),
+                        top: 40,
+                        right: 10,
+                        child:
+                        Row(
+                          children: [
+                            InkWell(
+                              onTap: () => Navigator.pop(context),
+                              child: Padding(
+                                padding: const EdgeInsets.all(6.0),
+                                child: SvgPicture.asset(
+                                  'assets/images/back.svg',
+                                  fit: BoxFit.cover,
                                 ),
                               ),
-                              Text(city.cityName,style: TextStyle(fontSize: 32,color: Color(0xffa76f47 )),),
-                            ],
-                          ))
+                            ),
+                            Text(city.cityName,style: TextStyle(fontSize: 28,color: Color(0xffa76f47 )),)
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                   Container(

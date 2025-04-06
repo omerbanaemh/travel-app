@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
 import 'package:yemen_travel_guid/views/screens/guide_page.dart';
 import 'package:yemen_travel_guid/views/screens/home_page.dart';
 import 'package:yemen_travel_guid/views/screens/map_page.dart';
 import 'package:yemen_travel_guid/views/screens/search/search_page.dart';
 import 'package:yemen_travel_guid/views/screens/trips/trips_page.dart';
-import 'package:yemen_travel_guid/views/screens/users/profile_page.dart';
+import 'package:yemen_travel_guid/views/screens/login/profile_page.dart';
 
 class Home extends StatefulWidget {
 
@@ -35,8 +36,8 @@ class _HomeState extends State<Home> {
       _selectedIndex==1 ? GuidePage():
       _selectedIndex==2 ? MapPage():
       _selectedIndex==3 ? TripsPage():
-      _selectedIndex==4 ? ProfilePage():
-      _selectedIndex==5 ? SearchPage():
+      _selectedIndex==4 ? SearchPage():
+      _selectedIndex==5 ? ProfilePage() :
       Homepage(),
 
 
@@ -69,11 +70,10 @@ class _HomeState extends State<Home> {
             'assets/images/home/pakeg.svg',
             fit: BoxFit.cover,
           ),
-          SvgPicture.asset(
-            height: 30,
-            width: 30,
-            'assets/images/home/acount.svg',
-            fit: BoxFit.cover,
+          Icon(
+            Icons.search,
+            color: AppColors.primary4,
+            size: 33,
           ),
           SvgPicture.asset(
             height: 30,
@@ -81,6 +81,7 @@ class _HomeState extends State<Home> {
             'assets/images/home/acount.svg',
             fit: BoxFit.cover,
           ),
+
         ],
         onTap: (index) {
           _onItemTapped(index);

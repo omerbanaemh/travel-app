@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yemen_travel_guid/controllers/trips_controller.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
-import 'package:yemen_travel_guid/cor/util/snackbar_message.dart';
 
+import 'package:yemen_travel_guid/constant.dart';
 class AlertDialogRating extends StatefulWidget {
   final int tripId;
   const AlertDialogRating({super.key,required this.tripId});

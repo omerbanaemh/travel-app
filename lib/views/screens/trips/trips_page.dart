@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:yemen_travel_guid/constant.dart';
 import 'package:yemen_travel_guid/controllers/trips_controller.dart';
-import 'package:yemen_travel_guid/cor/util/snackbar_message.dart';
+import 'package:yemen_travel_guid/controllers/user_controller.dart';
+
 import 'package:yemen_travel_guid/models/trip_model.dart';
 import 'package:yemen_travel_guid/views/screens/bookings/my_bookings_page.dart';
 import 'package:yemen_travel_guid/views/screens/trips/trip_page.dart';
@@ -19,7 +20,6 @@ class _TripsPageState extends State<TripsPage> {
   List<TripModel> trips = [];
   @override
   void initState() {
-    print('[[[[[[[[[[[[object]]]]]]]]]]]]');
     _getTrips();
     super.initState();
   }
@@ -31,6 +31,8 @@ class _TripsPageState extends State<TripsPage> {
     var response = await getTrips();
     if (response.error == null) {
       trips = response.data as List<TripModel>;
+    }else if(response.error == 'unauthorized'){
+      unauthorizedLogout(context);
     } else {
       showErrorSnackBar(context: context, message: response.error.toString(), );
     }
@@ -100,10 +102,10 @@ class _TripsPageState extends State<TripsPage> {
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(18),
+                                        borderRadius: BorderRadius.circular(12),
                                         image: DecorationImage(
                                           image:
-                                          NetworkImage('$baseURL${trip.image}'),
+                                          NetworkImage(trip.image),
                                           fit: BoxFit.cover,
                                         ),
                                       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yemen_travel_guid/views/screens/users/splash.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:yemen_travel_guid/views/screens/login/splash.dart';
 
 
 
@@ -11,6 +11,7 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
 
   // This widget is the root of your application.
   @override

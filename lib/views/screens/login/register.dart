@@ -4,16 +4,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
-import 'package:yemen_travel_guid/cor/util/snackbar_message.dart';
+
 import 'package:yemen_travel_guid/models/api_response.dart';
 import 'package:yemen_travel_guid/models/auth/user_model.dart';
 import 'package:yemen_travel_guid/views/home.dart';
-import 'package:yemen_travel_guid/views/screens/users/widgets/login/brown_button.dart';
-import 'package:yemen_travel_guid/views/screens/users/widgets/register/form_agent.dart';
-import 'package:yemen_travel_guid/views/screens/users/widgets/register/form_user.dart';
+import 'package:yemen_travel_guid/views/screens/login/widgets/login/brown_button.dart';
+import 'package:yemen_travel_guid/views/screens/login/widgets/register/form_agent.dart';
+import 'package:yemen_travel_guid/views/screens/login/widgets/register/form_user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-
+import 'package:yemen_travel_guid/constant.dart';
 class Register extends StatefulWidget {
   const Register({super.key});
 
@@ -49,7 +48,6 @@ class _RegisterState extends State<Register> {
         password.text,
         passwordConfirmation.text,
     );
-    print('1111111333331111111');
 
     if (response.error == null) {
       _saveAndRedirectToHome(response.data as UserModel);
@@ -66,7 +64,6 @@ class _RegisterState extends State<Register> {
 
 
   void _registerAgent() async {
-    print('11111111111111');
     setState(() {
       loading = true;
     });
@@ -83,9 +80,6 @@ class _RegisterState extends State<Register> {
 
     if (response.error == null) {
       _saveAndRedirectToHome(response.data as UserModel);
-        // Navigator.of(context).pushAndRemoveUntil(
-        //     MaterialPageRoute(builder: (context) => const Home()),
-        //         (route) => false);
     } else {
       showErrorSnackBar(context:context,message:response.error.toString());
     }
@@ -227,17 +221,4 @@ class _RegisterState extends State<Register> {
       ),
     );
   }
-
-
-  // void _listener(BuildContext context, AuthState state) {
-  //   if (state is RegisterSuccessfullyAuthState) {
-  //     // Navigator.push(
-  //     //     context,
-  //     //     MaterialPageRoute(
-  //     //         builder: (_) => const Home()));
-  //     SnackBarMessage().showSuccessSnackBar(message: state.message, context: context);
-  //   } else if (state is RegisterErrorAuthState && state.failure.message != null) {
-  //     SnackBarMessage().showErrorSnackBar(message: state.failure.message!, context: context);
-  //   }
-  // }
 }

@@ -1,3 +1,4 @@
+import 'package:yemen_travel_guid/models/city_model.dart';
 import 'package:yemen_travel_guid/models/comment_model.dart';
 
 class TripModel {
@@ -10,6 +11,8 @@ class TripModel {
   final String itinerary;
   final String price;
   final String? ratings;
+  final bool? reserved;
+  final CityModel? city;
   List<CommentModel> comments;
   final DateTime? createdAt;
   final DateTime? updatedAt;
@@ -23,7 +26,9 @@ class TripModel {
     required this.tripContent,
     required this.itinerary,
     required this.price,
-     this.ratings,
+    this.ratings,
+    this.reserved,
+    this.city,
     required this.comments,
     this.createdAt,
     this.updatedAt,
@@ -40,6 +45,8 @@ class TripModel {
       itinerary: json['itinerary'],
       price: json['price'],
       ratings: json['ratings'],
+      reserved: json['reserved'],
+      city: json['city'] != null && json['city'] is Map<String, dynamic> ? CityModel.fromJson(json['city']) : null,
       comments: List<CommentModel>.from((json['comments']??[]).map((comment) => CommentModel.fromJson(comment))),
       createdAt: json['created_at'] != null ? DateTime.parse(json['created_at']) : null,
       updatedAt: json['updated_at'] != null ? DateTime.parse(json['updated_at']) : null,

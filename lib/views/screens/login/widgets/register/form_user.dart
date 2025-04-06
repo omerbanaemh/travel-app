@@ -24,17 +24,17 @@ class _FormUserState extends State<FormUser> {
         child: Column(
           children: [
             LoginButton(
-                icon: Icon(Icons.email,color: AppColors.primary2,),
-                label: 'البريد الإلكتروني',
-                validator: 'email',
-                controller: widget.email,
+              icon: Icon(Icons.person,color: AppColors.primary2,),
+              label: 'اسم المستخدم',
+              validator: 'required',
+              controller: widget.userName,
             ),
             SizedBox(height: 30),
             LoginButton(
-                icon: Icon(Icons.person,color: AppColors.primary2,),
-                label: 'اسم المستخدم',
-                validator: 'required',
-                controller: widget.userName,
+              icon: Icon(Icons.email,color: AppColors.primary2,),
+              label: 'البريد الإلكتروني',
+              validator: 'email',
+              controller: widget.email,
             ),
             SizedBox(height: 30),
             LoginButton(
