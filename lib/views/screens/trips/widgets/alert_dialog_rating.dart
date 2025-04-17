@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yemen_travel_guid/controllers/trips_controller.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
-
 import 'package:yemen_travel_guid/constant.dart';
 class AlertDialogRating extends StatefulWidget {
   final int tripId;
@@ -39,7 +38,7 @@ class _AlertDialogRatingState extends State<AlertDialogRating> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('تقييم الرحلة'),
+      title: const Text('تقييم الرحلة'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -67,11 +66,11 @@ class _AlertDialogRatingState extends State<AlertDialogRating> {
              _tripRating();
             Navigator.of(context).pop();
           },
-          child: Text('تقييم'),
+          child: const Text('تقييم'),
         ),
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: Text('إلغاء'),
+          child: const Text('إلغاء'),
         ),
       ],
     );

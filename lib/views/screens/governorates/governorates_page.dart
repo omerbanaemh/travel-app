@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:yemen_travel_guid/constant.dart';
 import 'package:yemen_travel_guid/controllers/governorates_controller.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
@@ -47,10 +46,10 @@ class _GovernoratesPageState extends State<GovernoratesPage> {
             children: [
               Container(
                 width: double.infinity,
-                color: AppColors.primary0,
+                color: const Color(0xFFECE0D9),
                 child:   Padding(
                   padding:
-                      EdgeInsets.only(top: 50.0, right: 12, bottom: 10,left: 22),
+                      const EdgeInsets.only(top: 50.0, right: 12, bottom: 10,left: 22),
                   child: Row(
                     children: [
                       InkWell(
@@ -63,11 +62,11 @@ class _GovernoratesPageState extends State<GovernoratesPage> {
                           ),
                         ),
                       ),
-                      Text(
+                      const Text(
                         'المحافظات',
                         style: TextStyle(
                           fontSize: 22,
-                          color: AppColors.titleColor,
+                          color: Color(0xFFA76F47),
                         ),
                       ),
                     ],
@@ -119,7 +118,7 @@ class _GovernoratesPageState extends State<GovernoratesPage> {
                                             governorate.governorateName,
                                             style: const TextStyle(
                                                 fontSize: 20,
-                                                color: AppColors.titleColor),
+                                                color: Color(0xFFA76F47)),
                                           ),
                                           Text(
                                             governorate.description,

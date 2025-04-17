@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
-
 import 'package:yemen_travel_guid/models/city_model.dart';
 import 'package:yemen_travel_guid/models/place_model.dart';
 import 'package:yemen_travel_guid/models/trip_model.dart';
 import 'package:yemen_travel_guid/constant.dart';
 import 'package:yemen_travel_guid/views/screens/cities/city_page.dart';
-import 'package:yemen_travel_guid/views/screens/login/login.dart';
 import 'package:yemen_travel_guid/views/screens/places/place_page.dart';
 import 'package:yemen_travel_guid/views/screens/trips/trip_page.dart';
 class SearchPage extends StatefulWidget {
@@ -54,7 +51,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('بحث', style:TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: AppColors.primary3)),
+        title: const Text('بحث', style:TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Color(0xFFA87247))),
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 16.0,bottom: 16.0,right: 16.0),
@@ -64,15 +61,15 @@ class _SearchPageState extends State<SearchPage> {
               TextField(
                 decoration: InputDecoration(
                   hintText: 'البحث عن وجهات وأشياء للقيام بها...',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  prefixIcon: Icon(Icons.search, color: AppColors.primary4,size: 33,),
+                  hintStyle: const TextStyle(color: Colors.grey),
+                  prefixIcon: const Icon(Icons.search, color: Color(0xFF9B683F),size: 33,),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(color: AppColors.primary3, ),
+                    borderSide: const BorderSide(color: Color(0xFFA87247), ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(color: AppColors.primary3, width:  1.3),
+                    borderSide: const BorderSide(color: Color(0xFFA87247), width:  1.3),
                   ),
 
                 ),
@@ -83,21 +80,21 @@ class _SearchPageState extends State<SearchPage> {
                   _search();
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // عنوان الاقتراحات
 
               // قائمة الاقتراحات
               Column(
                 children: [
                   if(searchText == null || searchText == '')
-                  Align(
+                  const Align(
                     alignment: Alignment.centerRight,
                     child: Text(
                       'اقتراحات',
-                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: AppColors.primary3),
+                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Color(0xFFA87247)),
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   ListView.builder(
                     itemCount: cities.length,
                     padding: EdgeInsets.zero,
@@ -130,8 +127,8 @@ class _SearchPageState extends State<SearchPage> {
 
                   ),
                   if(cities.isNotEmpty)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15.0),
                     child: Divider(),
                   ),
                   ListView.builder(
@@ -166,8 +163,8 @@ class _SearchPageState extends State<SearchPage> {
 
                   ),
                   if(places.isNotEmpty)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15.0),
                     child: Divider(),
                   ),
                   ListView.builder(
@@ -203,8 +200,8 @@ class _SearchPageState extends State<SearchPage> {
 
                   ),
                   if(trips.isNotEmpty)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15.0),
                     child: Divider(),
                   ),
 

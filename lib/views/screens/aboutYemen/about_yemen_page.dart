@@ -11,7 +11,7 @@ class AboutYemenPage extends StatelessWidget {
         child: Column(
           children: [
             Stack(
-              children:[ Container(
+              children:[ SizedBox(
                   height: 230,
                   width: double.infinity,
                   child: Image.asset('assets/images/about_yemen/group.png',fit: BoxFit.cover,)
@@ -37,7 +37,7 @@ class AboutYemenPage extends StatelessWidget {
                 ),
         ]
             ),
-            Container(
+            SizedBox(
                 width: double.infinity,
                 child: Image.asset('assets/images/home/underbanner.png',fit: BoxFit.cover,)
             ),
@@ -47,12 +47,12 @@ class AboutYemenPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
 
-                  Text('عن اليمن',style: TextStyle(fontSize: 32,color: Color(
+                  const Text('عن اليمن',style: TextStyle(fontSize: 32,color: Color(
                       0xffa76f47)),),
                   Padding(
                     padding: const EdgeInsets.only(right: 12, bottom: 12),
                     child: RichText(
-                      text: TextSpan(
+                      text: const TextSpan(
                         style: TextStyle(
                           fontFamily: 'Tajawal',
                           fontSize: 20,
@@ -76,14 +76,14 @@ class AboutYemenPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Text('الثقافة',style: TextStyle(fontSize: 32,color: Color(
+                  const Text('الثقافة',style: TextStyle(fontSize: 32,color: Color(
                       0xffa76f47)),),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 12, bottom: 12),
+                  const Padding(
+                    padding: EdgeInsets.only(right: 12, bottom: 12),
                     child: Text('تعد اليمن غنية بالثقافة والتراث التقليدي. الملابس التقليدية، الأغاني الشعبية، والرقصات التراثية مثل "البرعة" هي جزء لا يتجزأ من الحياة اليومية.القهوة اليمنية تعتبر جزءًا من التقاليد الاجتماعية.',style: TextStyle(fontSize: 20,height: 1.2),),
                   ),
 
-                  Text('الدين',style: TextStyle(fontSize: 32,color: Color(
+                  const Text('الدين',style: TextStyle(fontSize: 32,color: Color(
                       0xffa76f47)),),
                   Container(
                     decoration: BoxDecoration(
@@ -97,13 +97,13 @@ class AboutYemenPage extends StatelessWidget {
                         child: Image.asset('assets/images/about_yemen/religion.png',fit: BoxFit.cover,)
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 12,top: 12, bottom: 12),
+                  const Padding(
+                    padding: EdgeInsets.only(right: 12,top: 12, bottom: 12),
                     child: Text('الغالبية العظمى من السكان يعتنقون الإسلام، وهناك أيضًا أقلية صغيرة من الديانات الأخرى مثل اليهودية و المسيحية.',style: TextStyle(fontSize: 20,height: 1.2),),
                   ),
 
 
-                  Text('اللغة',style: TextStyle(fontSize: 32,color: Color(
+                  const Text('اللغة',style: TextStyle(fontSize: 32,color: Color(
                       0xffa76f47)),),
                   Container(
                     decoration: BoxDecoration(
@@ -117,8 +117,8 @@ class AboutYemenPage extends StatelessWidget {
                         child: Image.asset('assets/images/about_yemen/language.png',fit: BoxFit.cover,)
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 12,top: 12, bottom: 12),
+                  const Padding(
+                    padding: EdgeInsets.only(right: 12,top: 12, bottom: 12),
                     child: Text('اللغة العربية هي اللغة الرسمية . ولكن تتميز اليمن بكثرة اللهجات المختلفة فيها حسب كل منطقة و أخرى مثل :اللهجة الصنعانية , اللهجة الحضرمية , اللهجة التعزية و العدنية .اللغات الأخرى: في جزيرة سقطرى، يتحدث السكان لغة السقطرية، وهي لغة سامية قديمة تختلف عن العربية.',style: TextStyle(fontSize: 20,height: 1.2),),
                   ),
                 ],

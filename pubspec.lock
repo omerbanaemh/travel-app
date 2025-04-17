@@ -26,7 +26,7 @@ packages:
     source: hosted
     version: "2.1.1"
   carousel_slider:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: carousel_slider
       sha256: "7b006ec356205054af5beaef62e2221160ea36b90fb70a35e4deacd49d0349ae"
@@ -74,7 +74,7 @@ packages:
     source: hosted
     version: "1.0.8"
   curved_navigation_bar:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: curved_navigation_bar
       sha256: bb4ab128fcb6f4a9f0f1f72d227db531818b20218984789777f049fcbf919279
@@ -90,7 +90,7 @@ packages:
     source: hosted
     version: "1.2.0"
   dio:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: dio
       sha256: "5598aa796bbf4699afd5c67c0f5f6e2ed542afc956884b9cd58c306966efc260"
@@ -231,12 +231,12 @@ packages:
     source: hosted
     version: "3.0.2"
   flutter_localizations:
-    dependency: "direct dev"
+    dependency: "direct main"
     description: flutter
     source: sdk
     version: "0.0.0"
   flutter_map:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_map
       sha256: "2ecb34619a4be19df6f40c2f8dce1591675b4eff7a6857bd8f533706977385da"
@@ -252,7 +252,7 @@ packages:
     source: hosted
     version: "2.0.22"
   flutter_rating_stars:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_rating_stars
       sha256: "09dfa831aac2e5128fe70c5a8bd63ff4463180d5ff8545f7379c5b209d22ce1d"
@@ -260,7 +260,7 @@ packages:
     source: hosted
     version: "1.1.0"
   flutter_svg:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_svg
       sha256: c200fd79c918a40c5cd50ea0877fa13f81bdaf6f0a5d3dbcc2a13e3285d6aa1b
@@ -278,7 +278,7 @@ packages:
     source: sdk
     version: "0.0.0"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       sha256: b9c29a161230ee03d3ccf545097fccd9b87a5264228c5d348202e0f0c28f9010
@@ -294,7 +294,7 @@ packages:
     source: hosted
     version: "4.0.2"
   image_picker:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: image_picker
       sha256: "021834d9c0c3de46bf0fe40341fa07168407f694d9b2bb18d532dc1261867f7a"
@@ -358,7 +358,7 @@ packages:
     source: hosted
     version: "0.2.1+1"
   internet_connection_checker:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: internet_connection_checker
       sha256: "1c683e63e89c9ac66a40748b1b20889fd9804980da732bf2b58d6d5456c8e876"
@@ -374,7 +374,7 @@ packages:
     source: hosted
     version: "0.19.0"
   introduction_screen:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: introduction_screen
       sha256: "17da579bce60abab46395b684de6e36557bcbe7caae963f402a872b5fc22adbe"
@@ -382,7 +382,7 @@ packages:
     source: hosted
     version: "3.1.16"
   latlong2:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: latlong2
       sha256: "98227922caf49e6056f91b6c56945ea1c7b166f28ffcd5fb8e72fc0b453cc8fe"
@@ -478,7 +478,7 @@ packages:
     source: hosted
     version: "2.0.0"
   onboarding:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: onboarding
       sha256: bda49643bea9cb05a5da79f3314a2042f454ca76a61235c35e8fa0b7d6ec56e8
@@ -566,7 +566,7 @@ packages:
     source: hosted
     version: "2.1.0"
   shared_preferences:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: shared_preferences
       sha256: "95f9997ca1fb9799d494d0cb2a780fd7be075818d59f00c43832ed112b158a82"
@@ -691,7 +691,7 @@ packages:
     source: hosted
     version: "0.3.1"
   url_launcher:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: url_launcher
       sha256: "9d06212b1362abc2f0f0d78e6f09f726608c74e3b9462e8368bb03314aa8d603"

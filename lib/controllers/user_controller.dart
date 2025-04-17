@@ -10,7 +10,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yemen_travel_guid/models/city_model.dart';
 import 'package:yemen_travel_guid/models/place_model.dart';
 import 'package:yemen_travel_guid/models/trip_model.dart';
-import 'package:yemen_travel_guid/views/screens/login/authentication.dart';
 import 'package:yemen_travel_guid/views/screens/login/login.dart';
 
 
@@ -78,18 +77,14 @@ import 'package:yemen_travel_guid/views/screens/login/login.dart';
 
 //Login
 Future login (String email, String password) async {
-  print('=======================login =================');
   ApiResponse apiResponse = ApiResponse();
-  // try{
+  try{
     http.Response response = await http.post(
       Uri.parse(loginURL),
       headers: {'Accept': 'application/json'},
       body: {'email': email, 'password': password}
     );
-    print(email);
-    print(password);
-    print(response.statusCode);
-    print(response.body);
+
     switch(response.statusCode){
       case 200:
         apiResponse.data = UserModel.fromJson(jsonDecode(response.body)['data']);
@@ -108,10 +103,10 @@ Future login (String email, String password) async {
         apiResponse.error = 'somethingWentWrong';
         break;
     }
-  // }
-  // catch(e){
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch(e){
+    apiResponse.error = 'serverError';
+  }
 
   return apiResponse;
 }
@@ -119,9 +114,8 @@ Future login (String email, String password) async {
 
 //RegisterUser
 Future<ApiResponse> registerUser(String name, String email, String password ,String passwordConfirmation) async {
-  print('=======================register =================');
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
   final response = await http.post(
       Uri.parse(registerURL),
       headers: {'Accept': 'application/json'},
@@ -131,8 +125,7 @@ Future<ApiResponse> registerUser(String name, String email, String password ,Str
         'password': password,
         'password_confirmation': passwordConfirmation,
       });
-  print(response.body);
-  print(response.statusCode);
+
   final Map<String, dynamic> responseBody = jsonDecode(response.body);
 
   switch(response.statusCode) {
@@ -150,10 +143,10 @@ Future<ApiResponse> registerUser(String name, String email, String password ,Str
       apiResponse.error = 'somethingWentWrong';
       break;
   }
-  // }
-  // catch (e) {
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch (e) {
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }
 
@@ -161,9 +154,8 @@ Future<ApiResponse> registerUser(String name, String email, String password ,Str
 
 //RegisterAgent
 Future<ApiResponse> registerAgent(String name, String email, String password ,String passwordConfirmation,String? officeName,String? officeNumber, String? phoneNumber,String? commercialRegister) async {
-  print('=======================register =================');
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
   final response = await http.post(
       Uri.parse(registerURL),
       headers: {'Accept': 'application/json'},
@@ -177,8 +169,7 @@ Future<ApiResponse> registerAgent(String name, String email, String password ,St
         'phone_number': phoneNumber,
         'commercial_register':   commercialRegister,
       });
-  print(response.body);
-  print(response.statusCode);
+
   switch(response.statusCode) {
     case 200:
       apiResponse.data = UserModel.fromJson(jsonDecode(response.body)['data']);
@@ -191,10 +182,10 @@ Future<ApiResponse> registerAgent(String name, String email, String password ,St
       apiResponse.error = 'somethingWentWrong';
       break;
   }
-  // }
-  // catch (e) {
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch (e) {
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }
 
@@ -256,7 +247,7 @@ unauthorizedLogout(BuildContext context){
 //city
 Future<ApiResponse> search(String? searchText) async {
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
   String? token = await getToken();
   final response = await http.post(
       Uri.parse(searchURL),
@@ -267,8 +258,6 @@ Future<ApiResponse> search(String? searchText) async {
         if(searchText != null) 'search' : searchText,
       }
       );
-
-  print(response.body);
 
   switch(response.statusCode){
     case 200:
@@ -284,10 +273,10 @@ Future<ApiResponse> search(String? searchText) async {
       apiResponse.error = 'somethingWentWrong';
       break;
   }
-  // }
-  // catch(e) {
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch(e) {
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }
 

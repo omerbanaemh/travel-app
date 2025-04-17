@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:yemen_travel_guid/controllers/city_controller.dart';
 import 'package:yemen_travel_guid/controllers/trips_controller.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
@@ -132,9 +131,9 @@ class _UpdateTripState extends State<UpdateTrip> {
         children: [
           Container(
             width: double.infinity,
-            color: AppColors.primary0,
+            color: const Color(0xFFECE0D9),
             child:  Padding(
-              padding: EdgeInsets.only(top: 50.0, right: 12, bottom: 10),
+              padding: const EdgeInsets.only(top: 50.0, right: 12, bottom: 10),
               child: Row(
                 children: [
                   InkWell(
@@ -147,11 +146,11 @@ class _UpdateTripState extends State<UpdateTrip> {
                       ),
                     ),
                   ),
-                  Text(
+                  const Text(
                     'تعديل الرحلة',
                     style: TextStyle(
                       fontSize: 22,
-                      color: AppColors.titleColor,
+                      color: Color(0xFFA76F47),
                     ),
                   ),
                 ],
@@ -209,7 +208,7 @@ class _UpdateTripState extends State<UpdateTrip> {
                   TextFieldTrip(
                     icon: const Icon(
                       Icons.abc,
-                      color: AppColors.primary2,
+                      color: Color(0xFFC08759),
                     ),
                     label: 'الاسم',
                     validator: 'required',
@@ -222,7 +221,7 @@ class _UpdateTripState extends State<UpdateTrip> {
                   TextFieldTrip(
                     icon: const Icon(
                       Icons.abc,
-                      color: AppColors.primary2,
+                      color: Color(0xFFC08759),
                     ),
                     label: 'العنوان الفرعي',
                     validator: 'required',
@@ -235,7 +234,7 @@ class _UpdateTripState extends State<UpdateTrip> {
                   TextFieldTrip(
                     icon: const Icon(
                       Icons.abc,
-                      color: AppColors.primary2,
+                      color: Color(0xFFC08759),
                     ),
                     label: 'الوصف',
                     validator: 'required',
@@ -248,7 +247,7 @@ class _UpdateTripState extends State<UpdateTrip> {
                   TextFieldTrip(
                     icon: const Icon(
                       Icons.abc,
-                      color: AppColors.primary2,
+                      color: Color(0xFFC08759),
                     ),
                     label: 'المحتوى',
                     validator: 'required',
@@ -261,7 +260,7 @@ class _UpdateTripState extends State<UpdateTrip> {
                   TextFieldTrip(
                     icon: const Icon(
                       Icons.abc,
-                      color: AppColors.primary2,
+                      color: Color(0xFFC08759),
                     ),
                     label: 'خطة السير',
                     validator: 'required',
@@ -274,7 +273,7 @@ class _UpdateTripState extends State<UpdateTrip> {
                   TextFieldTrip(
                     icon: const Icon(
                       Icons.price_change,
-                      color: AppColors.primary2,
+                      color: Color(0xFFC08759),
                     ),
                     label: 'السعر',
                     validator: 'required',
@@ -307,7 +306,7 @@ class _UpdateTripState extends State<UpdateTrip> {
                       child: DropdownButton(
                         isExpanded: true,
                         style: const TextStyle(
-                          color: AppColors.primary1,
+                          color: Color(0xFFCE9263),
                         ),
                         value: selectedValue,
                         onChanged: (var newValue) {
@@ -315,7 +314,7 @@ class _UpdateTripState extends State<UpdateTrip> {
                             selectedValue = newValue;
                           });
                         },
-                        icon: const Icon(Icons.arrow_drop_down, color: AppColors.primary1),
+                        icon: const Icon(Icons.arrow_drop_down, color: Color(0xFFCE9263)),
                         items: cities.map((value) {
                           return DropdownMenuItem(
                             value: value.id,
@@ -324,7 +323,7 @@ class _UpdateTripState extends State<UpdateTrip> {
                               children: [
                                 const Padding(
                                   padding: EdgeInsets.only(left: 13,right: 2),
-                                  child: Icon(Icons.location_on, size: 20,color: AppColors.primary2),
+                                  child: Icon(Icons.location_on, size: 20,color: Color(0xFFC08759)),
                                 ),
                                 Expanded(
                                   child: Text(
@@ -368,7 +367,7 @@ class _UpdateTripState extends State<UpdateTrip> {
 
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary2,
+                          backgroundColor: const Color(0xFFC08759),
                           foregroundColor: Colors.white,
                           padding:
                               const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

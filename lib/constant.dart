@@ -2,15 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
-import 'package:yemen_travel_guid/controllers/user_controller.dart';
 import 'package:yemen_travel_guid/models/auth/profile_model.dart';
 
 // const baseURL = 'http://10.0.2.2:8000/api';
 // const baseURL = 'http://127.0.0.1:8000';
 // const baseURL = 'http://192.168.137.1:8000/api';
 // const baseURL = 'http://bindowal-001-site24.jtempurl.com/api';
-const baseURL = 'http://192.168.119.221:8000';
+const baseURL = 'http://192.168.65.121:2025';
 
 
 //AUTH
@@ -106,17 +104,17 @@ Future<ProfileModel?> getSharedPreferencesUser() async {
 InputDecoration kInputDecoration(String label) {
   return InputDecoration(
       labelText: label,
-      labelStyle: TextStyle(color:AppColors.primary5),
+      labelStyle: const TextStyle(color:Color(0xFF8F5E37)),
       contentPadding: const EdgeInsets.all(10),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: BorderSide(color: AppColors.primary5, ),
+        borderSide: const BorderSide(color: Color(0xFF8F5E37), ),
       ),
 
 
   focusedBorder: OutlineInputBorder(
   borderRadius: BorderRadius.circular(10),
-  borderSide: BorderSide(color: AppColors.primary5, width:  1.3),
+  borderSide: const BorderSide(color: Color(0xFF8F5E37), width:  1.3),
   ),  );
 }
 

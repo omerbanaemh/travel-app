@@ -12,7 +12,7 @@ import 'package:yemen_travel_guid/models/trip_model.dart';
 //city
 Future<ApiResponse> getCity(int id) async {
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
   String? token = await getToken();
   final response = await http.get(
       Uri.parse('$getCitiesURL/$id'),
@@ -21,7 +21,6 @@ Future<ApiResponse> getCity(int id) async {
         'Authorization': 'Bearer $token'
       });
 
-  print(response.body);
 
   switch(response.statusCode){
     case 200:
@@ -34,10 +33,10 @@ Future<ApiResponse> getCity(int id) async {
       apiResponse.error = 'somethingWentWrong';
       break;
   }
-  // }
-  // catch(e) {
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch(e) {
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }
 
@@ -46,7 +45,7 @@ Future<ApiResponse> getCity(int id) async {
 //Cities
 Future<ApiResponse> getCities() async {
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
   String? token = await getToken();
   final response = await http.get(
       Uri.parse(getCitiesURL),
@@ -55,7 +54,6 @@ Future<ApiResponse> getCities() async {
         'Authorization': 'Bearer $token'
       });
 
-  print(response.body);
 
   switch(response.statusCode){
     case 200:
@@ -69,10 +67,10 @@ Future<ApiResponse> getCities() async {
       apiResponse.error = 'somethingWentWrong';
       break;
   }
-  // }
-  // catch(e) {
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch(e) {
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }
 
@@ -81,9 +79,8 @@ Future<ApiResponse> getCities() async {
 //city
 Future<ApiResponse> getCityShow(int id) async {
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
   String? token = await getToken();
-  print('$getCityShowURL/$id');
   final response = await http.get(
       Uri.parse('$getCityShowURL/$id'),
       headers: {
@@ -91,32 +88,25 @@ Future<ApiResponse> getCityShow(int id) async {
         'Authorization': 'Bearer $token'
       });
 
-  print(response.body);
 
   switch(response.statusCode){
     case 200:
 
 
       var decodedData = jsonDecode(response.body)['data'];
-      var decodedData2 = jsonDecode(response.body)['data']['packages'];
-      print('==================ppppp===================');
-print(decodedData2);
+      // var decodedData2 = jsonDecode(response.body)['data']['packages'];
       List<PlaceModel> places = decodedData['places'] != null
           ? (decodedData['places'] as List)
           .map((place) => PlaceModel.fromJson(place))
           .toList()
           : [];
 
-      print('============');
-      print(decodedData['packages']);
       List<TripModel> trips = decodedData['packages'] != null
           ? (decodedData['packages'] as List)
           .map((trip) => TripModel.fromJson(trip))
           .toList()
           : [];
 
-      print('============');
-      print(trips);
       apiResponse.mapData = {'places': places, 'trips': trips};
 
       break;
@@ -127,10 +117,10 @@ print(decodedData2);
       apiResponse.error = 'somethingWentWrong';
       break;
   }
-  // }
-  // catch(e) {
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch(e) {
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }
 

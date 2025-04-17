@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
 
 class NavigationGuidePage extends StatelessWidget {
   const NavigationGuidePage({super.key});
@@ -18,7 +17,7 @@ class NavigationGuidePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 80,),
+                    const SizedBox(height: 80,),
 
                     Container(
                       decoration: BoxDecoration(
@@ -32,19 +31,19 @@ class NavigationGuidePage extends StatelessWidget {
                           child: Image.asset('assets/images/guide/travel.png',fit: BoxFit.cover,)
                       ),
                     ),
-                    SizedBox(height: 30,),
-                    Text('النقل داخل اليمن',textAlign: TextAlign.center,style: TextStyle(
+                    const SizedBox(height: 30,),
+                    const Text('النقل داخل اليمن',textAlign: TextAlign.center,style: TextStyle(
                       fontSize: 24,
-                      color: AppColors.primary3
+                      color: Color(0xFFA87247)
                     ),),
-                    Text('يمكن أن يتم عبر عدة وسائل :',textAlign: TextAlign.center,style: TextStyle(
+                    const Text('يمكن أن يتم عبر عدة وسائل :',textAlign: TextAlign.center,style: TextStyle(
                       fontSize: 20,
                     ),),
 
                     Padding(
                       padding: const EdgeInsets.only(right: 12,),
                       child: RichText(
-                        text: TextSpan(
+                        text: const TextSpan(
                           style: TextStyle(
                             fontFamily: 'Tajawal',
                             fontSize: 20,
@@ -60,7 +59,7 @@ class NavigationGuidePage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(right: 12,),
                       child: RichText(
-                        text: TextSpan(
+                        text: const TextSpan(
                           style: TextStyle(
                             fontFamily: 'Tajawal',
                             fontSize: 20,
@@ -76,7 +75,7 @@ class NavigationGuidePage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(right: 12,),
                       child: RichText(
-                        text: TextSpan(
+                        text: const TextSpan(
                           style: TextStyle(
                             fontFamily: 'Tajawal',
                             fontSize: 20,
@@ -92,7 +91,7 @@ class NavigationGuidePage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(right: 12,),
                       child: RichText(
-                        text: TextSpan(
+                        text: const TextSpan(
                           style: TextStyle(
                             fontFamily: 'Tajawal',
                             fontSize: 20,
@@ -108,7 +107,7 @@ class NavigationGuidePage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(right: 12,),
                       child: RichText(
-                        text: TextSpan(
+                        text: const TextSpan(
                           style: TextStyle(
                             fontFamily: 'Tajawal',
                             fontSize: 20,
@@ -124,7 +123,7 @@ class NavigationGuidePage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(right: 12, bottom: 10),
                       child: RichText(
-                        text: TextSpan(
+                        text: const TextSpan(
                           style: TextStyle(
                             fontFamily: 'Tajawal',
                             fontSize: 20,
@@ -137,8 +136,8 @@ class NavigationGuidePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 12, bottom: 10),
+                const Padding(
+                  padding: EdgeInsets.only(right: 12, bottom: 10),
                     child: Text('بينما الوسائل اللأكثر شيوعاً هي السيارات الأجرة و الحافلات ',style: TextStyle(
                       fontSize: 20,
                     ),

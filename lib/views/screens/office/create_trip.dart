@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:yemen_travel_guid/controllers/city_controller.dart';
 import 'package:yemen_travel_guid/controllers/trips_controller.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
@@ -109,9 +108,9 @@ class _CreateTripState extends State<CreateTrip> {
         children: [
           Container(
             width: double.infinity,
-            color: AppColors.primary0,
+            color: const Color(0xFFECE0D9),
             child:  Padding(
-              padding: EdgeInsets.only(top: 50.0, right: 12, bottom: 10),
+              padding: const EdgeInsets.only(top: 50.0, right: 12, bottom: 10),
               child: Row(
                 children: [
                   InkWell(
@@ -124,11 +123,11 @@ class _CreateTripState extends State<CreateTrip> {
                       ),
                     ),
                   ),
-                  Text(
+                  const Text(
                     'إضافة رحلة',
                     style: TextStyle(
                       fontSize: 22,
-                      color: AppColors.titleColor,
+                      color: Color(0xFFA76F47),
                     ),
                   ),
                 ],
@@ -172,10 +171,10 @@ class _CreateTripState extends State<CreateTrip> {
                                   _imageFile!,
                                   fit: BoxFit.cover,
                                 )
-                              : Icon(
+                              : const Icon(
                             Icons.camera_alt_rounded,
                             size: 120,
-                            color: AppColors.primary2,
+                            color: Color(0xFFC08759),
                           ),
                         ),
                       ),
@@ -187,7 +186,7 @@ class _CreateTripState extends State<CreateTrip> {
                   TextFieldTrip(
                     icon: const Icon(
                       Icons.card_travel,
-                      color: AppColors.primary2,
+                      color: Color(0xFFC08759),
                     ),
                     label: 'الاسم',
                     validator: 'required',
@@ -201,7 +200,7 @@ class _CreateTripState extends State<CreateTrip> {
                     icon: const Icon(
                       Icons.border_color,
                       size: 15,
-                      color: AppColors.primary2,
+                      color: Color(0xFFC08759),
                     ),
                     label: 'العنوان الفرعي',
                     validator: 'required',
@@ -215,7 +214,7 @@ class _CreateTripState extends State<CreateTrip> {
                     icon: const Icon(
                       Icons.edit_note,
                       size: 25,
-                      color: AppColors.primary2,
+                      color: Color(0xFFC08759),
                     ),
                     label: 'الوصف',
                     validator: 'required',
@@ -229,7 +228,7 @@ class _CreateTripState extends State<CreateTrip> {
                     icon: const Icon(
                       Icons.edit_note_sharp,
                       size: 25,
-                      color: AppColors.primary2,
+                      color: Color(0xFFC08759),
                     ),
                     label: 'المحتوى',
                     validator: 'required',
@@ -242,7 +241,7 @@ class _CreateTripState extends State<CreateTrip> {
                   TextFieldTrip(
                     icon: const Icon(
                       Icons.credit_card,
-                      color: AppColors.primary2,
+                      color: Color(0xFFC08759),
                     ),
                     label: 'خطة السير',
                     validator: 'required',
@@ -255,7 +254,7 @@ class _CreateTripState extends State<CreateTrip> {
                   TextFieldTrip(
                     icon: const Icon(
                       Icons.price_change,
-                      color: AppColors.primary2,
+                      color: Color(0xFFC08759),
                     ),
                     label: 'السعر',
                     validator: 'required',
@@ -283,7 +282,7 @@ class _CreateTripState extends State<CreateTrip> {
                       child: DropdownButton(
                         isExpanded: true,
                         style: const TextStyle(
-                          color: AppColors.primary1,
+                          color: Color(0xFFCE9263),
                         ),
                         value: selectedValue,
                         onChanged: (var newValue) {
@@ -291,7 +290,7 @@ class _CreateTripState extends State<CreateTrip> {
                             selectedValue = newValue;
                           });
                         },
-                        icon: const Icon(Icons.arrow_drop_down, color: AppColors.primary1),
+                        icon: const Icon(Icons.arrow_drop_down, color: Color(0xFFCE9263)),
                         items: cities.map((value) {
                           return DropdownMenuItem(
                             value: value.id,
@@ -300,7 +299,7 @@ class _CreateTripState extends State<CreateTrip> {
                               children: [
                                 const Padding(
                                   padding: EdgeInsets.only(left: 13,right: 2),
-                                  child: Icon(Icons.location_on, size: 20,color: AppColors.primary2),
+                                  child: Icon(Icons.location_on, size: 20,color: Color(0xFFC08759)),
                                 ),
                                 Expanded(
                                   child: Text(
@@ -340,7 +339,7 @@ class _CreateTripState extends State<CreateTrip> {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary2,
+                          backgroundColor: const Color(0xFFC08759),
                           foregroundColor: Colors.white,
                           padding:
                               const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

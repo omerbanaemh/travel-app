@@ -1,6 +1,3 @@
-
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:yemen_travel_guid/constant.dart';
 import 'package:yemen_travel_guid/views/home.dart';
@@ -17,12 +14,9 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
 
-  void loginSharedPreferences() async {
+  void checkAuthStatus() async {
     String? token = await getToken();
-    if (token == ''){
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>const SplashScreen()), (route) => false);
-    }
-    else if (token == null){
+    if (token == null || token.isEmpty){
       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>const SplashScreen()), (route) => false);
     }
     else {
@@ -33,8 +27,8 @@ class _LoadingState extends State<Loading> {
 
   @override
   void initState() {
+    checkAuthStatus();
     super.initState();
-      loginSharedPreferences();
   }
 
   @override

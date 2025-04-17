@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
-import 'package:yemen_travel_guid/controllers/user_controller.dart';
 import 'package:yemen_travel_guid/views/screens/guide_page.dart';
 import 'package:yemen_travel_guid/views/screens/home_page.dart';
 import 'package:yemen_travel_guid/views/screens/map_page.dart';
@@ -32,20 +30,20 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _selectedIndex==0 ? Homepage():
-      _selectedIndex==1 ? GuidePage():
-      _selectedIndex==2 ? MapPage():
-      _selectedIndex==3 ? TripsPage():
-      _selectedIndex==4 ? SearchPage():
-      _selectedIndex==5 ? ProfilePage() :
-      Homepage(),
+      body: _selectedIndex==0 ? const Homepage():
+      _selectedIndex==1 ? const GuidePage():
+      _selectedIndex==2 ? const MapPage():
+      _selectedIndex==3 ? const TripsPage():
+      _selectedIndex==4 ? const SearchPage():
+      _selectedIndex==5 ? const ProfilePage() :
+      const Homepage(),
 
 
       extendBody: true,
       bottomNavigationBar: CurvedNavigationBar(
         height: 55,
-        color: Color(0xFFECE0D9),
-        backgroundColor: Color(0x47FFFFFF),
+        color: const Color(0xFFECE0D9),
+        backgroundColor: const Color(0x47FFFFFF),
         items: <Widget>[
           SvgPicture.asset(
             height: 30,
@@ -70,9 +68,9 @@ class _HomeState extends State<Home> {
             'assets/images/home/pakeg.svg',
             fit: BoxFit.cover,
           ),
-          Icon(
+          const Icon(
             Icons.search,
-            color: AppColors.primary4,
+            color: Color(0xFF9B683F),
             size: 33,
           ),
           SvgPicture.asset(

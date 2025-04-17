@@ -20,11 +20,11 @@ class MyApp extends StatelessWidget {
       title: 'yemen travel guid',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white
         ),
         fontFamily: 'Tajawal',
-        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF3F3F40)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF3F3F40)),
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
@@ -38,11 +38,5 @@ class MyApp extends StatelessWidget {
       ],
       home: const SplashScreen(),
     );
-
-
-
-
-
-
   }
 }

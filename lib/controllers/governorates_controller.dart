@@ -4,8 +4,7 @@ import 'package:yemen_travel_guid/constant.dart';
 import 'package:yemen_travel_guid/models/api_response.dart';
 import 'package:http/http.dart' as http;
 import 'package:yemen_travel_guid/models/governorate_model.dart';
-import 'package:yemen_travel_guid/models/trip_model.dart';
-import 'package:dio/dio.dart';
+
 
 
 
@@ -13,7 +12,7 @@ import 'package:dio/dio.dart';
 //trips
 Future<ApiResponse> getGovernorates() async {
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
     String? token = await getToken();
     final response = await http.get(
         Uri.parse(governoratesURL),
@@ -22,7 +21,7 @@ Future<ApiResponse> getGovernorates() async {
           'Authorization': 'Bearer $token'
         });
 
-      print(response.body);
+
 
     switch(response.statusCode){
       case 200:
@@ -36,10 +35,10 @@ Future<ApiResponse> getGovernorates() async {
         apiResponse.error = 'somethingWentWrong';
         break;
     }
-  // }
-  // catch(e) {
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch(e) {
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }
 
@@ -52,7 +51,7 @@ Future<ApiResponse> getGovernorates() async {
 //trip
 Future<ApiResponse> getGovernorate(int id) async {
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
   String? token = await getToken();
   final response = await http.get(
       Uri.parse('$governoratesURL/$id'),
@@ -61,7 +60,7 @@ Future<ApiResponse> getGovernorate(int id) async {
         'Authorization': 'Bearer $token'
       });
 
-  print(response.body);
+
 
   switch(response.statusCode){
     case 200:
@@ -74,10 +73,10 @@ Future<ApiResponse> getGovernorate(int id) async {
       apiResponse.error = 'somethingWentWrong';
       break;
   }
-  // }
-  // catch(e) {
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch(e) {
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }
 

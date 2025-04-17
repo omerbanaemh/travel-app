@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yemen_travel_guid/constant.dart';
 import 'package:yemen_travel_guid/controllers/city_controller.dart';
@@ -100,7 +99,7 @@ class _HomepageState extends State<Homepage> {
             children: [CarouselSlider.builder(
               itemCount: images.length,
               itemBuilder: (BuildContext context, int index, int realIndex) {
-                return Container(
+                return SizedBox(
                   width: double.infinity,
                   child: Image.asset(images[index], fit: BoxFit.cover),
                 );
@@ -109,7 +108,7 @@ class _HomepageState extends State<Homepage> {
                 height: 230,
                 viewportFraction: 1.0,
                 autoPlay: true,
-                autoPlayInterval: Duration(seconds: 3),
+                autoPlayInterval: const Duration(seconds: 3),
                 enlargeCenterPage: false,
               ),
             ),
@@ -129,15 +128,15 @@ class _HomepageState extends State<Homepage> {
                 ),)
             ]
           ),
-          Container(
+          SizedBox(
               width: double.infinity,
               child: Image.asset('assets/images/home/underbanner.png',fit: BoxFit.cover,)
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 10,top: 5,bottom: 5),
-            child: Text('وجهات السفر',style: TextStyle(fontSize: 20,color: AppColors.primary2,),),
+          const Padding(
+            padding: EdgeInsets.only(right: 10,top: 5,bottom: 5),
+            child: Text('وجهات السفر',style: TextStyle(fontSize: 20,color: Color(0xFFC08759),),),
           ),
-          Container(
+          SizedBox(
             height: 100,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -149,7 +148,7 @@ class _HomepageState extends State<Homepage> {
                     onTap: (){_getCityShow(0);},
                     child: Container(
                       width: 100,
-                      padding: EdgeInsets.only(right: 10,),
+                      padding: const EdgeInsets.only(right: 10,),
                       child: Row(
                         children: [
                           Column(
@@ -162,15 +161,15 @@ class _HomepageState extends State<Homepage> {
                                   height: 70,
                                 ),
                               ),
-                              SizedBox(height: 8.0),
-                              Text(
+                              const SizedBox(height: 8.0),
+                              const Text(
                                 'الكل',
                                 style: TextStyle(fontSize: 14),
                               ),
                             ],
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 10.0),
+                          const Padding(
+                            padding: EdgeInsets.only(bottom: 10.0),
                             child: VerticalDivider(
                               color: Color(0xcbb88c6c),
                             ),
@@ -185,7 +184,7 @@ class _HomepageState extends State<Homepage> {
                   return InkWell(
                     onDoubleTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=> CityPage(cityId: city.id)));},
                     onTap: (){_getCityShow(city.id);},
-                    child: Container(
+                    child: SizedBox(
                       width: 100,
                       child: Column(
                         children: [
@@ -197,10 +196,10 @@ class _HomepageState extends State<Homepage> {
                               height: 70,
                             ),
                           ),
-                          SizedBox(height: 8.0),
+                          const SizedBox(height: 8.0),
                           Text(
                             city.cityName,
-                            style: TextStyle(fontSize: 14),
+                            style: const TextStyle(fontSize: 14),
                           ),
                         ],
                       ),
@@ -210,11 +209,11 @@ class _HomepageState extends State<Homepage> {
               },
             )
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 10,bottom: 5),
-            child: Text('انشطة يجب القيام بها',style: TextStyle(fontSize: 20,color: AppColors.primary2,),),
+          const Padding(
+            padding: EdgeInsets.only(right: 10,bottom: 5),
+            child: Text('انشطة يجب القيام بها',style: TextStyle(fontSize: 20,color: Color(0xFFC08759),),),
           ),
-          Container(
+          SizedBox(
             height: 200,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -225,7 +224,7 @@ class _HomepageState extends State<Homepage> {
                   onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=> PlacePage(placeId: place.id)));},
                   child: Container(
                     width: 150,
-                    margin: EdgeInsets.only(right: 18,bottom: 11),
+                    margin: const EdgeInsets.only(right: 18,bottom: 11),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
@@ -234,7 +233,7 @@ class _HomepageState extends State<Homepage> {
                           color: Colors.grey.withOpacity(1.0),
                           spreadRadius: 1,
                           blurRadius: 5,
-                          offset: Offset(5, 5),
+                          offset: const Offset(5, 5),
                         ),
                       ],
                     ),
@@ -255,10 +254,10 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                         Container(
-                          padding:EdgeInsets.only(top:5.0, left: 8, right: 8),
+                          padding:const EdgeInsets.only(top:5.0, left: 8, right: 8),
                           child: Text(
                             place.placeName,
-                            style: TextStyle(fontSize: 13,color: Color(0xff81400c),fontWeight: FontWeight.bold),
+                            style: const TextStyle(fontSize: 13,color: Color(0xff81400c),fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -266,11 +265,11 @@ class _HomepageState extends State<Homepage> {
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Container(
+                          child: SizedBox(
                             height:37,
                             child: Text(
                               place.description,
-                              style: TextStyle(fontSize: 13,color: AppColors.titleColor,  height: 1.2, ),
+                              style: const TextStyle(fontSize: 13,color: Color(0xFFA76F47),  height: 1.2, ),
                               textAlign: TextAlign.center,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
@@ -282,11 +281,11 @@ class _HomepageState extends State<Homepage> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            color: AppColors.primary3,
+                            color: const Color(0xFFA87247),
                           ),
 
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 22,right: 22,top: 2),
+                          child: const Padding(
+                            padding: EdgeInsets.only(left: 22,right: 22,top: 2),
                             child: Text('تعرف اكثر',style: TextStyle(color: Colors.white,fontSize: 12),),
                           ),
                         ),
@@ -298,11 +297,11 @@ class _HomepageState extends State<Homepage> {
               },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 10,bottom: 5),
-            child: Text('افضل التجارب',style: TextStyle(fontSize: 20,color: AppColors.primary2,),),
+          const Padding(
+            padding: EdgeInsets.only(right: 10,bottom: 5),
+            child: Text('افضل التجارب',style: TextStyle(fontSize: 20,color: Color(0xFFC08759),),),
           ),
-          Container(
+          SizedBox(
             height: 100,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -314,7 +313,7 @@ class _HomepageState extends State<Homepage> {
                   child: Container(
                     width: 150,
                     height: 100,
-                    margin: EdgeInsets.only(right: 10, left:12, bottom: 11),
+                    margin: const EdgeInsets.only(right: 10, left:12, bottom: 11),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [
@@ -322,7 +321,7 @@ class _HomepageState extends State<Homepage> {
                           color: Colors.grey.withOpacity(1.0),
                           spreadRadius: 1,
                           blurRadius: 5,
-                          offset: Offset(5, 5),
+                          offset: const Offset(5, 5),
                         ),
                       ],
                     ),
@@ -349,8 +348,8 @@ class _HomepageState extends State<Homepage> {
                               padding: const EdgeInsets.only(left: 6, right: 2, top: 2),
                               child: Row(
                                 children: [
-                                  Icon(Icons.star, color: Colors.yellow,size: 12,),
-                                  Text(trip.ratings??'0',style: TextStyle(color: Colors.white,fontSize: 12),),
+                                  const Icon(Icons.star, color: Colors.yellow,size: 12,),
+                                  Text(trip.ratings??'0',style: const TextStyle(color: Colors.white,fontSize: 12),),
                                 ],
                               ),
                             ),
@@ -363,7 +362,7 @@ class _HomepageState extends State<Homepage> {
               },
             ),
           ),
-          SizedBox(height: 50,),
+          const SizedBox(height: 50,),
         ],
       ),
     );

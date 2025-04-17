@@ -25,7 +25,6 @@ class _MapPageState extends State<MapPage> {
   }
 
   void _getCities() async {
-    print('--------------------------------');
     setState(() {
       loading = true;
     });
@@ -112,7 +111,7 @@ class _MapPageState extends State<MapPage> {
                 ),
                 const SizedBox(height: 20),
                 Center(
-                  child: Container(
+                  child: SizedBox(
                       width: 310,
                       height: 182,
                       child: ClipRRect(
@@ -123,7 +122,7 @@ class _MapPageState extends State<MapPage> {
                           ))),
                 ),
                 const SizedBox(height: 10),
-                Container(
+                SizedBox(
                   width: double.infinity,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,

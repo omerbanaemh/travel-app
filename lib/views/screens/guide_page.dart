@@ -13,18 +13,18 @@ class GuidePage extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Container(
+          SizedBox(
             height: 230,
               width: double.infinity,
               child: Image.asset('assets/images/guide/banner_guide.png',fit: BoxFit.cover,)
           ),
-          Container(
+          SizedBox(
               width: double.infinity,
               child: Image.asset('assets/images/home/underbanner.png',fit: BoxFit.cover,)
           ),
           InkWell(
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => AboutYemenPage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutYemenPage()));
             },
             child: Row(
               children: [
@@ -43,15 +43,15 @@ class GuidePage extends StatelessWidget {
                       ),
                   ),
                 ),
-                Expanded(child: Text('حول اليمن',style: TextStyle(fontSize: 24,color: Color(
+                const Expanded(child: Text('حول اليمن',style: TextStyle(fontSize: 24,color: Color(
                     0xffa76f47)),))
               ],
             ),
           ),
-          Divider(),
+          const Divider(),
           InkWell(
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => TravelGuidePage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const TravelGuidePage()));
             },
             child: Row(
               children: [
@@ -70,15 +70,15 @@ class GuidePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(child: Text('دليل السفر',style: TextStyle(fontSize: 24,color: Color(
+                const Expanded(child: Text('دليل السفر',style: TextStyle(fontSize: 24,color: Color(
                     0xffa76f47)),))
               ],
             ),
           ),
-          Divider(),
+          const Divider(),
           InkWell(
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => NavigationGuidePage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const NavigationGuidePage()));
             },
             child: Row(
               children: [
@@ -97,12 +97,12 @@ class GuidePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(child: Text('دليل التنقل',style: TextStyle(fontSize: 24,color: Color(
+                const Expanded(child: Text('دليل التنقل',style: TextStyle(fontSize: 24,color: Color(
                     0xffa76f47)),))
               ],
             ),
           ),
-          Divider(),
+          const Divider(),
           InkWell(
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context) => const GovernoratesPage()));
@@ -124,12 +124,12 @@ class GuidePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(child: Text('المحافظات',style: TextStyle(fontSize: 24,color: Color(
+                const Expanded(child: Text('المحافظات',style: TextStyle(fontSize: 24,color: Color(
                     0xffa76f47)),))
               ],
             ),
           ),
-          Divider(),
+          const Divider(),
         ],
       ),
     );

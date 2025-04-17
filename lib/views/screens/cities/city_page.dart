@@ -67,7 +67,7 @@ class _CityPageState extends State<CityPage> {
 
   @override
   Widget build(BuildContext context) {
-    return loading ? Scaffold(body: Center(child: CircularProgressIndicator())) :
+    return loading ? const Scaffold(body: Center(child: CircularProgressIndicator())) :
     Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,7 +82,7 @@ class _CityPageState extends State<CityPage> {
                       CarouselSlider.builder(
                         itemCount: city.images.length,
                         itemBuilder: (BuildContext context, int index, int realIndex) {
-                          return Container(
+                          return SizedBox(
                             width: double.infinity,
                             child: Image.network(city.images[index].image, fit: BoxFit.cover),
                           );
@@ -91,7 +91,7 @@ class _CityPageState extends State<CityPage> {
                           height: 230,
                           viewportFraction: 1.0,
                           autoPlay: true,
-                          autoPlayInterval: Duration(seconds: 3),
+                          autoPlayInterval: const Duration(seconds: 3),
                           enlargeCenterPage: false,
                         ),
                       ),
@@ -112,13 +112,13 @@ class _CityPageState extends State<CityPage> {
                                 ),
                               ),
                             ),
-                            Text(city.cityName,style: TextStyle(fontSize: 28,color: Color(0xffa76f47 )),)
+                            Text(city.cityName,style: const TextStyle(fontSize: 28,color: Color(0xffa76f47 )),)
                           ],
                         ),
                       ),
                     ],
                   ),
-                  Container(
+                  SizedBox(
                       width: double.infinity,
                       child: Image.asset('assets/images/home/underbanner.png',fit: BoxFit.cover,)
                   ),
@@ -126,23 +126,23 @@ class _CityPageState extends State<CityPage> {
 
                   Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Text(city.description,style: TextStyle(fontSize: 16,),),
+                    child: Text(city.description,style: const TextStyle(fontSize: 16,),),
                   ),
 
 
 
-                  Padding(
-                    padding: const EdgeInsets.only(right: 16.0,top: 8, bottom: 8),
-                    child: const Text("أماكن يفضل زيارتها",  style: TextStyle(
+                  const Padding(
+                    padding: EdgeInsets.only(right: 16.0,top: 8, bottom: 8),
+                    child: Text("أماكن يفضل زيارتها",  style: TextStyle(
                       fontSize: 22,
                       color: Color(0xffa66e47),
                       fontWeight: FontWeight.bold,),),
                   ),
                   GridView.builder(
                     padding: EdgeInsets.zero,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                     ),
                     itemCount: city.places.length,
@@ -155,7 +155,7 @@ class _CityPageState extends State<CityPage> {
                             Text(place.placeName,),
                             Container(
                               height: 150,
-                              margin: EdgeInsets.only(right: 5, left:5, ),
+                              margin: const EdgeInsets.only(right: 5, left:5, ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 boxShadow: [
@@ -163,7 +163,7 @@ class _CityPageState extends State<CityPage> {
                                     color: Colors.grey.withOpacity(1.0),
                                     spreadRadius: 1,
                                     blurRadius: 5,
-                                    offset: Offset(5, 5),
+                                    offset: const Offset(5, 5),
                                   ),
                                 ],
                               ),

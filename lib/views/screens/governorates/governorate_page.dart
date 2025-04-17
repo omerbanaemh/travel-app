@@ -3,7 +3,6 @@ import 'package:yemen_travel_guid/constant.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yemen_travel_guid/controllers/governorates_controller.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
-import 'package:yemen_travel_guid/models/auth/profile_model.dart';
 import 'package:yemen_travel_guid/models/comment_model.dart';
 import 'package:yemen_travel_guid/models/governorate_model.dart';
 

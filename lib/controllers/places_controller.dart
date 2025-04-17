@@ -10,7 +10,7 @@ import 'package:yemen_travel_guid/models/place_model.dart';
 //place
 Future<ApiResponse> getPlace(int id) async {
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
   String? token = await getToken();
   final response = await http.get(
       Uri.parse('$getPlacesURL/$id'),
@@ -19,7 +19,7 @@ Future<ApiResponse> getPlace(int id) async {
         'Authorization': 'Bearer $token'
       });
 
-  print(response.body);
+
 
   switch(response.statusCode){
     case 200:
@@ -32,10 +32,10 @@ Future<ApiResponse> getPlace(int id) async {
       apiResponse.error = 'somethingWentWrong';
       break;
   }
-  // }
-  // catch(e) {
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch(e) {
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }
 
@@ -46,7 +46,7 @@ Future<ApiResponse> createFavorite({
   required String placeId,
 }) async {
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
   String? token = await getToken();
   final response = await http.post(
       Uri.parse(createFavoriteURL),
@@ -59,8 +59,6 @@ Future<ApiResponse> createFavorite({
       }
   );
 
-  print(response.body);
-
   switch(response.statusCode){
     case 200:
       apiResponse.data = PlaceModel.fromJson(jsonDecode(response.body)['data']);
@@ -72,10 +70,10 @@ Future<ApiResponse> createFavorite({
       apiResponse.error = 'somethingWentWrong';
       break;
   }
-  // }
-  // catch(e) {
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch(e) {
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }
 
@@ -84,7 +82,7 @@ Future<ApiResponse> createFavorite({
 //trips
 Future<ApiResponse> getFavoritePlaces() async {
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
   String? token = await getToken();
   final response = await http.get(
       Uri.parse(getMyFavoritesURL),
@@ -93,7 +91,7 @@ Future<ApiResponse> getFavoritePlaces() async {
         'Authorization': 'Bearer $token'
       });
 
-  print(response.body);
+
 
   switch(response.statusCode){
     case 200:
@@ -107,9 +105,9 @@ Future<ApiResponse> getFavoritePlaces() async {
       apiResponse.error = 'somethingWentWrong';
       break;
   }
-  // }
-  // catch(e) {
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch(e) {
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }

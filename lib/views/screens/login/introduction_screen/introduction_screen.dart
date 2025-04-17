@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yemen_travel_guid/views/screens/login/login.dart';
 class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});
 
   @override
-  _IntroScreenState createState() => _IntroScreenState();
+  State<IntroScreen> createState() => _IntroScreenState();
 }
 
 class _IntroScreenState extends State<IntroScreen> {
@@ -53,7 +52,7 @@ class _IntroScreenState extends State<IntroScreen> {
                       child: Image.asset('assets/images/introduction_screen/1.png')),
                   const Text(
                     'خطط\nلرحلتك القادمة معنا',
-                    style: TextStyle(fontSize: 34, color: AppColors.primary1),
+                    style: TextStyle(fontSize: 34, color: Color(0xFFCE9263)),
                     textAlign: TextAlign.center,
                   ),
                   const Flexible( flex: 1,
@@ -82,7 +81,7 @@ class _IntroScreenState extends State<IntroScreen> {
                     child: Center(
                       child: Text(
                         'معالم يمنية لا تفوّت',
-                        style: TextStyle(fontSize: 34, color: AppColors.primary1),
+                        style: TextStyle(fontSize: 34, color: Color(0xFFCE9263)),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -121,15 +120,15 @@ class _IntroScreenState extends State<IntroScreen> {
                       child: SizedBox(height: 120,)),
                   Flexible( flex: 2,
                       child: Image.asset('assets/images/introduction_screen/3.png')),
-                  Flexible(
-                    child: const Text(
+                  const Flexible(
+                    child: Text(
                       'أستكشف جمال اليمن معنـــــــــــــــــا',
-                      style: TextStyle(fontSize: 34, color: AppColors.primary1),
+                      style: TextStyle(fontSize: 34, color: Color(0xFFCE9263)),
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  Flexible(
-                    child: const Text(
+                  const Flexible(
+                    child: Text(
                       'انغمس في سحر اليمن مع جولاتنا الفريدة، وتعرّف على روح الضيافة اليمنية.',
                       style: TextStyle(
                         fontSize: 20,
@@ -137,8 +136,8 @@ class _IntroScreenState extends State<IntroScreen> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  Flexible(
-                      child: const SizedBox(height: 150,)),
+                  const Flexible(
+                      child: SizedBox(height: 150,)),
 
                 ],
               ),
@@ -163,28 +162,28 @@ class _IntroScreenState extends State<IntroScreen> {
     );
   }
 
-  Widget _buildPage(
-      {required Color color,
-      required String title,
-      required String description}) {
-    return Container(
-      color: color,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-                fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
-          ),
-          const SizedBox(height: 20),
-          Text(
-            description,
-            style: const TextStyle(fontSize: 16, color: Colors.white),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _buildPage(
+  //     {required Color color,
+  //     required String title,
+  //     required String description}) {
+  //   return Container(
+  //     color: color,
+  //     child: Column(
+  //       mainAxisAlignment: MainAxisAlignment.center,
+  //       children: [
+  //         Text(
+  //           title,
+  //           style: const TextStyle(
+  //               fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+  //         ),
+  //         const SizedBox(height: 20),
+  //         Text(
+  //           description,
+  //           style: const TextStyle(fontSize: 16, color: Colors.white),
+  //           textAlign: TextAlign.center,
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }

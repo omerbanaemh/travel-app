@@ -1,10 +1,7 @@
 import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
-
 import 'package:yemen_travel_guid/models/api_response.dart';
 import 'package:yemen_travel_guid/models/auth/user_model.dart';
 import 'package:yemen_travel_guid/views/home.dart';
@@ -122,7 +119,7 @@ class _RegisterState extends State<Register> {
           Center(
             child: SingleChildScrollView(
               child: Padding(
-                padding:  EdgeInsets.all(50.0),
+                padding:  const EdgeInsets.all(50.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -140,12 +137,12 @@ class _RegisterState extends State<Register> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: !selected
-                                  ? Color(0xFFA87047)
+                                  ? const Color(0xFFA87047)
                                   : Colors.grey,
                             ),
                             height: 35,
                             width: 105,
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 'تسجيل مستخدم',
                                 style: TextStyle(fontSize: 14, color: Colors.white,fontWeight: FontWeight.bold),
@@ -163,12 +160,12 @@ class _RegisterState extends State<Register> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: selected
-                                  ? Color(0xFFA87047)
+                                  ? const Color(0xFFA87047)
                                   : Colors.grey,
                             ),
                             height: 35,
                             width: 105,
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 'تسجيل وكيل',
                                 style: TextStyle(fontSize: 14, color: Colors.white,fontWeight: FontWeight.bold),
@@ -178,25 +175,25 @@ class _RegisterState extends State<Register> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     selected ?
                     FormAgent(
                       userName: userName,
                       email: email,
                       password: password,
-                      password_confirmation: passwordConfirmation,
+                      passwordConfirmation: passwordConfirmation,
                       phone: phone,
                       officeName: officeName,
                       officePhone: officePhone,
                       recordNumber: recordNumber,
-                      formkey: formkey2,
+                      formKey: formkey2,
                     ):
                     FormUser(
                       userName: userName,
                       email: email,
                       password: password,
-                      password_confirmation: passwordConfirmation,
-                      formkey: formkey,
+                      passwordConfirmation: passwordConfirmation,
+                      formKey: formkey,
                     ),
 
 
@@ -210,7 +207,7 @@ class _RegisterState extends State<Register> {
                            selected ?  _registerAgent() : _registerUser();
                           }
                         },
-                        child: loading ?  BrownButton( text: 'إنشاء حساب',loading: true) :  BrownButton( text: 'إنشاء حساب'),
+                        child: loading ?  const BrownButton( text: 'إنشاء حساب',loading: true) :  const BrownButton( text: 'إنشاء حساب'),
                     ),
                 ],
                 )

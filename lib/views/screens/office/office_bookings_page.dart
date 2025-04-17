@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:yemen_travel_guid/constant.dart';
 import 'package:yemen_travel_guid/controllers/bookings_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -44,10 +43,10 @@ class _OfficeBookingsPageState extends State<OfficeBookingsPage> {
         children: [
           Container(
             width: double.infinity,
-            color: AppColors.primary0,
+            color: const Color(0xFFECE0D9),
             child:  Padding(
               padding:
-              EdgeInsets.only(top: 50.0, right: 12, bottom: 10,left: 22),
+              const EdgeInsets.only(top: 50.0, right: 12, bottom: 10,left: 22),
               child: Row(
                 children: [
                   InkWell(
@@ -60,11 +59,11 @@ class _OfficeBookingsPageState extends State<OfficeBookingsPage> {
                       ),
                     ),
                   ),
-                  Text(
+                  const Text(
                     'الحجوزات',
                     style: TextStyle(
                       fontSize: 22,
-                      color: AppColors.titleColor,
+                      color: Color(0xFFA76F47),
                     ),
                   ),
 
@@ -72,7 +71,7 @@ class _OfficeBookingsPageState extends State<OfficeBookingsPage> {
               ),
             ),
           ),
-          loading ? Expanded(child: Center(child: CircularProgressIndicator())) :
+          loading ? const Expanded(child: Center(child: CircularProgressIndicator())) :
 
           Expanded(
             child: RefreshIndicator(
@@ -83,62 +82,59 @@ class _OfficeBookingsPageState extends State<OfficeBookingsPage> {
                 itemBuilder: (context, index) {
                   BookingModel booking = bookings[index];
 
-                  return Container(
-                    child: Column(
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            print(booking.id);
-                            Navigator.push(context, MaterialPageRoute(builder: (_) =>  BookingPage(bookingId:booking.id)));
-                          },
-                          child: Padding(
-                            padding:
-                            const EdgeInsets.symmetric(horizontal: 22),
-                            child: Row(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(18),
-                                    image: DecorationImage(
-                                      image:
-                                      NetworkImage(booking.image),
-                                      fit: BoxFit.cover,
+                  return Column(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (_) =>  BookingPage(bookingId:booking.id)));
+                        },
+                        child: Padding(
+                          padding:
+                          const EdgeInsets.symmetric(horizontal: 22),
+                          child: Row(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(18),
+                                  image: DecorationImage(
+                                    image:
+                                    NetworkImage(booking.image),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                width: 90,
+                                height: 76,
+                                // child: Image.asset(item[index]['image']!),
+                              ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      booking.trip.name,
+                                      style: const TextStyle(
+                                          fontSize: 20,
+                                          color: Color(0xFFA76F47)),
                                     ),
-                                  ),
-                                  width: 90,
-                                  height: 76,
-                                  // child: Image.asset(item[index]['image']!),
+                                    Text(
+                                      booking.trip.description,
+                                      style: const TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.black54),
+                                      maxLines: 3,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
                                 ),
-                                const SizedBox(width: 10),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        booking.trip.name,
-                                        style: const TextStyle(
-                                            fontSize: 20,
-                                            color: AppColors.titleColor),
-                                      ),
-                                      Text(
-                                        booking.trip.description,
-                                        style: const TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.black54),
-                                        maxLines: 3,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
-                        const Divider()
-                      ],
-                    ),
+                      ),
+                      const Divider()
+                    ],
                   );
 
                 },

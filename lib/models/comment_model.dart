@@ -1,5 +1,4 @@
 import 'package:yemen_travel_guid/models/auth/profile_model.dart';
-import 'package:yemen_travel_guid/models/auth/user_model.dart';
 
 class CommentModel {
   int id;

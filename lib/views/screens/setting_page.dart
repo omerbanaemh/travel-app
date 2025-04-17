@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
@@ -13,10 +12,10 @@ class _SettingPageState extends State<SettingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: AppColors.primary6, //change your color here
+        iconTheme: const IconThemeData(
+          color: Color(0xFF85552F), //change your color here
         ),
-        title: Text('الإعدادات',style: TextStyle(fontSize: 20,color: AppColors.primary2,fontWeight: FontWeight.bold),),
+        title: const Text('الإعدادات',style: TextStyle(fontSize: 20,color: Color(0xFFC08759),fontWeight: FontWeight.bold),),
         backgroundColor: Colors.white,
         elevation: 0,
       ),
@@ -119,6 +118,6 @@ class _SettingPageState extends State<SettingPage> {
               )),
         ],
       ),
-    );;
+    );
   }
 }

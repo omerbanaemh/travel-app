@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
-
 import 'package:yemen_travel_guid/models/auth/profile_model.dart';
 import 'package:yemen_travel_guid/views/screens/office/office_page.dart';
 import 'package:yemen_travel_guid/views/screens/setting_page.dart';
@@ -43,17 +41,18 @@ class _ProfilePageState extends State<ProfilePage> {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
 
-    return  loading ? Center(child: CircularProgressIndicator()) : SingleChildScrollView(
+    return  loading ? const Center(child: CircularProgressIndicator()) : SingleChildScrollView(
       child:  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(
+          const Padding(
+            padding: EdgeInsets.only(
                 top: 50.0, right: 44, bottom: 10),
             child: Text('الحساب', style: TextStyle(fontSize: 22,
-                color: AppColors.primary2,
+                color: Color(0xFFC08759),
                 fontWeight: FontWeight.bold),),
           ),
           ListTile(
@@ -66,7 +65,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             subtitle: Text(user.email),
             trailing: Text(user.role!),
-            leading: CircleAvatar(
+            leading: const CircleAvatar(
               radius: 30.0,
               // backgroundImage: NetworkImage("${snapshot.data.hitsList[index].previewUrl}"),
             ),

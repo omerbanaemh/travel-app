@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:yemen_travel_guid/constant.dart';
 import 'package:yemen_travel_guid/controllers/trips_controller.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
-
 import 'package:yemen_travel_guid/models/trip_model.dart';
 import 'package:yemen_travel_guid/views/screens/bookings/my_bookings_page.dart';
 import 'package:yemen_travel_guid/views/screens/trips/trip_page.dart';
@@ -27,7 +25,6 @@ class _TripsPageState extends State<TripsPage> {
 
 
   Future<void> _getTrips() async {
-    print('--------------------------------');
     var response = await getTrips();
     if (response.error == null) {
       trips = response.data as List<TripModel>;
@@ -48,18 +45,18 @@ class _TripsPageState extends State<TripsPage> {
           children: [
             Container(
               width: double.infinity,
-              color: AppColors.primary0,
+              color: const Color(0xFFECE0D9),
               child:  Padding(
                 padding:
-                    EdgeInsets.only(top: 50.0, right: 22, bottom: 10,left: 22),
+                    const EdgeInsets.only(top: 50.0, right: 22, bottom: 10,left: 22),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       'البكجات المتوفرة',
                       style: TextStyle(
                         fontSize: 22,
-                        color: AppColors.titleColor,
+                        color: Color(0xFFA76F47),
                       ),
                     ),
                 InkWell(
@@ -70,14 +67,14 @@ class _TripsPageState extends State<TripsPage> {
                     fit: BoxFit.cover,
                   ),
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (_) =>  MyBookingsPage()));
+                    Navigator.push(context, MaterialPageRoute(builder: (_) =>  const MyBookingsPage()));
                   },
                 ),
                   ],
                 ),
               ),
             ),
-            loading ? Expanded(child: Center(child: CircularProgressIndicator())) :
+            loading ? const Expanded(child: Center(child: CircularProgressIndicator())) :
 
         Expanded(
               child: RefreshIndicator(
@@ -88,72 +85,66 @@ class _TripsPageState extends State<TripsPage> {
                   itemBuilder: (context, index) {
                     TripModel trip = trips[index];
 
-                      return Container(
-                        child: Column(
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (_) =>  TripPage(tripId:trip.id)));
-                              },
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 22),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(12),
-                                        image: DecorationImage(
-                                          image:
-                                          NetworkImage(trip.image),
-                                          fit: BoxFit.cover,
+                      return Column(
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (_) =>  TripPage(tripId:trip.id)));
+                            },
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 22),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      image: DecorationImage(
+                                        image:
+                                        NetworkImage(trip.image),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    width: 90,
+                                    height: 76,
+                                    // child: Image.asset(item[index]['image']!),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          trip.name,
+                                          style: const TextStyle(
+                                              fontSize: 20,
+                                              color: Color(0xFFA76F47)),
                                         ),
-                                      ),
-                                      width: 90,
-                                      height: 76,
-                                      // child: Image.asset(item[index]['image']!),
+                                        Text(
+                                          trip.description,
+                                          style: const TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.black54),
+                                          maxLines: 3,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ],
                                     ),
-                                    const SizedBox(width: 10),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            trip.name,
-                                            style: const TextStyle(
-                                                fontSize: 20,
-                                                color: AppColors.titleColor),
-                                          ),
-                                          Text(
-                                            trip.description,
-                                            style: const TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.black54),
-                                            maxLines: 3,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
-                            const Divider()
-                          ],
-                        ),
+                          ),
+                          const Divider()
+                        ],
                       );
-
                   },
                 ),
               ),
             )
-
           ],
         ) ;
-
-
   }
 
   // void _listener(BuildContext context, TripState state) {

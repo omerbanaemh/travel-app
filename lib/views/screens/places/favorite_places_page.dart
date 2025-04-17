@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:yemen_travel_guid/constant.dart';
 import 'package:yemen_travel_guid/controllers/places_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -44,10 +43,10 @@ class _FavoritePlacesPageState extends State<FavoritePlacesPage> {
             children: [
               Container(
                 width: double.infinity,
-                color: AppColors.primary0,
+                color: const Color(0xFFECE0D9),
                 child:  Padding(
                   padding:
-                      EdgeInsets.only(top: 50.0, right: 12, bottom: 10,left: 22),
+                      const EdgeInsets.only(top: 50.0, right: 12, bottom: 10,left: 22),
                   child: Row(
                     children: [
                             InkWell(
@@ -60,18 +59,18 @@ class _FavoritePlacesPageState extends State<FavoritePlacesPage> {
                                 ),
                               ),
                             ),
-                      Text(
+                      const Text(
                         'مفضلتي',
                         style: TextStyle(
                           fontSize: 22,
-                          color: AppColors.titleColor,
+                          color: Color(0xFFA76F47),
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
-              loading ? Expanded(child: Center(child: CircularProgressIndicator())) :
+              loading ? const Expanded(child: Center(child: CircularProgressIndicator())) :
 
           Expanded(
                 child: RefreshIndicator(
@@ -82,62 +81,60 @@ class _FavoritePlacesPageState extends State<FavoritePlacesPage> {
                     itemBuilder: (context, index) {
                       PlaceModel place = places[index];
 
-                        return Container(
-                          child: Column(
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (_) =>  PlacePage(placeId:place.id)));
-                                },
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 22),
-                                  child: Row(
-                                    children: [
-                                      if (place.images.isNotEmpty)
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(18),
-                                          image: DecorationImage(
-                                            image:
-                                            NetworkImage('${place.images[0].image}'),
-                                            fit: BoxFit.cover,
+                        return Column(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (_) =>  PlacePage(placeId:place.id)));
+                              },
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 22),
+                                child: Row(
+                                  children: [
+                                    if (place.images.isNotEmpty)
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(18),
+                                        image: DecorationImage(
+                                          image:
+                                          NetworkImage(place.images[0].image),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      width: 90,
+                                      height: 76,
+                                      // child: Image.asset(item[index]['image']!),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            place.placeName,
+                                            style: const TextStyle(
+                                                fontSize: 20,
+                                                color: Color(0xFFA76F47)),
                                           ),
-                                        ),
-                                        width: 90,
-                                        height: 76,
-                                        // child: Image.asset(item[index]['image']!),
+                                          Text(
+                                            place.description,
+                                            style: const TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.black54),
+                                            maxLines: 3,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ],
                                       ),
-                                      const SizedBox(width: 10),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              place.placeName,
-                                              style: const TextStyle(
-                                                  fontSize: 20,
-                                                  color: AppColors.titleColor),
-                                            ),
-                                            Text(
-                                              place.description,
-                                              style: const TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.black54),
-                                              maxLines: 3,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              const Divider()
-                            ],
-                          ),
+                            ),
+                            const Divider()
+                          ],
                         );
 
                     },

@@ -3,12 +3,12 @@ import 'package:yemen_travel_guid/models/api_response.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:yemen_travel_guid/models/booking_model.dart';
-import 'package:dio/dio.dart';
 
 
+// دالة تحصل على كل الحجوزات الخاصة بالمستخدم
 Future<ApiResponse> getMyBookings() async {
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
   String? token = await getToken();
   final response = await http.get(
       Uri.parse(getMyBookingsURL),
@@ -17,7 +17,6 @@ Future<ApiResponse> getMyBookings() async {
         'Authorization': 'Bearer $token'
       });
 
-  print(response.body);
 
   switch(response.statusCode){
     case 200:
@@ -31,15 +30,15 @@ Future<ApiResponse> getMyBookings() async {
       apiResponse.error = 'somethingWentWrong';
       break;
   }
-  // }
-  // catch(e) {
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch(e) {
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }
 
 
-
+// دالة تحصل على حجز معين
 Future<ApiResponse> getBooking(int id) async {
   ApiResponse apiResponse = ApiResponse();
   try {
@@ -51,7 +50,6 @@ Future<ApiResponse> getBooking(int id) async {
         'Authorization': 'Bearer $token'
       });
 
-  print(response.body);
 
   switch(response.statusCode){
     case 200:
@@ -72,10 +70,7 @@ Future<ApiResponse> getBooking(int id) async {
 }
 
 
-
-
-
-//CreateTrip
+// دالة تحديث حجز
 Future<ApiResponse> updateBooking(int id,String status) async {
   ApiResponse apiResponse = ApiResponse();
   try {
@@ -92,7 +87,6 @@ Future<ApiResponse> updateBooking(int id,String status) async {
         }
     );
 
-    print(response.body);
 
     switch(response.statusCode){
       case 200:

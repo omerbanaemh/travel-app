@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
 import 'package:yemen_travel_guid/models/auth/user_model.dart';
 import 'package:yemen_travel_guid/views/home.dart';
@@ -52,8 +51,6 @@ class _LoginState extends State<Login> {
 
   void _saveAndRedirectToHome(UserModel user) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    print('toktokentokentokentokentokentokentokenen');
-    print(user.token);
     await pref.setString('token', user.token ?? '');
     await pref.setInt('userId', user.id);
     await pref.setString('user', jsonEncode(user.toJson()));
@@ -105,13 +102,13 @@ class _LoginState extends State<Login> {
                         child: Column(
                           children: [
                             LoginButton(
-                              icon:const Icon(Icons.person,color: AppColors.primary2,),
+                              icon:const Icon(Icons.person,color: Color(0xFFC08759),),
                               label: "البريد الإلكتروني",
                               validator: 'email',
                               controller: email,),
                             const SizedBox(height: 30),
                             LoginButton(
-                              icon:const Icon(Icons.password,color: AppColors.primary2,),
+                              icon:const Icon(Icons.password,color: Color(0xFFC08759),),
                               label: "كلمة المرور",
                               validator: 'password',
                               controller: password,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
 
 
 class LoginButton extends StatefulWidget {
@@ -21,13 +20,13 @@ class _LoginButtonState extends State<LoginButton> {
     return Container(
       width: 300,
       decoration: BoxDecoration(
-        color: Color(0xFFFDFDFE),
+        color: const Color(0xFFFDFDFE),
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
             blurRadius: 5,
-            offset: Offset(0, 5),
+            offset: const Offset(0, 5),
           ),
         ],
       ),
@@ -38,12 +37,12 @@ class _LoginButtonState extends State<LoginButton> {
         textAlign: TextAlign.right,
         decoration: InputDecoration(
           isDense: true,
-          errorStyle: TextStyle(
+          errorStyle: const TextStyle(
             color: Colors.red, // اللون الذي تريده
             height: 0.1, // تقليل المسافة العمودي
           ),
           labelText: widget.label,
-          labelStyle: TextStyle(color: AppColors.primary1),
+          labelStyle: const TextStyle(color: Color(0xFFCE9263)),
           prefixIcon: widget.icon,
           border: InputBorder.none,
         ),

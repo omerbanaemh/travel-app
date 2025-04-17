@@ -12,7 +12,7 @@ import 'package:dio/dio.dart';
 //trips
 Future<ApiResponse> getTrips() async {
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
     String? token = await getToken();
     final response = await http.get(
         Uri.parse(getTripsURL),
@@ -21,7 +21,7 @@ Future<ApiResponse> getTrips() async {
           'Authorization': 'Bearer $token'
         });
 
-      print(response.body);
+
 
     switch(response.statusCode){
       case 200:
@@ -35,10 +35,10 @@ Future<ApiResponse> getTrips() async {
         apiResponse.error = 'somethingWentWrong';
         break;
     }
-  // }
-  // catch(e) {
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch(e) {
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }
 
@@ -51,7 +51,7 @@ Future<ApiResponse> getTrips() async {
 //trip
 Future<ApiResponse> getTrip(int id) async {
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
   String? token = await getToken();
   final response = await http.get(
       Uri.parse('$getTripsURL/$id'),
@@ -59,8 +59,6 @@ Future<ApiResponse> getTrip(int id) async {
         'Accept': 'application/json',
         'Authorization': 'Bearer $token'
       });
-
-  print(response.body);
 
   switch(response.statusCode){
     case 200:
@@ -73,10 +71,10 @@ Future<ApiResponse> getTrip(int id) async {
       apiResponse.error = 'somethingWentWrong';
       break;
   }
-  // }
-  // catch(e) {
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch(e) {
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }
 
@@ -84,7 +82,7 @@ Future<ApiResponse> getTrip(int id) async {
 //CreateTrip
 Future<ApiResponse> createTrip(MultipartFile? image,String name,String description,String subTitle,String tripContent,String itinerary,String price,String cityId) async {
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
   String? token = await getToken();
   Dio dio = Dio();
   dio.options=BaseOptions(
@@ -96,6 +94,7 @@ Future<ApiResponse> createTrip(MultipartFile? image,String name,String descripti
       return status! < 500;
     },
   );
+
   final response = await dio.post(createTripsURL,
     data: FormData.fromMap({
       'name': name,
@@ -109,12 +108,6 @@ Future<ApiResponse> createTrip(MultipartFile? image,String name,String descripti
     }),
   );
 
-
-
-
-  print(response.statusCode);
-  print('----------------------------------------------------------');
-  print(response.data);
 
   switch(response.statusCode){
     case 200:
@@ -130,10 +123,10 @@ Future<ApiResponse> createTrip(MultipartFile? image,String name,String descripti
       apiResponse.error = 'somethingWentWrong';
       break;
   }
-  // }
-  // catch(e) {
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch(e) {
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }
 
@@ -141,7 +134,7 @@ Future<ApiResponse> createTrip(MultipartFile? image,String name,String descripti
 //CreateTrip
 Future<ApiResponse> updateTrip(MultipartFile? image,String name,String description,String subTitle,String tripContent,String itinerary,String price,String cityId,String id) async {
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
   String? token = await getToken();
   Dio dio = Dio();
   dio.options=BaseOptions(
@@ -169,11 +162,6 @@ Future<ApiResponse> updateTrip(MultipartFile? image,String name,String descripti
 
 
 
-
-  print(response.statusCode);
-  print('----------------------------------------------------------');
-  print(response.data);
-
   switch(response.statusCode){
     case 200:
       apiResponse.message = response.data['message'];
@@ -188,10 +176,10 @@ Future<ApiResponse> updateTrip(MultipartFile? image,String name,String descripti
       apiResponse.error = 'somethingWentWrong';
       break;
   }
-  // }
-  // catch(e) {
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch(e) {
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }
 
@@ -200,7 +188,7 @@ Future<ApiResponse> updateTrip(MultipartFile? image,String name,String descripti
 //CreateBooking
 Future<ApiResponse> createBooking(MultipartFile? image,  int id) async {
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
   String? token = await getToken();
   Dio dio = Dio();
   dio.options=BaseOptions(
@@ -221,9 +209,6 @@ Future<ApiResponse> createBooking(MultipartFile? image,  int id) async {
 
 
 
-
-  print(response.data);
-
   switch(response.statusCode){
     case 200:
       apiResponse.message = response.data['message'];
@@ -238,10 +223,10 @@ Future<ApiResponse> createBooking(MultipartFile? image,  int id) async {
       apiResponse.error = 'somethingWentWrong';
       break;
   }
-  // }
-  // catch(e) {
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch(e) {
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }
 
@@ -250,7 +235,7 @@ Future<ApiResponse> createBooking(MultipartFile? image,  int id) async {
 //CreateRating
 Future<ApiResponse> createRating(String rating , String? tripId, String? placeId) async {
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
   String? token = await getToken();
   final response = await http.post(
       Uri.parse(ratingURL),
@@ -265,7 +250,6 @@ Future<ApiResponse> createRating(String rating , String? tripId, String? placeId
       }
       );
 
-  print(response.body);
 
   switch(response.statusCode){
     case 200:
@@ -278,10 +262,10 @@ Future<ApiResponse> createRating(String rating , String? tripId, String? placeId
       apiResponse.error = 'somethingWentWrong';
       break;
   }
-  // }
-  // catch(e) {
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch(e) {
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }
 

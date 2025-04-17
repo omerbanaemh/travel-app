@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:yemen_travel_guid/constant.dart';
 import 'package:yemen_travel_guid/controllers/comment_controller.dart';
 import 'package:yemen_travel_guid/controllers/places_controller.dart';
@@ -149,9 +148,9 @@ class _PlacePageState extends State<PlacePage> {
     ApiResponse response = await createFavorite(placeId: place.id.toString() );
 
     if(response.error == null){
-      PlaceModel _place = response.data as PlaceModel;
+      PlaceModel placee = response.data as PlaceModel;
       setState(() {
-          place.favorite= _place.favorite;
+          place.favorite= placee.favorite;
              });
     }
     else if(response.error == 'unauthorized'){
@@ -166,7 +165,7 @@ class _PlacePageState extends State<PlacePage> {
 
   @override
   Widget build(BuildContext context) {
-    return loading ? Scaffold(body: Center(child: CircularProgressIndicator())) :
+    return loading ? const Scaffold(body: Center(child: CircularProgressIndicator())) :
     Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -181,7 +180,7 @@ class _PlacePageState extends State<PlacePage> {
                       CarouselSlider.builder(
                         itemCount: place.images.length,
                         itemBuilder: (BuildContext context, int index, int realIndex) {
-                          return Container(
+                          return SizedBox(
                             width: double.infinity,
                             child: Image.network(place.images[index].image, fit: BoxFit.cover),
                           );
@@ -190,7 +189,7 @@ class _PlacePageState extends State<PlacePage> {
                           height: 230,
                           viewportFraction: 1.0,
                           autoPlay: true,
-                          autoPlayInterval: Duration(seconds: 3),
+                          autoPlayInterval: const Duration(seconds: 3),
                           enlargeCenterPage: false,
                         ),
                       ),
@@ -210,7 +209,7 @@ class _PlacePageState extends State<PlacePage> {
                                 ),
                               ),
                             ),
-                            Text(place.placeName,style: TextStyle(fontSize: 28,color: Color(0xffa76f47 )),)
+                            Text(place.placeName,style: const TextStyle(fontSize: 28,color: Color(0xffa76f47 )),)
                           ],
                         ),
                       ),
@@ -220,7 +219,6 @@ class _PlacePageState extends State<PlacePage> {
                         left: 10,
                         child: InkWell(
                           onTap: (){
-                            print('object');
                             _createFavorite();
                           },
                           child: place.favorite  ? SvgPicture.asset(
@@ -237,7 +235,7 @@ class _PlacePageState extends State<PlacePage> {
                         ),)
                     ],
                   ),
-                  Container(
+                  SizedBox(
                       width: double.infinity,
                       child: Image.asset('assets/images/home/underbanner.png',fit: BoxFit.cover,)
                   ),
@@ -245,8 +243,8 @@ class _PlacePageState extends State<PlacePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 16.0),
+                      const Padding(
+                        padding: EdgeInsets.only(right: 16.0),
                         child: Text('معلومات',style: TextStyle(fontSize: 32,color: Color(
                             0xffa76f47)),),
                       ),
@@ -268,7 +266,7 @@ class _PlacePageState extends State<PlacePage> {
                               );
                             }),
                           ),
-                          SizedBox(width: 15,),
+                          const SizedBox(width: 15,),
                         ],
                       ),
 
@@ -276,32 +274,32 @@ class _PlacePageState extends State<PlacePage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Text(place.description,style: TextStyle(fontSize: 16,),),
+                    child: Text(place.description,style: const TextStyle(fontSize: 16,),),
                   ),
 
 
                   if (place.isRating == false)
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 62,),
+                    margin: const EdgeInsets.symmetric(horizontal: 62,),
 
 
                     decoration: BoxDecoration(
-                      color: AppColors.primary0,
+                      color: const Color(0xFFECE0D9),
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
                           spreadRadius: 1,
                           blurRadius: 5,
-                          offset: Offset(2, 2),
+                          offset: const Offset(2, 2),
                         ),
                       ],
                     ),
                     child: Column(
                       children: [
 
-                        SizedBox(height: 10,),
-                        Text('تقييم المكان'),
+                        const SizedBox(height: 10,),
+                        const Text('تقييم المكان'),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: List.generate(5, (index) {
@@ -322,13 +320,13 @@ class _PlacePageState extends State<PlacePage> {
                           children: [
                             TextButton(
                               onPressed: () => Navigator.of(context).pop(),
-                              child: Text('إلغاء'),
+                              child: const Text('إلغاء'),
                             ),
                             TextButton(
                               onPressed: ()  {
                                 _placeRating();
                               },
-                              child: Text('تقييم'),
+                              child: const Text('تقييم'),
                             ),
 
                           ],
@@ -339,9 +337,9 @@ class _PlacePageState extends State<PlacePage> {
                   ),
 
 
-                  Padding(
-                    padding: const EdgeInsets.only(right: 16.0,top: 8,bottom: 6),
-                    child: const Text("التعليقات",  style: TextStyle(
+                  const Padding(
+                    padding: EdgeInsets.only(right: 16.0,top: 8,bottom: 6),
+                    child: Text("التعليقات",  style: TextStyle(
                       fontSize: 22,
                       color: Color(0xffa66e47),
                       fontWeight: FontWeight.bold,),),
@@ -370,7 +368,7 @@ class _PlacePageState extends State<PlacePage> {
                                   children: [
                                     CircleAvatar(
                                       backgroundColor:
-                                      Color(0xffeaded8),
+                                      const Color(0xffeaded8),
                                       radius: 15,
                                       child:  Text(
                                         comment.user.userName
@@ -463,7 +461,7 @@ class _PlacePageState extends State<PlacePage> {
                     controller: _txtCommentController,
                   ),
                 ),
-                SizedBox(width: 8,),
+                const SizedBox(width: 8,),
                 InkWell(
                   child:SvgPicture.asset(
                     height: 40,

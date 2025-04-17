@@ -39,7 +39,6 @@ class _AlertDialogWidgetState extends State<AlertDialogCreateBooking> {
 
 
   Future<bool> _createBooking() async {
-    print('--------------------------------');
     setState(() {
       createBookingLoading = true;
     });
@@ -107,7 +106,7 @@ class _AlertDialogWidgetState extends State<AlertDialogCreateBooking> {
               child: const Text('إلغاء'),
               onPressed: () => Navigator.of(context).pop(false)),
 
-          createBookingLoading ? SizedBox(height: 22,width: 22, child: CircularProgressIndicator()) :
+          createBookingLoading ? const SizedBox(height: 22,width: 22, child: CircularProgressIndicator()) :
           TextButton(
                 child: const Text('حجز'),
                 onPressed: ()  async {
@@ -115,14 +114,15 @@ class _AlertDialogWidgetState extends State<AlertDialogCreateBooking> {
                     setState(() {
                       createBookingLoading = true;
                     });
-                    if (_imageFile != null)
-                     await _createBooking().then((value) => {
+                    if (_imageFile != null) {
+                      await _createBooking().then((value) => {
                        if(value == true){
                          Navigator.of(context).pop(true),
                        }else(
                        Navigator.of(context).pop(false)
                        )
                      });
+                    }
                     setState(() {
                       createBookingLoading = false;
                     });
@@ -134,18 +134,4 @@ class _AlertDialogWidgetState extends State<AlertDialogCreateBooking> {
     );
   }
 
-  // Future<void> _createBooking(String body) async {
-  //   ApiResponse response = await createBooking(body, );
-  //   if (response.error == null) {
-  //     showSuccessSnackBar(
-  //       context: context,
-  //       message: 'تم طلب الحجز بنجاح',
-  //     );
-  //     // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> Home()));
-  //   } else if (response.error == 'unauthorized') {
-  //     unauthorizedLogout(context);
-  //   } else {
-  //     showErrorSnackBar(context: context,message: response.error.toString());
-  //   }
-  // }
 }

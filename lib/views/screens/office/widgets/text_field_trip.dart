@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
 
 
 class TextFieldTrip extends StatefulWidget {
@@ -22,13 +21,13 @@ class _TextFieldTripState extends State<TextFieldTrip> {
     return Container(
       width: 300,
       decoration: BoxDecoration(
-        color: Color(0xFFFDFDFE),
+        color: const Color(0xFFFDFDFE),
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
             blurRadius: 5,
-            offset: Offset(0, 5),
+            offset: const Offset(0, 5),
           ),
         ],
       ),
@@ -40,12 +39,12 @@ class _TextFieldTripState extends State<TextFieldTrip> {
         textAlign: TextAlign.right,
         decoration: InputDecoration(
           isDense: true,
-          errorStyle: TextStyle(
+          errorStyle: const TextStyle(
             color: Colors.red,
             height: 2,
           ),
           labelText: widget.label,
-          labelStyle: TextStyle(color: AppColors.primary1),
+          labelStyle: const TextStyle(color: Color(0xFFCE9263)),
           prefixIcon: widget.icon,
           border: InputBorder.none,
         ),

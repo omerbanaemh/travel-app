@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
 import 'package:yemen_travel_guid/controllers/office_controller.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -31,7 +30,6 @@ class _OfficePageState extends State<OfficePage> {
 
 
   Future<void> _getOffice() async {
-    print('--------------------------------');
     setState(() {
       loading = true;
     });
@@ -64,13 +62,13 @@ class _OfficePageState extends State<OfficePage> {
           children: [
             Container(
               width: double.infinity,
-              color: AppColors.primary0,
+              color: const Color(0xFFECE0D9),
               child:  Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
                     padding:
-                    EdgeInsets.only(top: 50.0, right: 12, bottom: 10,left: 22),
+                    const EdgeInsets.only(top: 50.0, right: 12, bottom: 10,left: 22),
                     child: Row(
                       children: [
                         InkWell(
@@ -83,11 +81,11 @@ class _OfficePageState extends State<OfficePage> {
                             ),
                           ),
                         ),
-                        Text(
+                        const Text(
                           'رحلات المكتب',
                           style: TextStyle(
                             fontSize: 22,
-                            color: AppColors.titleColor,
+                            color: Color(0xFFA76F47),
                           ),
                         ),
 
@@ -96,13 +94,13 @@ class _OfficePageState extends State<OfficePage> {
                   ),
                   Padding(
                     padding:
-                    EdgeInsets.only(top: 50.0, right: 22, bottom: 10, left: 12),
+                    const EdgeInsets.only(top: 50.0, right: 22, bottom: 10, left: 12),
                     child: Row(
                       children: [
                         InkWell(
-                          child: Icon(Icons.notifications_active, color: AppColors.primary3,),
+                          child: const Icon(Icons.notifications_active, color: Color(0xFFA87247),),
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (_) =>  OfficeBookingsPage()));
+                            Navigator.push(context, MaterialPageRoute(builder: (_) =>  const OfficeBookingsPage()));
                           },
                         ),
                       ],
@@ -111,7 +109,7 @@ class _OfficePageState extends State<OfficePage> {
                 ],
               ),
             ),
-            loading ? Center(child: CircularProgressIndicator())
+            loading ? const Center(child: CircularProgressIndicator())
                 :
             Expanded(
               child: ListView.builder(
@@ -120,66 +118,64 @@ class _OfficePageState extends State<OfficePage> {
                 itemBuilder: (context, index) {
                   TripModel trip = office.trips[index];
 
-                  return Container(
-                    child: Column(
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (_) =>  TripPage(tripId: trip.id)));
-                          },
-                          child: Padding(
-                            padding:
-                            const EdgeInsets.symmetric(horizontal: 22),
-                            child: Row(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(18),
-                                    image: DecorationImage(
-                                      image:
-                                      NetworkImage(trip.image),
-                                      fit: BoxFit.cover,
+                  return Column(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (_) =>  TripPage(tripId: trip.id)));
+                        },
+                        child: Padding(
+                          padding:
+                          const EdgeInsets.symmetric(horizontal: 22),
+                          child: Row(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(18),
+                                  image: DecorationImage(
+                                    image:
+                                    NetworkImage(trip.image),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                width: 90,
+                                height: 76,
+                                // child: Image.asset(item[index]['image']!),
+                              ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      trip.name,
+                                      style: const TextStyle(
+                                          fontSize: 20,
+                                          color: Color(0xFFA76F47)),
                                     ),
-                                  ),
-                                  width: 90,
-                                  height: 76,
-                                  // child: Image.asset(item[index]['image']!),
+                                    Text(
+                                      trip.description,
+                                      style: const TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.black54),
+                                      maxLines: 3,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
                                 ),
-                                const SizedBox(width: 10),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        trip.name,
-                                        style: const TextStyle(
-                                            fontSize: 20,
-                                            color: AppColors.titleColor),
-                                      ),
-                                      Text(
-                                        trip.description,
-                                        style: const TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.black54),
-                                        maxLines: 3,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                IconButton(
-                                    onPressed: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>  UpdateTrip(trip: trip))).then((_) {_getOffice();});
-                                    },
-                                    icon: Icon(Icons.edit_note_outlined,size: 33, color: AppColors.primary1))
-                              ],
-                            ),
+                              ),
+                              IconButton(
+                                  onPressed: (){
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>  UpdateTrip(trip: trip))).then((_) {_getOffice();});
+                                  },
+                                  icon: const Icon(Icons.edit_note_outlined,size: 33, color: Color(0xFFCE9263)))
+                            ],
                           ),
                         ),
-                        const Divider()
-                      ],
-                    ),
+                      ),
+                      const Divider()
+                    ],
                   );
 
                 },
@@ -191,10 +187,10 @@ class _OfficePageState extends State<OfficePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> CreateTrip())).then((_) {_getOffice();});
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> const CreateTrip())).then((_) {_getOffice();});
         },
         tooltip: 'إضافة رحلة',
-        backgroundColor:  AppColors.primary1,
+        backgroundColor:  const Color(0xFFCE9263),
         child: const Icon(Icons.add),
       ),
     );

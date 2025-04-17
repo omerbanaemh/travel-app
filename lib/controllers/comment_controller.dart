@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:yemen_travel_guid/models/api_response.dart';
 import 'package:yemen_travel_guid/models/comment_model.dart';
-import 'package:yemen_travel_guid/models/trip_model.dart';
 
 import '../constant.dart';
 
@@ -47,9 +46,8 @@ import '../constant.dart';
 
 // Create comment
 Future<ApiResponse> createComment(String? comment, String? placeId, String? packageId) async {
-  print('===================createComment==============');
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
     String? token = await getToken();
     final response = await http.post(Uri.parse(createCommentURL),
     headers: {
@@ -60,7 +58,6 @@ Future<ApiResponse> createComment(String? comment, String? placeId, String? pack
       if (placeId != null) 'place_id':placeId,
       if (packageId != null) 'package_id': packageId,
     });
-    print(response.body);
     switch(response.statusCode){
       case 200:
         apiResponse.data = CommentModel.fromJson(jsonDecode(response.body)['data']);
@@ -75,10 +72,10 @@ Future<ApiResponse> createComment(String? comment, String? placeId, String? pack
         apiResponse.error = 'somethingWentWrong';
         break;
     }
-  // }
-  // catch (e){
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch (e){
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }
 
@@ -87,9 +84,8 @@ Future<ApiResponse> createComment(String? comment, String? placeId, String? pack
 
 // Edit comment
 Future<ApiResponse> editComment(int commentId, String comment) async {
-  print('===================editComment==============');
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
     String? token = await getToken();
     final response = await http.put(Uri.parse('$editCommentURL/$commentId'),
     headers: {
@@ -99,7 +95,6 @@ Future<ApiResponse> editComment(int commentId, String comment) async {
       'comment': comment
     });
 
-    print(response.body);
 
     switch(response.statusCode){
       case 200:
@@ -115,10 +110,10 @@ Future<ApiResponse> editComment(int commentId, String comment) async {
         apiResponse.error = 'somethingWentWrong';
         break;
     }
-  // }
-  // catch (e){
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch (e){
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }
 
@@ -126,9 +121,8 @@ Future<ApiResponse> editComment(int commentId, String comment) async {
 
 // Delete comment
 Future<ApiResponse> deleteComment(int commentId) async {
-  print('===================deleteComment==============');
   ApiResponse apiResponse = ApiResponse();
-  // try {
+  try {
     String? token = await getToken();
     final response = await http.delete(Uri.parse('$deleteCommentURL/$commentId'),
         headers: {
@@ -150,9 +144,9 @@ Future<ApiResponse> deleteComment(int commentId) async {
         apiResponse.error = 'somethingWentWrong';
         break;
     }
-  // }
-  // catch (e){
-  //   apiResponse.error = 'serverError';
-  // }
+  }
+  catch (e){
+    apiResponse.error = 'serverError';
+  }
   return apiResponse;
 }

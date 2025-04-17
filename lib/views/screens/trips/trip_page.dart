@@ -37,16 +37,8 @@ class _TripPageState extends State<TripPage> {
 }
 
   void _launchWhatsApp() async {
-    // final link = WhatsAppUnilink(
-    //   phoneNumber: '+001-(555)1234567',
-    //   text: "Hey! I'm inquiring about the apartment listing",
-    // );
-    // await launch('$link');
-    // await launch('https://wa.me/00967770051363?text=hello');
-
-    final Uri url = Uri.parse('https://wa.me/00967770051363?text=hello');
+    final Uri url = Uri.parse('https://wa.me/+967770051363?text=معلومات اضافيه عن ${trip.name}');
     await launchUrl(url);
-
   }
   @override
   void initState() {
@@ -62,7 +54,6 @@ class _TripPageState extends State<TripPage> {
 
 
   Future<void> _getTrip() async {
-    print('--------------------------------');
     setState(() {
       loading = true;
     });
@@ -141,7 +132,7 @@ class _TripPageState extends State<TripPage> {
 
   @override
   Widget build(BuildContext context) {
-    return loading ? Scaffold(body: Center(child: CircularProgressIndicator())) :
+    return loading ? const Scaffold(body: Center(child: CircularProgressIndicator())) :
     Scaffold(
       body: RefreshIndicator(
         onRefresh: () {
@@ -156,7 +147,7 @@ class _TripPageState extends State<TripPage> {
                   children: [
                     Stack(
                       children: [
-                        Container(
+                        SizedBox(
                             height: 230,
                             width: double.infinity,
                             child: Image.network(trip.image,fit: BoxFit.cover,)
@@ -178,7 +169,7 @@ class _TripPageState extends State<TripPage> {
                                   ),
                                 ),
                               ),
-                              Text(trip.name,style: TextStyle(fontSize: 28,color: Color(0xffa76f47 )),)
+                              Text(trip.name,style: const TextStyle(fontSize: 28,color: Color(0xffa76f47 )),)
                             ],
                           ),
                         ),
@@ -187,8 +178,8 @@ class _TripPageState extends State<TripPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
+                        const Padding(
+                          padding: EdgeInsets.only(right: 16.0),
                           child: Text('نظرة عامة',style: TextStyle(fontSize: 32,color: Color(
                               0xffa76f47)),),
                         ),
@@ -210,7 +201,7 @@ class _TripPageState extends State<TripPage> {
                                 );
                               }),
                             ),
-                            SizedBox(width: 15,),
+                            const SizedBox(width: 15,),
                           ],
                         ),
 
@@ -218,33 +209,32 @@ class _TripPageState extends State<TripPage> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 20.0),
-                      child: Text(trip.subTitle,style: TextStyle(fontSize: 20,color: Color(
+                      child: Text(trip.subTitle,style: const TextStyle(fontSize: 20,color: Color(
                           0xffa76f47)),),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Text(trip.description,style: TextStyle(fontSize: 16,),),
+                      child: Text(trip.description,style: const TextStyle(fontSize: 16,),),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
+                        const Padding(
+                          padding: EdgeInsets.only(right: 16.0),
                           child: Text('معلومات الرحلة ',style: TextStyle(fontSize: 32,color: Color(
                               0xffa76f47)),),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 16.0),
                           child: IconButton(
-                              icon:Icon(Icons.ac_unit),
+                              icon:const Icon(Icons.ac_unit),
                           onPressed: (){_launchWhatsApp();},)
                         ),
                       ],
                     ),
-                    Divider(),
+                    const Divider(),
                     InkWell(
                       onTap: () {
-                        print(trip.image);
                         _showBottomSheet(context, 'خط سير الرحلة', trip.itinerary);
                       },
                       child: Padding(
@@ -252,16 +242,16 @@ class _TripPageState extends State<TripPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('خط سير الرحلة',style: TextStyle(fontSize: 24,),),
+                            const Text('خط سير الرحلة',style: TextStyle(fontSize: 24,),),
                             Transform(
                               alignment: Alignment.center,
                               transform: Matrix4.rotationY(math.pi),
-                              child: Icon(Icons.arrow_back_ios_new_rounded,size: 20,),
+                              child: const Icon(Icons.arrow_back_ios_new_rounded,size: 20,),
                             ),              ],
                         ),
                       ),
                     ),
-                    Divider(),
+                    const Divider(),
                     InkWell(
                       onTap: () {
                         _showBottomSheet(context, 'محتويات الرحلة', trip.tripContent);
@@ -271,19 +261,19 @@ class _TripPageState extends State<TripPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('محتويات الرحلة',style: TextStyle(fontSize: 24,),),
+                            const Text('محتويات الرحلة',style: TextStyle(fontSize: 24,),),
                             Transform(
                               alignment: Alignment.center,
                               transform: Matrix4.rotationY(math.pi),
-                              child: Icon(Icons.arrow_back_ios_new_rounded,size: 20,),
+                              child: const Icon(Icons.arrow_back_ios_new_rounded,size: 20,),
                             ),              ],
                         ),
                       ),
                     ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 16.0,top: 8,bottom: 6),
-                      child: const Text("التعليقات",  style: TextStyle(
+                    const Divider(),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 16.0,top: 8,bottom: 6),
+                      child: Text("التعليقات",  style: TextStyle(
                         fontSize: 22,
                         color: Color(0xffa66e47),
                         fontWeight: FontWeight.bold,),),
@@ -310,7 +300,7 @@ class _TripPageState extends State<TripPage> {
                                     children: [
                                       CircleAvatar(
                                         backgroundColor:
-                                        Color(0xffeaded8),
+                                        const Color(0xffeaded8),
                                         radius: 15,
                                         child:  Text(
                                           comment.user.userName
@@ -403,7 +393,7 @@ class _TripPageState extends State<TripPage> {
                       controller: _txtCommentController,
                     ),
                   ),
-                  SizedBox(width: 8,),
+                  const SizedBox(width: 8,),
                   InkWell(
                     child: SvgPicture.asset(
                       height: 40,
@@ -429,13 +419,13 @@ class _TripPageState extends State<TripPage> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Color(0xffece0d9),
+        color: const Color(0xffece0d9),
 
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Expanded(child: Text('السعر ${trip.price} ر.س', style: TextStyle(fontSize: 24,),)),
-            SizedBox(width: 8,),
+            Expanded(child: Text('السعر ${trip.price} ر.س', style: const TextStyle(fontSize: 24,),)),
+            const SizedBox(width: 8,),
             trip.reserved! ?
             Container(
               width: 127,
@@ -444,7 +434,7 @@ class _TripPageState extends State<TripPage> {
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.lightGreen,
               ),
-                child: Center(child: Text('تم الحجز', style: TextStyle(fontSize: 24,color: Colors.white),))):
+                child: const Center(child: Text('تم الحجز', style: TextStyle(fontSize: 24,color: Colors.white),))):
             InkWell(
               onTap: () {
                  showDialog(
@@ -467,9 +457,9 @@ class _TripPageState extends State<TripPage> {
                 height: 47,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: Color(0xffa76f47),
+                  color: const Color(0xffa76f47),
                 ),
-                  child: Center(child: Text('أحجز الآن', style: TextStyle(fontSize: 24,color: Colors.white),))),
+                  child: const Center(child: Text('أحجز الآن', style: TextStyle(fontSize: 24,color: Colors.white),))),
             )
           ],
         ),
@@ -490,7 +480,7 @@ class _TripPageState extends State<TripPage> {
       context: context,
       builder: (BuildContext context) {
         return Container(
-          padding: EdgeInsets.only(left: 16.0,bottom: 16.0, right: 16.0,),
+          padding: const EdgeInsets.only(left: 16.0,bottom: 16.0, right: 16.0,),
           width: double.infinity,
           child: SingleChildScrollView(
             child: Column(
@@ -504,13 +494,13 @@ class _TripPageState extends State<TripPage> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                SizedBox(height: 10),
-                Text(title,style: TextStyle(fontSize: 24 ),),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
+                Text(title,style: const TextStyle(fontSize: 24 ),),
+                const SizedBox(height: 10),
                 SingleChildScrollView(
                   child: Column(
                     children: [
-                      Text(description,style: TextStyle(fontSize: 16 ),),
+                      Text(description,style: const TextStyle(fontSize: 16 ),),
                     ],
                   ),
                 ),

@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
 
 import '../login/login_buttuon.dart';
 
 class FormAgent extends StatefulWidget {
-  final GlobalKey<FormState> formkey ;
+  final GlobalKey<FormState> formKey ;
   final TextEditingController userName;
   final TextEditingController email;
   final TextEditingController password;
-  final TextEditingController password_confirmation;
+  final TextEditingController passwordConfirmation;
   final TextEditingController phone;
   final TextEditingController officeName;
   final TextEditingController officePhone;
   final TextEditingController recordNumber;
 
 
-  const FormAgent({super.key, required this.formkey, required this.userName, required this.email, required this.password, required this.password_confirmation, required this.phone, required this.officeName, required this.officePhone, required this.recordNumber});
+  const FormAgent({super.key, required this.formKey, required this.userName, required this.email, required this.password, required this.passwordConfirmation, required this.phone, required this.officeName, required this.officePhone, required this.recordNumber});
 
   @override
   State<FormAgent> createState() => _FormAgentState();
@@ -25,65 +24,65 @@ class _FormAgentState extends State<FormAgent> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: widget.formkey,
+      key: widget.formKey,
         child: Column(
           children: [
             LoginButton(
-              icon: Icon(Icons.person,color: AppColors.primary2,),
+              icon: const Icon(Icons.person,color: Color(0xFFC08759),),
               label: 'اسم الوكيل',
               validator: '',
               controller: widget.userName,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             LoginButton(
-                icon: Icon(Icons.email,color: AppColors.primary2,),
+                icon: const Icon(Icons.email,color: Color(0xFFC08759),),
                 label: 'البريد الإلكتروني',
                 validator: 'email',
                 controller: widget.email,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             LoginButton(
-                icon: Icon(Icons.password,color: AppColors.primary2,),
+                icon: const Icon(Icons.password,color: Color(0xFFC08759),),
                 label: 'كلمة المرور',
                 validator: 'password',
                 controller: widget.password,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             LoginButton(
-                icon: Icon(Icons.password,color: AppColors.primary2,),
+                icon: const Icon(Icons.password,color: Color(0xFFC08759),),
                 label: 'تاكيد كلمة المرور',
                 validator: 'password',
-                controller: widget.password_confirmation
+                controller: widget.passwordConfirmation
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             LoginButton(
-                icon: Icon(Icons.phone_android,color: AppColors.primary2,),
+                icon: const Icon(Icons.phone_android,color: Color(0xFFC08759),),
                 label: 'رقم الهاتف',
                 validator: 'required',
                 controller: widget.phone
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             LoginButton(
-                icon: Icon(Icons.home_work_outlined,color: AppColors.primary2,),
+                icon: const Icon(Icons.home_work_outlined,color: Color(0xFFC08759),),
                 label: 'اسم المكتب',
                 validator: 'required',
                 controller: widget.officeName
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             LoginButton(
-                icon: Icon(Icons.phone,color: AppColors.primary2,),
+                icon: const Icon(Icons.phone,color: Color(0xFFC08759),),
                 label: 'رقم المكتب',
                 validator: 'required',
                 controller: widget.officePhone
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             LoginButton(
-                icon: Icon(Icons.numbers,color: AppColors.primary2,),
+                icon: const Icon(Icons.numbers,color: Color(0xFFC08759),),
                 label: 'رقم السجل',
                 validator: 'required',
                 controller: widget.recordNumber
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
           ],
         )
     );

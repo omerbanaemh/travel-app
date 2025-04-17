@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yemen_travel_guid/controllers/bookings_controller.dart';
 import 'package:yemen_travel_guid/controllers/user_controller.dart';
 import 'package:yemen_travel_guid/models/booking_model.dart';
-import 'package:dio/dio.dart' as dio;
 
 class BookingPage extends StatefulWidget {
   final int bookingId;
@@ -19,16 +18,13 @@ class _BookingPageState extends State<BookingPage> {
   late  BookingModel booking;
   bool loading = false;
 
-  int _editCommentId = 0;
   int editIndex = 0;
-  final TextEditingController _txtCommentController = TextEditingController();
 
 
 
 
   @override
   void initState() {
-    print(widget.bookingId);
     _getBooking();
     super.initState();
   }
@@ -37,7 +33,6 @@ class _BookingPageState extends State<BookingPage> {
 
 
   Future<void> _getBooking() async {
-    print('--------------------------------');
     setState(() {
       loading = true;
     });
@@ -81,7 +76,7 @@ class _BookingPageState extends State<BookingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return loading ? Scaffold(body: Center(child: CircularProgressIndicator())) :
+    return loading ? const Scaffold(body: Center(child: CircularProgressIndicator())) :
     Scaffold(
       body: RefreshIndicator(
         onRefresh: () {
@@ -96,7 +91,7 @@ class _BookingPageState extends State<BookingPage> {
                   children: [
                     Stack(
                       children: [
-                        Container(
+                        SizedBox(
                             height: 230,
                             width: double.infinity,
                             child: Image.network(booking.image,fit: BoxFit.cover,)
@@ -123,12 +118,12 @@ class _BookingPageState extends State<BookingPage> {
 
                         Padding(
                           padding: const EdgeInsets.only(right: 16.0),
-                          child: Text(' حجز ${booking.trip.name}',style: TextStyle(fontSize: 32,color: Color(
+                          child: Text(' حجز ${booking.trip.name}',style: const TextStyle(fontSize: 32,color: Color(
                               0xffa76f47)),),),
 
 
-                    Padding(
-                      padding: const EdgeInsets.only(right: 16.0),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 16.0),
                       child: Text('معلومات الرحلة ',style: TextStyle(fontSize: 32,color: Color(
                           0xffa76f47)),),
                     ),
@@ -155,21 +150,21 @@ class _BookingPageState extends State<BookingPage> {
                             ),
                             Expanded(child: Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Text(booking.trip.name,style: TextStyle(fontSize: 24,),),
+                              child: Text(booking.trip.name,style: const TextStyle(fontSize: 24,),),
                             )),
-                            SizedBox(),
+                            const SizedBox(),
                             Transform(
                               alignment: Alignment.center,
                               transform: Matrix4.rotationY(math.pi),
-                              child: Icon(Icons.arrow_back_ios_new_rounded,size: 20,),
+                              child: const Icon(Icons.arrow_back_ios_new_rounded,size: 20,),
                             ),              ],
                         ),
                       ),
                     ),
 
 
-                    Padding(
-                      padding: const EdgeInsets.only(top: 16, right: 16.0),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 16, right: 16.0),
                       child: Text('معلومات حاجز الرحلة',style: TextStyle(fontSize: 24,color: Color(
                           0xffa76f47)),),
                     ),
@@ -194,13 +189,13 @@ class _BookingPageState extends State<BookingPage> {
                           ),
                           Expanded(child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Text(booking.user.userName,style: TextStyle(fontSize: 24,),),
+                            child: Text(booking.user.userName,style: const TextStyle(fontSize: 24,),),
                           )),
-                          SizedBox(),
+                          const SizedBox(),
                           Transform(
                             alignment: Alignment.center,
                             transform: Matrix4.rotationY(math.pi),
-                            child: Icon(Icons.arrow_back_ios_new_rounded,size: 20,),
+                            child: const Icon(Icons.arrow_back_ios_new_rounded,size: 20,),
                           ),              ],
                       ),
                     ),
@@ -214,11 +209,11 @@ class _BookingPageState extends State<BookingPage> {
       ),
 
       bottomNavigationBar: booking.status == 'waiting' ? BottomAppBar(
-        color: Color(0xffece0d9),
+        color: const Color(0xffece0d9),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SizedBox(width: 8,),
+            const SizedBox(width: 8,),
             InkWell(
               onTap: () {
                 _updateBooking('Rejected');
@@ -230,9 +225,9 @@ class _BookingPageState extends State<BookingPage> {
                     borderRadius: BorderRadius.circular(20),
                     color: Colors.grey,
                   ),
-                  child: Center(child: Text('رفض', style: TextStyle(fontSize: 24,color: Colors.white),))),
+                  child: const Center(child: Text('رفض', style: TextStyle(fontSize: 24,color: Colors.white),))),
             ),
-            SizedBox(width: 8,),
+            const SizedBox(width: 8,),
             InkWell(
               onTap: () {
                 _updateBooking('acceptable');
@@ -242,18 +237,18 @@ class _BookingPageState extends State<BookingPage> {
                   height: 47,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Color(0xffa76f47),
+                    color: const Color(0xffa76f47),
                   ),
-                  child: Center(child: Text('قبول', style: TextStyle(fontSize: 24,color: Colors.white),))),
+                  child: const Center(child: Text('قبول', style: TextStyle(fontSize: 24,color: Colors.white),))),
             )
           ],
         ),
       )
-          :  booking.status == 'Rejected' ? BottomAppBar(
+          :  booking.status == 'Rejected' ? const BottomAppBar(
         color: Color(0xfff5b4ac),
         child: Center(child: Text('تم الرفض')),
 
-      ) : booking.status == 'acceptable' ? BottomAppBar(
+      ) : booking.status == 'acceptable' ? const BottomAppBar(
         color: Color(0xffacf5bd),
         child: Center(child: Text('تم القبول')),
 
@@ -265,43 +260,43 @@ class _BookingPageState extends State<BookingPage> {
 
 
 
-  void _showBottomSheet(BuildContext context, title, description) {
-    showModalBottomSheet(
-      useSafeArea: true,
-      isScrollControlled: true,
-      backgroundColor: Colors.white,
-      context: context,
-      builder: (BuildContext context) {
-        return Container(
-          padding: EdgeInsets.only(left: 16.0,bottom: 16.0, right: 16.0,),
-          width: double.infinity,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  height: 5,
-                  width: 94,
-                  decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text(title,style: TextStyle(fontSize: 24 ),),
-                SizedBox(height: 10),
-                SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Text(description,style: TextStyle(fontSize: 16 ),),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
+  // void _showBottomSheet(BuildContext context, title, description) {
+  //   showModalBottomSheet(
+  //     useSafeArea: true,
+  //     isScrollControlled: true,
+  //     backgroundColor: Colors.white,
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return Container(
+  //         padding: EdgeInsets.only(left: 16.0,bottom: 16.0, right: 16.0,),
+  //         width: double.infinity,
+  //         child: SingleChildScrollView(
+  //           child: Column(
+  //             mainAxisSize: MainAxisSize.min,
+  //             children: [
+  //               Container(
+  //                 height: 5,
+  //                 width: 94,
+  //                 decoration: BoxDecoration(
+  //                   color: Colors.grey,
+  //                   borderRadius: BorderRadius.circular(10),
+  //                 ),
+  //               ),
+  //               SizedBox(height: 10),
+  //               Text(title,style: TextStyle(fontSize: 24 ),),
+  //               SizedBox(height: 10),
+  //               SingleChildScrollView(
+  //                 child: Column(
+  //                   children: [
+  //                     Text(description,style: TextStyle(fontSize: 16 ),),
+  //                   ],
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 }

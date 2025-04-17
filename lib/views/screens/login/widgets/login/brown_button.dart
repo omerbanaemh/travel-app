@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yemen_travel_guid/colors/app_colors.dart';
 
 
 class BrownButton extends StatefulWidget {
@@ -18,18 +17,18 @@ class _BrownButtonState extends State<BrownButton> {
       width: 300,
       height: 50,
       decoration: BoxDecoration(
-        color: AppColors.primary3 ,
+        color: const Color(0xFFA87247) ,
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
             blurRadius: 5,
-            offset: Offset(0, 5),
+            offset: const Offset(0, 5),
           ),
         ],
       ),
       child: Center(
-          child: widget.loading ? CircularProgressIndicator(color: Colors.white,) : Text(widget.text,style: TextStyle(color: Colors.white ,fontSize: 18,fontWeight: FontWeight.bold,),)
+          child: widget.loading ? const CircularProgressIndicator(color: Colors.white,) : Text(widget.text,style: const TextStyle(color: Colors.white ,fontSize: 18,fontWeight: FontWeight.bold,),)
       ),
     );
   }
