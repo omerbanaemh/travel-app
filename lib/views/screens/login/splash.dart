@@ -15,15 +15,11 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
-
+  // دالة تتحقق من وجود رمز (token) للمستخدم في التخزين المحلي
   void loginSharedPreferences() async {
     String? token = await getToken();
-    if (token == ''){
+    if (token == null || token.isEmpty){
       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>const IntroScreen()), (route) => false);
-    }
-    else if (token == null){
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>const IntroScreen()), (route) => false);
-
     }
     else {
       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>const Home()), (route) => false);
@@ -33,12 +29,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
+    // استدعاء فحص الـ token عند بداية التشغيل
     loginSharedPreferences();
     super.initState();
-    // Timer(const Duration(seconds: 3), () {
-    //   loginSharedPreferences();
-    // });
-
   }
 
 

@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'yemen travel guid',
+      // إعداد الثيم العام للتطبيق
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
@@ -33,9 +34,11 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      // دعم اللغة العربية فقط حالياً
       supportedLocales: const [
         Locale('ar',''),
       ],
+      // الشاشة الأولى التي تظهر عند تشغيل التطبيق
       home: const SplashScreen(),
     );
   }

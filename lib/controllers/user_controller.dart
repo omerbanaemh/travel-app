@@ -85,6 +85,8 @@ Future login (String email, String password) async {
       body: {'email': email, 'password': password}
     );
 
+    print(response.body);
+
     switch(response.statusCode){
       case 200:
         apiResponse.data = UserModel.fromJson(jsonDecode(response.body)['data']);

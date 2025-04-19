@@ -12,6 +12,7 @@ class TripModel {
   final String price;
   final String? ratings;
   final bool? reserved;
+  final String? officePhone;
   final CityModel? city;
   List<CommentModel> comments;
   final DateTime? createdAt;
@@ -28,6 +29,7 @@ class TripModel {
     required this.price,
     this.ratings,
     this.reserved,
+    this.officePhone,
     this.city,
     required this.comments,
     this.createdAt,
@@ -46,6 +48,7 @@ class TripModel {
       price: json['price'],
       ratings: json['ratings'],
       reserved: json['reserved'],
+      officePhone: json['office_phone'],
       city: json['city'] != null && json['city'] is Map<String, dynamic> ? CityModel.fromJson(json['city']) : null,
       comments: List<CommentModel>.from((json['comments']??[]).map((comment) => CommentModel.fromJson(comment))),
       createdAt: json['created_at'] != null ? DateTime.parse(json['created_at']) : null,

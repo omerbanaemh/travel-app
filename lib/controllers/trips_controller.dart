@@ -60,6 +60,8 @@ Future<ApiResponse> getTrip(int id) async {
         'Authorization': 'Bearer $token'
       });
 
+  // print(response.body);
+
   switch(response.statusCode){
     case 200:
       apiResponse.data = TripModel.fromJson(jsonDecode(response.body)['data']);

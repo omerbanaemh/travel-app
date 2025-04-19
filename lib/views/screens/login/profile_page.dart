@@ -64,7 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   color: Colors.grey[900]),
             ),
             subtitle: Text(user.email),
-            trailing: Text(user.role!),
+            // trailing: Text(user.role!),
             leading: const CircleAvatar(
               radius: 30.0,
               // backgroundImage: NetworkImage("${snapshot.data.hitsList[index].previewUrl}"),

@@ -37,16 +37,13 @@ class _TripPageState extends State<TripPage> {
 }
 
   void _launchWhatsApp() async {
-    final Uri url = Uri.parse('https://wa.me/+967770051363?text=معلومات اضافيه عن ${trip.name}');
+    final Uri url = Uri.parse('https://wa.me/${trip.officePhone}?text= اريد الاستفسار عن ${trip.name}');
     await launchUrl(url);
   }
   @override
   void initState() {
     _getTrip();
-
     _getSharedPreferencesUser();
-
-
     super.initState();
   }
 
@@ -224,12 +221,20 @@ class _TripPageState extends State<TripPage> {
                           child: Text('معلومات الرحلة ',style: TextStyle(fontSize: 32,color: Color(
                               0xffa76f47)),),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
-                          child: IconButton(
-                              icon:const Icon(Icons.ac_unit),
-                          onPressed: (){_launchWhatsApp();},)
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(right: 16.0),
+                        //   child: IconButton(
+                        //       icon:const Icon(Icons.ac_unit),
+                        //   onPressed: (){_launchWhatsApp();},)
+                        // ),
+                        InkWell(
+                          onTap: (){_launchWhatsApp();},
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 16.0),
+                           child:  Image.asset(            height: 50,
+                             width: 50,'assets/images/whatsapp.png',fit: BoxFit.cover,)
+                          ),
+                        )
                       ],
                     ),
                     const Divider(),

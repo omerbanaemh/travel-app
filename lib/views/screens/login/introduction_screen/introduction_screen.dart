@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yemen_travel_guid/views/screens/login/login.dart';
+
+// شاشة المقدمة (intro) تظهر عند أول تشغيل للتطبيق
 class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});
 
@@ -12,6 +14,7 @@ class _IntroScreenState extends State<IntroScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
+  // الانتقال للصفحة التالية أو شاشة تسجيل الدخول عند الانتهاء
   void _nextPage() {
     if (_currentPage < 2) {
       _pageController.nextPage(
@@ -29,7 +32,9 @@ class _IntroScreenState extends State<IntroScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        children:[ PageView(
+        children:[
+          // عرض الشرائح باستخدام PageView لثلاث شاشات ترحيبية
+          PageView(
           reverse: true,
           controller: _pageController,
           onPageChanged: (int page) {
@@ -39,6 +44,7 @@ class _IntroScreenState extends State<IntroScreen> {
           },
           physics: const BouncingScrollPhysics(),
           children: <Widget>[
+            // الشريحة الأولى
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Column(
@@ -69,6 +75,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 ],
               ),
             ),
+            // الشريحة الثانية
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Column(
@@ -110,6 +117,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 ],
               ),
             ),
+            // الشريحة الثالثة
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Column(
@@ -144,6 +152,7 @@ class _IntroScreenState extends State<IntroScreen> {
             ),
           ],
         ),
+          // زر "التالي" أسفل الصفحة
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -162,28 +171,4 @@ class _IntroScreenState extends State<IntroScreen> {
     );
   }
 
-  // Widget _buildPage(
-  //     {required Color color,
-  //     required String title,
-  //     required String description}) {
-  //   return Container(
-  //     color: color,
-  //     child: Column(
-  //       mainAxisAlignment: MainAxisAlignment.center,
-  //       children: [
-  //         Text(
-  //           title,
-  //           style: const TextStyle(
-  //               fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
-  //         ),
-  //         const SizedBox(height: 20),
-  //         Text(
-  //           description,
-  //           style: const TextStyle(fontSize: 16, color: Colors.white),
-  //           textAlign: TextAlign.center,
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
 }
