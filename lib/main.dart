@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:yemen_travel_guid/loading.dart';
 import 'package:yemen_travel_guid/views/screens/login/splash.dart';
 
 
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
         Locale('ar',''),
       ],
       // الشاشة الأولى التي تظهر عند تشغيل التطبيق
-      home: const SplashScreen(),
+      home: const Loading(),
     );
   }
 }

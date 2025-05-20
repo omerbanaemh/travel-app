@@ -315,6 +315,7 @@ class _HomepageState extends State<Homepage> {
                     height: 100,
                     margin: const EdgeInsets.only(right: 10, left:12, bottom: 11),
                     decoration: BoxDecoration(
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [
                         BoxShadow(
@@ -325,36 +326,34 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ],
                     ),
-                    child: Stack(
-                      children:[ ClipRRect(
-
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          trip.image,
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                          height: double.infinity,
+                    child: Row(
+                      children:[
+                        SizedBox(width: 10,),
+                        Container(
+                          height: 60,
+                          width: 60,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: trip.image.isNotEmpty ? DecorationImage(
+                              image:
+                              NetworkImage(trip.image),
+                              fit: BoxFit.cover,
+                            ) : null,
+                          ),
                         ),
-                      ),
-                        Positioned(
-                          top: 5,
-                          right: 5,
+
+                        Expanded(
                           child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              color: Colors.white.withOpacity(0.3),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 6, right: 2, top: 2),
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.star, color: Colors.yellow,size: 12,),
-                                  Text(trip.ratings??'0',style: const TextStyle(color: Colors.white,fontSize: 12),),
-                                ],
-                              ),
+                            padding:const EdgeInsets.only(top:5.0, left: 8, right: 8),
+                            child: Text(
+                              trip.subTitle,
+                              style: const TextStyle(fontSize: 10,color: Color(0xff81400c),fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                        )
+                        ),
                       ]
                     ),
                   ),

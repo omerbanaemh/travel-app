@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yemen_travel_guid/models/auth/profile_model.dart';
 
-// const baseURL = 'http://10.0.2.2:8000/api';
+// const baseURL = 'http://10.0.2.2:8000';
 // const baseURL = 'http://127.0.0.1:8000';
 // const baseURL = 'http://192.168.137.1:8000/api';
 // const baseURL = 'http://bindowal-001-site24.jtempurl.com/api';
-const baseURL = 'http://192.168.65.127:8000';
+const baseURL = 'http://192.168.65.116:8000';
 
 
 //AUTH
